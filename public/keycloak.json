@@ -1,0 +1,9 @@
+{
+  "realm": "master",
+  "auth-server-url": "http://localhost:8080/auth/",
+  "ssl-required": "none",
+  "resource": "buy-food",
+  "public-client": true,
+  "verify-token-audience": true,
+  "use-resource-role-mappings": true
+}
