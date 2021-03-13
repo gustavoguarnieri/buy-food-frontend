@@ -1,5 +1,5 @@
 import Dashboard from "views/Dashboard.js";
-import CustomUserProfile from "views/CustomUserProfile.js";
+import UserProfile from "views/UserProfile.js";
 import TableList from "views/TableList.js";
 
 const routes = [
@@ -11,10 +11,10 @@ const routes = [
         layout: "/home"
     },
     {
-        path: "/customUser",
+        path: "/user",
         name: "User Profile",
         icon: "nc-icon nc-circle-09",
-        component: CustomUserProfile,
+        component: UserProfile,
         layout: "/home",
     },
     {

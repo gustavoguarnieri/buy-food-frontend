@@ -1,11 +1,10 @@
 import React from "react";
 import {
-  Button,
   Card,
   Form,
   Container,
   Row,
-  Col,
+  Col
 } from "react-bootstrap";
 
 function User() {
@@ -23,33 +22,22 @@ function User() {
                   <Row>
                     <Col className="pr-1" md="5">
                       <Form.Group>
-                        <label>Company (disabled)</label>
-                        <Form.Control
-                          defaultValue="Creative Code Inc."
-                          disabled
-                          placeholder="Company"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="px-1" md="3">
-                      <Form.Group>
                         <label>Username</label>
                         <Form.Control
-                          defaultValue="michael23"
                           placeholder="Username"
                           type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                    <Col className="pl-1" md="4">
+                    <Col className="pl-1" md="7">
                       <Form.Group>
                         <label htmlFor="exampleInputEmail1">
                           Email address
                         </label>
                         <Form.Control
-                          placeholder="Email"
-                          type="email"
+                            type="email"
+                            placeholder="Email"
+                            readOnly
                         ></Form.Control>
                       </Form.Group>
                     </Col>
@@ -59,8 +47,7 @@ function User() {
                       <Form.Group>
                         <label>First Name</label>
                         <Form.Control
-                          defaultValue="Mike"
-                          placeholder="Company"
+                          placeholder="First Name"
                           type="text"
                         ></Form.Control>
                       </Form.Group>
@@ -69,7 +56,6 @@ function User() {
                       <Form.Group>
                         <label>Last Name</label>
                         <Form.Control
-                          defaultValue="Andrew"
                           placeholder="Last Name"
                           type="text"
                         ></Form.Control>
@@ -77,70 +63,31 @@ function User() {
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="12">
+                    <Col md="5">
                       <Form.Group>
-                        <label>Address</label>
+                        <label>Senha</label>
                         <Form.Control
-                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                          placeholder="Home Address"
-                          type="text"
+                            placeholder="***"
+                            type="password"
                         ></Form.Control>
                       </Form.Group>
+                    </Col>
+                    <Col md="3">
+                      <Form.Group>
+                        <label>Tipo de conta</label>
+                          <Form.Control
+                              as="select"
+                              lassName="mr-sm-2"
+                              id="inlineFormCustomSelect"
+                              custom
+                          >
+                            <option value="0">Escolha...</option>
+                            <option value="1">usuario</option>
+                            <option value="2">estabelecimento</option>
+                          </Form.Control>
+                    </Form.Group>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col className="pr-1" md="4">
-                      <Form.Group>
-                        <label>City</label>
-                        <Form.Control
-                          defaultValue="Mike"
-                          placeholder="City"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="px-1" md="4">
-                      <Form.Group>
-                        <label>Country</label>
-                        <Form.Control
-                          defaultValue="Andrew"
-                          placeholder="Country"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <Form.Group>
-                        <label>Postal Code</label>
-                        <Form.Control
-                          placeholder="ZIP Code"
-                          type="number"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="12">
-                      <Form.Group>
-                        <label>About Me</label>
-                        <Form.Control
-                          cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                          that two seat Lambo."
-                          placeholder="Here can be your description"
-                          rows="4"
-                          as="textarea"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Button
-                    className="btn-fill pull-right"
-                    type="submit"
-                    variant="info"
-                  >
-                    Update Profile
-                  </Button>
                   <div className="clearfix"></div>
                 </Form>
               </Card.Body>
