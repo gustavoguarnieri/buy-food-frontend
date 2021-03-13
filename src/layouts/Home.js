@@ -6,46 +6,22 @@ import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
 import UserService from "services/UserService";
 
-import routes from "routes.js";
+import userRoutes from "../routes/UserRoutes";
+import adminRoutes from "../routes/AdminRoutes";
+import stablishmentRoutes from "../routes/StablishmentRoutes";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
-    return filterRoutes('admin')
+    return adminRoutes
   } else if (UserService.hasRole("establishment")){
-    return filterRoutes('establishment')
+    return stablishmentRoutes
   } else {
-    return filterRoutes('user')
+    return userRoutes
   }
 }
 
-//TODO não está filtrando, verificar
-function filterRoutes(roleDesc) {
-  const finalRoutes = routes
-      .filter((r) => {
-        console.log("vou filtrar a rota: " + r.name)
-        r.profiles
-            .filter((p) => {
-              console.log("vou filtrar o profile: " + p.name)
-
-              //TODO tive que passar para uma const pelo motivo de não comparar object com string
-              const profileName = p.name;
-
-              console.log(p.name)
-              profileName === roleDesc
-              console.log(profileName === roleDesc)
-            })
-      });
-  console.log(finalRoutes)
-  return finalRoutes
-}
-
-//TODO filtrando caso não seja uma lista
-// function filterRoutes(roleDesc) {
-//   return routes.filter((role) => role.profiles === roleDesc);
-// }
-
 function Home() {
-  const [color, setColor] = React.useState("black");
+  const [color] = React.useState("black");
   const location = useLocation();
   const mainPanel = React.useRef(null);
 
@@ -80,12 +56,11 @@ function Home() {
   return (
     <>
       <div className="wrapper">
-        {/*<Sidebar color={color} routes={routes} />*/}
         <Sidebar color={color} routes={getRoutes()} />
         <div className="main-panel" ref={mainPanel}>
           <AdminNavbar />
           <div className="content">
-            <Switch>{getRoutesByLayout(routes)}</Switch>
+            <Switch>{getRoutesByLayout(getRoutes())}</Switch>
           </div>
           <Footer />
         </div>
