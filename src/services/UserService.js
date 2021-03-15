@@ -24,6 +24,8 @@ const doLogout = _kc.logout;
 
 const getToken = () => _kc.token;
 
+const getUserInfo = () => _kc.userInfo;
+
 const isLoggedIn = () => !!_kc.token;
 
 const updateToken = (successCallback) =>
@@ -32,6 +34,8 @@ const updateToken = (successCallback) =>
     .catch(doLogin);
 
 const getUsername = () => _kc.tokenParsed?.preferred_username;
+
+const getUserId = () => _kc.tokenParsed?.user_id;
 
 const hasRole = (role) => _kc.hasRealmRole(role);
 
@@ -42,6 +46,7 @@ const UserService = {
   isLoggedIn,
   getToken,
   updateToken,
+  getUserId,
   getUsername,
   hasRole,
 };

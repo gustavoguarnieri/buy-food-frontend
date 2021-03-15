@@ -10,4 +10,4 @@ import "./assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0";
 const renderApp = () => ReactDOM.render(<App/>, document.getElementById("app"));
 
 UserService.initKeycloak(renderApp);
-HttpService.configure();
+//HttpService.configure();

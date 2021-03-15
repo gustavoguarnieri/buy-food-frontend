@@ -1,32 +1,51 @@
 import axios from "axios";
 import UserService from "./UserService";
 
-const HttpMethods = {
-  GET: 'GET',
-  POST: 'POST',
-  DELETE: 'DELETE',
-};
+// const HttpMethods = {
+//   GET: 'GET',
+//   POST: 'POST',
+//   PUT: 'PUT',
+//   DELETE: 'DELETE',
+// };
 
-const _axios = axios.create();
+// const baseAxios = axios.create({
+//   baseURL: `http://localhost:80/buy-food`,
+//   headers: {
+//     Authorization: `Bearer ${UserService.getToken()}`
+//   }
+// });
 
-const configure = () => {
-  _axios.interceptors.request.use((config) => {
-    if (UserService.isLoggedIn()) {
-      const cb = () => {
-        config.headers.Authorization = `Bearer ${UserService.getToken()}`;
-        return Promise.resolve(config);
-      };
-      return UserService.updateToken(cb);
-    }
-  });
-};
+// const AxiosConfig = { headers: { Authorization: `Bearer ${UserService.getToken()}` } };
 
-const getAxiosClient = () => _axios;
+// const axios = axios.create();
 
-const HttpService = {
-  HttpMethods,
-  configure,
-  getAxiosClient,
-};
+// const configure = () => {
+//   axios.interceptors.request.use((config) => {
+//     if (UserService.isLoggedIn()) {
+//       const cb = () => {
+//         config.headers.Authorization = `Bearer ${UserService.getToken()}`;
+//         //config.baseURL = `https://buy-food.azurewebsites.net/buy-food`
+//         config.baseURL = `http://localhost:80/buy-food`
+//         return Promise.resolve(config);
+//       };
+//       return UserService.updateToken(cb);
+//     }
+//   });
+// };
 
-export default HttpService;
+// const getAxiosClient = () => axios;
+//
+//
+// const HttpService = {
+//   HttpMethods,
+//   configure,
+//   getAxiosClient,
+// };
+
+
+// const HttpService = {
+//   Axios,
+//   AxiosConfig,
+// };
+//
+// export default HttpService;
