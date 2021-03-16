@@ -77,7 +77,7 @@ function User() {
                         <label>Tipo de conta</label>
                           <Form.Control
                               as="select"
-                              lassName="mr-sm-2"
+                              className="mr-sm-2"
                               id="inlineFormCustomSelect"
                               custom
                           >
