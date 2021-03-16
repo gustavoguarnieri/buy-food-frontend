@@ -92,7 +92,7 @@ export default () => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col className="pr-1" md="6">
+                                        <Col md="6">
                                             <Form.Group>
                                                 <label>Primeiro nome</label>
                                                 <Form.Control
@@ -103,7 +103,7 @@ export default () => {
                                                 ></Form.Control>
                                             </Form.Group>
                                         </Col>
-                                        <Col className="pl-1" md="6">
+                                        <Col md="6">
                                             <Form.Group>
                                                 <label>Último nome</label>
                                                 <Form.Control
@@ -116,7 +116,7 @@ export default () => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col className="pr-1" md="3">
+                                        <Col md="3">
                                             <Form.Group>
                                                 <label>Contato</label>
                                                 <Form.Control
