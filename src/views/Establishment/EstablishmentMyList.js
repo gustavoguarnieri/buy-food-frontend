@@ -86,7 +86,7 @@ function EstablishmentMyList() {
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
                                                 <Button className="btn-fill" variant="danger" size="sm" onClick={() => {
-                                                    if (window.confirm('Are you sure you wish to delete this item?')) handleDeleteEstablishment(item.id)
+                                                    if (window.confirm('Deseja realmente deletar este item?')) handleDeleteEstablishment(item.id)
                                                 }}>
                                                     Deletar
                                                 </Button>
