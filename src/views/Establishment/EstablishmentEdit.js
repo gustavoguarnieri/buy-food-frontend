@@ -4,16 +4,16 @@ import { useParams } from "react-router";
 
 function EstablishmentEdit() {
 
-    const { establishmentId } = useParams();
-    const [establishment, setEstablishment] = useState();
-    const { books } = useSelector((state) => state);
+    // const { establishmentId } = useParams();
+    // const [establishment, setEstablishment] = useState();
+    // const { books } = useSelector((state) => state);
 
     return (
         <>
             <p>página para edição do estabelecimento</p>
-            <p>
-                <Link to="/home/establishment">&laquo; voltar</Link>
-            </p>
+            {/*<p>*/}
+            {/*    <Link to="/home/establishment">&laquo; voltar</Link>*/}
+            {/*</p>*/}
         </>
     )
 

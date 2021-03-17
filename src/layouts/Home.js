@@ -15,6 +15,7 @@ import UserProfile from "views/UserProfile.js";
 import TableList from "views/TableList.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentEdit from "views/Establishment/EstablishmentEdit.js"
+import EstablishmentNew from "views/Establishment/EstablishmentNew.js"
 import NotFound from "../components/NotFound";
 
 function getRoutes() {
@@ -77,14 +78,14 @@ function Home() {
               <Route exact path="/home/table">
                 <TableList/>
               </Route>
-              <Route path="/home/establishment">
+              <Route exact path="/home/establishment">
                 <EstablishmentMyList/>
               </Route>
-              <Route path="/home/establishment/:establishmentId">
-                <TableList/>
+              <Route exact path="/home/establishment/edit/:establishmentId">
+                <EstablishmentEdit/>
               </Route>
               <Route exact path="/home/establishment/new">
-                <EstablishmentEdit/>
+                <EstablishmentNew/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

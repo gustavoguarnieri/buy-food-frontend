@@ -17,15 +17,7 @@ const routes = [
         component: EstablishmentMyList,
         layout: "/home",
         profiles: "admin"
-    },
-    {
-        path: "/establishment/:establishmentId",
-        name: "Alterar Estabelecimento",
-        icon: "nc-icon nc-notes",
-        component: EstablishmentEdit,
-        layout: "/home",
-        profiles: "admin"
-    },
+    }
 ];
 
 export default routes;

@@ -13,10 +13,23 @@ function EstablishmentMyList() {
     //const dispatch = useDispatch();
     //const {establishments} = useSelector((state) => state);
     const [establishments, setEstablishments] = useState();
+    const [deliveryTax, setDeliveryTax] = useState();
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     useEffect(() => {
             Api.get(`/api/v1/establishments/mine`, axiosConfig)
+                .then((res) => {
+                    setEstablishments(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
+    useEffect(() => {
+            Api.get(`/api/v1/establishments/{establishmentId}/delivery-tax`, axiosConfig)
                 .then((res) => {
                     setEstablishments(res.data)
                 })
@@ -83,7 +96,9 @@ function EstablishmentMyList() {
                                             <td>{item.mobilePhone}</td>
                                             <td>{item.category}</td>
                                             <td>Clique aqui</td>
-                                            <td>Clique aqui</td>
+                                            <td>
+                                                <input value={JSON.stringify(item.deliveryTax)} />
+                                            </td>
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
                                                 <Button className="btn-fill" variant="danger" size="sm" onClick={() => {
@@ -93,7 +108,7 @@ function EstablishmentMyList() {
                                                 </Button>
                                             </td>
                                             <td>
-                                                <Link to={`/home/establishment/${item.id}`}>
+                                                <Link to={`/home/establishment/edit/${item.id}`}>
                                                     <Button className="btn-fill" variant="secondary" size="sm">
                                                         Editar
                                                     </Button>
