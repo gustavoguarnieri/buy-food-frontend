@@ -1,5 +1,6 @@
 import UserProfile from "views/UserProfile.js";
 import EstablishmentMyList from "../views/Establishment/EstablishmentMyList";
+import EstablishmentEdit from "../views/Establishment/EstablishmentEdit";
 
 const routes = [
     {
@@ -11,9 +12,17 @@ const routes = [
     },
     {
         path: "/establishment",
-        name: "Establishment List",
+        name: "Lista Estabelecimento",
         icon: "nc-icon nc-notes",
         component: EstablishmentMyList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/:establishmentId",
+        name: "Alterar Estabelecimento",
+        icon: "nc-icon nc-notes",
+        component: EstablishmentEdit,
         layout: "/home",
         profiles: "admin"
     },

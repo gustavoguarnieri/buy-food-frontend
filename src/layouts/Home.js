@@ -10,6 +10,13 @@ import userRoutes from "../routes/UserRoutes";
 import adminRoutes from "../routes/AdminRoutes";
 import stablishmentRoutes from "../routes/StablishmentRoutes";
 
+import Dashboard from "views/Dashboard.js";
+import UserProfile from "views/UserProfile.js";
+import TableList from "views/TableList.js";
+import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
+import EstablishmentEdit from "views/Establishment/EstablishmentEdit.js"
+import NotFound from "../components/NotFound";
+
 function getRoutes() {
   if (UserService.hasRole("admin")) {
     return adminRoutes
@@ -60,7 +67,29 @@ function Home() {
         <div className="main-panel" ref={mainPanel}>
           <AdminNavbar />
           <div className="content">
-            <Switch>{getRoutesByLayout(getRoutes())}</Switch>
+            <Switch>
+              <Route exact path="home/dashboard">
+                <Dashboard/>
+              </Route>
+              <Route exact path="/home/user">
+                <UserProfile/>
+              </Route>
+              <Route exact path="/home/table">
+                <TableList/>
+              </Route>
+              <Route path="/home/establishment">
+                <EstablishmentMyList/>
+              </Route>
+              <Route path="/home/establishment/:establishmentId">
+                <TableList/>
+              </Route>
+              <Route exact path="/home/establishment/new">
+                <EstablishmentEdit/>
+              </Route>
+              <Route path="/home/*">
+                <NotFound/>
+              </Route>
+            </Switch>
           </div>
           <Footer />
         </div>

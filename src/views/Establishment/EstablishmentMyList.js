@@ -12,23 +12,30 @@ function EstablishmentMyList() {
     //const dispatch = useDispatch();
     //const {establishments} = useSelector((state) => state);
     const [establishments, setEstablishments] = useState();
-    const axiosConfig = { headers: { Authorization: `Bearer ${UserService.getToken()}` } };
-
-    // useEffect(() => {
-    //     dispatch(allBooks())
-    // }, []);
+    const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     useEffect(() => {
-        Api.get(`/api/v1/establishments/mine`, axiosConfig)
+            Api.get(`/api/v1/establishments/mine`, axiosConfig)
+                .then((res) => {
+                    setEstablishments(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
+    //TODO tenho que fazer o teste deletando um registro
+    const handleDeleteEstablishment = (id) => {
+        Api.delete(`/api/v1/establishments/${id}`, axiosConfig)
             .then((res) => {
-                setEstablishments(res.data)
+                setEstablishments([])
             })
             .catch((err) => {
                 console.log(err)
             })
-        },
-        []
-    )
+    }
 
     return establishments ? (
         <>
@@ -42,9 +49,11 @@ function EstablishmentMyList() {
                             <Row>
                                 <Col md="12">
                                     <Form.Group>
-                                        <Button className="m-2 btn-fill float-right" variant="info" size="sm">
-                                            Novo
-                                        </Button>
+                                        <Link to={`/home/establishment/new`}>
+                                            <Button className="m-2 btn-fill float-right" variant="info" size="sm">
+                                                Novo
+                                            </Button>
+                                        </Link>
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -65,7 +74,7 @@ function EstablishmentMyList() {
                                     </thead>
                                     <tbody>
                                     {establishments.map((item) => (
-                                        <tr>
+                                        <tr key={item.id}>
                                             <td>{item.id}</td>
                                             <td>{item.tradingName}</td>
                                             <td>{item.email}</td>
@@ -74,16 +83,20 @@ function EstablishmentMyList() {
                                             <td>{item.category}</td>
                                             <td>Clique aqui</td>
                                             <td>Clique aqui</td>
-                                            <td>{item.status === 1 ? "Ativo" : "Inativo" }</td>
+                                            <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
-                                                <Button className="btn-fill" variant="danger" size="sm">
+                                                <Button className="btn-fill" variant="danger" size="sm" onClick={() => {
+                                                    if (window.confirm('Are you sure you wish to delete this item?')) handleDeleteEstablishment(item.id)
+                                                }}>
                                                     Deletar
                                                 </Button>
                                             </td>
                                             <td>
-                                                <Button className="btn-fill" variant="secondary" size="sm">
-                                                    Editar
-                                                </Button>
+                                                <Link to={`/home/establishment/${item.id}`}>
+                                                    <Button className="btn-fill" variant="secondary" size="sm">
+                                                        Editar
+                                                    </Button>
+                                                </Link>
                                             </td>
                                         </tr>
                                     ))}
@@ -95,7 +108,7 @@ function EstablishmentMyList() {
                 </Row>
             </Container>
         </>
-    ) : null
+    ) : <p>Loading...</p>
 }
 
 export default EstablishmentMyList;
