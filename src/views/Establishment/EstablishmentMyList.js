@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import {Card, Col, Container, Row, Table, Button, Form} from "react-bootstrap";
+import FileUpload from "../../components/FileUpload";
 
 function EstablishmentMyList() {
     //const {establishmentId} = useParams();
@@ -105,6 +106,9 @@ function EstablishmentMyList() {
                             </Card.Body>
                         </Card>
                     </Col>
+                </Row>
+                <Row>
+                    <FileUpload />
                 </Row>
             </Container>
         </>
