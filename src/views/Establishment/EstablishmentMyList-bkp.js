@@ -7,26 +7,20 @@ import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import {Card, Col, Container, Row, Table, Button, Form} from "react-bootstrap";
 import FileUpload from "../../components/FileUpload";
-import DeliveryTax from "components/Utils/DeliveryTax.js"
-import BusinessHours from "components/Utils/BusinessHours.js"
-import WindowPrint from "components/Utils/WindowPrint.js"
-//import { useHistory } from 'react-router'
-
-//TODO atualizar pagina apos alteracao e delete
-//TODO Trabalhar com objetos aninhados do json como deliveryTax e businessHours
 
 function EstablishmentMyList() {
-
+    //const {establishmentId} = useParams();
+    //const dispatch = useDispatch();
+    //const {establishments} = useSelector((state) => state);
     const [establishments, setEstablishments] = useState('');
+    const [deliveryTax, setDeliveryTax] = useState();
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
-
-    //Atualiza a pagina
-    //const history = useHistory()
 
     useEffect(() => {
             Api.get(`/api/v1/establishments/mine`, axiosConfig)
                 .then((res) => {
                     setEstablishments(res.data)
+                    alert(establishments)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -35,31 +29,28 @@ function EstablishmentMyList() {
         []
     )
 
-    useEffect(() => {
-            Api.get(`/api/v1/establishments/{establishmentId}/delivery-tax`, axiosConfig)
-                .then((res) => {
-                    setEstablishments(res.data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        },
-        []
-    )
+    // useEffect(() => {
+    //         Api.get(`/api/v1/establishments/{establishmentId}/delivery-tax`, axiosConfig)
+    //             .then((res) => {
+    //                 setEstablishments(res.data)
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err)
+    //             })
+    //     },
+    //     []
+    // )
 
+    //TODO tenho que fazer o teste deletando um registro
     const handleDeleteEstablishment = (id) => {
         Api.delete(`/api/v1/establishments/${id}`, axiosConfig)
             .then((res) => {
-                console.log(res.data)
-            })
-            .then((res) => {
-                alert("Deletado com sucesso!")
+                setEstablishments([])
+                console.log(establishments)
             })
             .catch((err) => {
                 console.log(err)
             })
-        //history.go(0)
-        window.location.reload();
     }
 
     return (
@@ -79,7 +70,6 @@ function EstablishmentMyList() {
                                                 Novo
                                             </Button>
                                         </Link>
-                                        <WindowPrint/>
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -107,30 +97,19 @@ function EstablishmentMyList() {
                                             <td>{item.commercialPhone}</td>
                                             <td>{item.mobilePhone}</td>
                                             <td>{item.category}</td>
+                                            <td>Clique aqui</td>
                                             <td>
-                                                <BusinessHours/>
-                                            </td>
-                                            <td>
-                                                {/*<input value={JSON.stringify(item.deliveryTax)} />*/}
+                                                <input value={JSON.stringify(item.deliveryTax)} />
                                                 {/*<input value={Object.values(item)} />*/}
-                                                <DeliveryTax/>
 
                                             </td>
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
-                                                {item.status === 1 ? (
-                                                    <Button className="btn-fill" variant="danger" size="sm"
-                                                            onClick={() => {
-                                                                if (window.confirm(`Deseja realmente deletar este item (${item.tradingName}) ?`)) {
-                                                                    handleDeleteEstablishment(item.id)
-                                                                }
-                                                            }}>
-                                                        Deletar
-                                                    </Button>
-                                                ) : (
-                                                    <></>
-                                                )}
-
+                                                <Button className="btn-fill" variant="danger" size="sm" onClick={() => {
+                                                    if (window.confirm('Deseja realmente deletar este item?')) handleDeleteEstablishment(item.id)
+                                                }}>
+                                                    Deletar
+                                                </Button>
                                             </td>
                                             <td>
                                                 <Link to={`/home/establishment/edit/${item.id}`}>
@@ -146,6 +125,9 @@ function EstablishmentMyList() {
                             </Card.Body>
                         </Card>
                     </Col>
+                </Row>
+                <Row>
+                    <FileUpload />
                 </Row>
             </Container>
         </>
