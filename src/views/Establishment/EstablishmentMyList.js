@@ -85,7 +85,7 @@ function EstablishmentMyList() {
                                             <td>{item.email}</td>
                                             <td>{item.commercialPhone}</td>
                                             <td>{item.mobilePhone}</td>
-                                            <td>{item.category}</td>
+                                            <td>{item.category?.description}</td>
                                             <td>
                                                 <BusinessHours businessHours={item.businessHours}/>
                                             </td>

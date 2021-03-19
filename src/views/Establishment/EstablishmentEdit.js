@@ -1,23 +1,12 @@
-// import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useParams } from "react-router";
-
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
-import BusinessHours from "components/Utils/BusinessHours.js"
-import  UtilService from "../../services/UtilService";
+import EstablishmentCategory from "components/Utils/EstablishmentCategory"
+import UtilService from "../../services/UtilService";
 
 function EstablishmentEdit(props) {
-
-    // const { establishmentId } = useParams();
-    // const [establishment, setEstablishment] = useState();
-    // const { books } = useSelector((state) => state);
-
-    // const search = useLocation().search;
-    // const name = new URLSearchParams(search).get('establishmentId');
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
     const {establishmentId} = useParams();
@@ -28,7 +17,7 @@ function EstablishmentEdit(props) {
     let [commercialPhone, setCommercialPhone] = useState('')
     let [mobilePhone, setMobilePhone] = useState('')
     let [category, setCategory] = useState('')
-    let [businessHours, setBusinessHours] = useState('')
+    let [categories, setCategories] = useState('')
     let [deliveryTax, setDeliveryTax] = useState('')
     let [status, setStatus] = useState('')
 
@@ -50,16 +39,12 @@ function EstablishmentEdit(props) {
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
     }
-    const handleBusinessHoursChange = (event) => {
-        setBusinessHours(event.target.value)
-    }
     const handleDeliveryTaxChange = (event) => {
         setDeliveryTax(event.target.value)
     }
     const handleStatusChange = (event) => {
         setStatus(event.target.value)
     }
-
 
     useEffect(() => {
             Api.get(`/api/v1/establishments/${establishmentId}`, axiosConfig)
@@ -70,11 +55,9 @@ function EstablishmentEdit(props) {
                     setCommercialPhone(res.data.commercialPhone)
                     setMobilePhone(res.data.mobilePhone)
                     setCategory(res.data.category)
-                    setBusinessHours(res.data.businessHours)
+                    //setBusinessHours(res.data.businessHours)
                     setDeliveryTax(res.data.deliveryTax)
                     setStatus(res.data.status)
-                    //setStatus("INATIVO")
-                    console.log(res.data.status)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -82,6 +65,44 @@ function EstablishmentEdit(props) {
         },
         []
     )
+
+    useEffect(() => {
+            Api.get(`/api/v1/establishments/category?status=1`, axiosConfig)
+                .then((res) => {
+                    setCategories(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
+    const handlePutEstablishment = (e) => {
+        e.preventDefault()
+
+        const data = {
+            id: establishmentId,
+            companyName: "Restaurante do Erus",
+            tradingName: "Restaurante do Erus",
+            email: "Erus@teste.com.br",
+            commercialPhone: "1938061112",
+            mobilePhone: "1999963551111",
+            status: 1
+        }
+
+        Api.put(`/api/v1/establishments/${establishmentId}`, data, axiosConfig)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .then((res) => {
+                alert("Alterado com sucesso!")
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        //window.location.reload();
+    }
 
     return (
         <>
@@ -98,8 +119,20 @@ function EstablishmentEdit(props) {
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
-                                {/*<Form onSubmit={handleSubmit}>*/}
-                                <Form>
+                                <Form onSubmit={handlePutEstablishment}>
+                                    <Row>
+                                        <Col md="12">
+                                            <Form.Group>
+                                                <label>Razão Social</label>
+                                                <Form.Control
+                                                    value={companyName}
+                                                    onChange={handleCompanyNameChange}
+                                                    placeholder="Razão Social"
+                                                    type="text"
+                                                ></Form.Control>
+                                            </Form.Group>
+                                        </Col>
+                                    </Row>
                                     <Row>
                                         <Col md="12">
                                             <Form.Group>
@@ -109,7 +142,6 @@ function EstablishmentEdit(props) {
                                                     onChange={handleTradingNameChange}
                                                     placeholder="Empresa"
                                                     type="text"
-                                                    readOnly
                                                 ></Form.Control>
                                             </Form.Group>
                                         </Col>
@@ -153,18 +185,9 @@ function EstablishmentEdit(props) {
                                         <Col md="6">
                                             <Form.Group>
                                                 <label>Categoria</label>
-                                                <Form.Control
-                                                    value={category}
-                                                    onChange={handleCategoryChange}
-                                                    as="select"
-                                                    className="mr-sm-0"
-                                                    id="inlineFormCustomSelect"
-                                                    custom
-                                                >
-                                                    <option value="RESTAURANTE">RESTAURANTE</option>
-                                                    <option value="PIZZARIA">PIZZARIA</option>
-                                                    <option value="BAR">BAR</option>
-                                                </Form.Control>
+                                                <EstablishmentCategory establishmentCategories={categories}
+                                                                       category={category}
+                                                                       handleCategoryChange={handleCategoryChange}/>
                                             </Form.Group>
                                         </Col>
                                         <Col md="3">
