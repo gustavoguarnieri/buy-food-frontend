@@ -8,7 +8,7 @@ import UserService from "services/UserService";
 
 import userRoutes from "../routes/UserRoutes";
 import adminRoutes from "../routes/AdminRoutes";
-import stablishmentRoutes from "../routes/StablishmentRoutes";
+import stablishmentRoutes from "../routes/EstablishmentRoutes";
 
 import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";

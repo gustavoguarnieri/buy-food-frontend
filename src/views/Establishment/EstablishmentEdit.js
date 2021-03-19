@@ -3,10 +3,12 @@
 // import { useParams } from "react-router";
 
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
+import BusinessHours from "components/Utils/BusinessHours.js"
+import  UtilService from "../../services/UtilService";
 
 function EstablishmentEdit(props) {
 
@@ -71,6 +73,8 @@ function EstablishmentEdit(props) {
                     setBusinessHours(res.data.businessHours)
                     setDeliveryTax(res.data.deliveryTax)
                     setStatus(res.data.status)
+                    //setStatus("INATIVO")
+                    console.log(res.data.status)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -86,7 +90,12 @@ function EstablishmentEdit(props) {
                     <Col md="6">
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h4">Alterar Estabelecimento</Card.Title>
+                                <p>
+                                    <Link to="/home/establishment">&laquo; voltar</Link>
+                                </p>
+                                <Card.Title as="h4">
+                                    Alterar Estabelecimento
+                                </Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 {/*<Form onSubmit={handleSubmit}>*/}
@@ -119,7 +128,7 @@ function EstablishmentEdit(props) {
                                         </Col>
                                         <Col md="3">
                                             <Form.Group>
-                                                <label>Telefone Comercial</label>
+                                                <label>Tel. Comercial</label>
                                                 <Form.Control
                                                     value={commercialPhone}
                                                     onChange={handleCommercialPhoneChange}
@@ -130,7 +139,7 @@ function EstablishmentEdit(props) {
                                         </Col>
                                         <Col md="3">
                                             <Form.Group>
-                                                <label>Telefone Móvel</label>
+                                                <label>Tel. Móvel</label>
                                                 <Form.Control
                                                     value={mobilePhone}
                                                     onChange={handleMobilePhoneChange}
@@ -147,20 +156,31 @@ function EstablishmentEdit(props) {
                                                 <Form.Control
                                                     value={category}
                                                     onChange={handleCategoryChange}
-                                                    placeholder="Email"
-                                                    type="text"
-                                                ></Form.Control>
+                                                    as="select"
+                                                    className="mr-sm-0"
+                                                    id="inlineFormCustomSelect"
+                                                    custom
+                                                >
+                                                    <option value="RESTAURANTE">RESTAURANTE</option>
+                                                    <option value="PIZZARIA">PIZZARIA</option>
+                                                    <option value="BAR">BAR</option>
+                                                </Form.Control>
                                             </Form.Group>
                                         </Col>
                                         <Col md="6">
                                             <Form.Group>
                                                 <label>Horário de Funcionamento</label>
-                                                <Form.Control
-                                                    value={businessHours}
-                                                    onChange={handleBusinessHoursChange}
-                                                    placeholder="Horário de Funcionamento"
-                                                    type="text"
-                                                ></Form.Control>
+                                                {businessHours ?
+                                                    <BusinessHours businessHours={businessHours}/>
+                                                    :
+                                                    <Form.Control
+                                                        value="Não Informado"
+                                                        onChange={handleBusinessHoursChange}
+                                                        placeholder="Horário de Funcionamento"
+                                                        type="text"
+                                                        readOnly
+                                                    ></Form.Control>
+                                                }
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -169,7 +189,7 @@ function EstablishmentEdit(props) {
                                             <Form.Group>
                                                 <label>Taxa de Entrega</label>
                                                 <Form.Control
-                                                    value={deliveryTax}
+                                                    value={deliveryTax?.taxAmount ? UtilService.formCurrency(deliveryTax?.taxAmount) : "Grátis"}
                                                     onChange={handleDeliveryTaxChange}
                                                     placeholder="Taxa de Entrega"
                                                     type="text"
@@ -180,11 +200,15 @@ function EstablishmentEdit(props) {
                                             <Form.Group>
                                                 <label>Status</label>
                                                 <Form.Control
-                                                    value={status === 1 ? "Ativo" : "Inativo"}
-                                                    onChange={handleStatusChange}
-                                                    placeholder="status"
-                                                    type="text"
-                                                ></Form.Control>
+                                                    value={status}
+                                                    as="select"
+                                                    className="mr-sm-0"
+                                                    id="inlineFormCustomSelect"
+                                                    custom
+                                                >
+                                                    <option value="1">ATIVO</option>
+                                                    <option value="0">INATIVO</option>
+                                                </Form.Control>
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -202,10 +226,6 @@ function EstablishmentEdit(props) {
                     </Col>
                 </Row>
             </Container>
-
-            {/*<p>*/}
-            {/*    <Link to="/home/establishment">&laquo; voltar</Link>*/}
-            {/*</p>*/}
         </>
     )
 

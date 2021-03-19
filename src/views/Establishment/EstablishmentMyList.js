@@ -27,18 +27,6 @@ function EstablishmentMyList() {
         []
     )
 
-    useEffect(() => {
-            Api.get(`/api/v1/establishments/{establishmentId}/delivery-tax`, axiosConfig)
-                .then((res) => {
-                    setEstablishments(res.data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        },
-        []
-    )
-
     const handleDeleteEstablishment = (id) => {
         Api.delete(`/api/v1/establishments/${id}`, axiosConfig)
             .then((res) => {
@@ -101,9 +89,7 @@ function EstablishmentMyList() {
                                             <td>
                                                 <BusinessHours businessHours={item.businessHours}/>
                                             </td>
-                                            <td>
-                                                {item.deliveryTax?.taxAmount ? UtilService.formCurrency(item.deliveryTax?.taxAmount) : "Grátis"}
-                                            </td>
+                                            <td>{item.deliveryTax?.taxAmount ? UtilService.formCurrency(item.deliveryTax?.taxAmount) : "Grátis"}</td>
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
                                                 {item.status === 1 ? (

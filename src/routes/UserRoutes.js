@@ -1,6 +1,5 @@
 import UserProfile from "views/UserProfile.js";
 import EstablishmentMyList from "../views/Establishment/EstablishmentMyList";
-import EstablishmentEdit from "../views/Establishment/EstablishmentEdit";
 
 const routes = [
     {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import UserService from "../services/UserService";
 import Api from "../services/Api";
 import {Card, Button, Col, Container, Form, Row} from "react-bootstrap";
@@ -12,7 +12,7 @@ export default () => {
     let [phone, setPhone] = useState('')
     let [password, setPassword] = useState('')
     let [role, setRole] = useState('USER')
-    const axiosConfig = { headers: { Authorization: `Bearer ${UserService.getToken()}` } };
+    const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value)
@@ -52,21 +52,33 @@ export default () => {
     }
 
     useEffect(() => {
-        Api.get(`/api/v1/users/${UserService.getUserId()}`, axiosConfig)
-            .then((res) => {
-                setFirstName(res.data.firstName)
-                setEmail(res.data.email)
-                setLastName(res.data.lastName)
-                setNickName(res.data.nickName)
-                setPhone(res.data.phone)                
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    },
-    []
+            if (UserService.hasRole("admin")) {
+                setRole("ADMIN")
+            } else if (UserService.hasRole("establishment")) {
+                setRole("ESTABLISHMENT")
+            } else {
+                setRole("USER")
+            }
+        },
+        []
     )
-  
+
+    useEffect(() => {
+            Api.get(`/api/v1/users/${UserService.getUserId()}`, axiosConfig)
+                .then((res) => {
+                    setFirstName(res.data.firstName)
+                    setEmail(res.data.email)
+                    setLastName(res.data.lastName)
+                    setNickName(res.data.nickName)
+                    setPhone(res.data.phone)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
     return (
         <>
             <Container fluid>
@@ -141,6 +153,7 @@ export default () => {
                                             <Form.Group>
                                                 <label>Tipo de conta</label>
                                                 <Form.Control
+                                                    value={role}
                                                     onChange={handleRoleChange}
                                                     as="select"
                                                     className="mr-sm-2"
@@ -169,4 +182,4 @@ export default () => {
             </Container>
         </>
     );
-  }
+}
