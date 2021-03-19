@@ -6,7 +6,7 @@ class WindowPrint extends Component {
         return (
             <div>
                 <Button className="m-2 btn-fill float-right" variant="info" size="sm" onClick={() => window.print()}>
-                    Print
+                    Print / Export
                 </Button>
             </div>
         )

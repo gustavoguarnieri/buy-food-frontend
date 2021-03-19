@@ -89,7 +89,7 @@ function EstablishmentMyList() {
                                             <td>
                                                 <BusinessHours businessHours={item.businessHours}/>
                                             </td>
-                                            <td>{item.deliveryTax?.taxAmount ? UtilService.formCurrency(item.deliveryTax?.taxAmount) : "Grátis"}</td>
+                                            <td>{item.deliveryTax?.taxAmount ? UtilService.formCurrency(item.deliveryTax?.taxAmount) : "--"}</td>
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
                                                 {item.status === 1 ? (

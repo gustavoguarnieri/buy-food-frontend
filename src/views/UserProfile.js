@@ -171,7 +171,7 @@ export default () => {
                                         type="submit"
                                         variant="info"
                                     >
-                                        Update Profile
+                                        Update
                                     </Button>
                                     <div className="clearfix"></div>
                                 </Form>

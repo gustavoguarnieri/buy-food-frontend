@@ -167,36 +167,18 @@ function EstablishmentEdit(props) {
                                                 </Form.Control>
                                             </Form.Group>
                                         </Col>
-                                        <Col md="6">
-                                            <Form.Group>
-                                                <label>Horário de Funcionamento</label>
-                                                {businessHours ?
-                                                    <BusinessHours businessHours={businessHours}/>
-                                                    :
-                                                    <Form.Control
-                                                        value="Não Informado"
-                                                        onChange={handleBusinessHoursChange}
-                                                        placeholder="Horário de Funcionamento"
-                                                        type="text"
-                                                        readOnly
-                                                    ></Form.Control>
-                                                }
-                                            </Form.Group>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md="6">
+                                        <Col md="3">
                                             <Form.Group>
                                                 <label>Taxa de Entrega</label>
                                                 <Form.Control
-                                                    value={deliveryTax?.taxAmount ? UtilService.formCurrency(deliveryTax?.taxAmount) : "Grátis"}
+                                                    value={deliveryTax?.taxAmount && UtilService.formCurrency(deliveryTax?.taxAmount)}
                                                     onChange={handleDeliveryTaxChange}
                                                     placeholder="Taxa de Entrega"
                                                     type="text"
                                                 ></Form.Control>
                                             </Form.Group>
                                         </Col>
-                                        <Col md="6">
+                                        <Col md="3">
                                             <Form.Group>
                                                 <label>Status</label>
                                                 <Form.Control
@@ -217,7 +199,7 @@ function EstablishmentEdit(props) {
                                         type="submit"
                                         variant="info"
                                     >
-                                        Update Profile
+                                        Update
                                     </Button>
                                     <div className="clearfix"></div>
                                 </Form>
