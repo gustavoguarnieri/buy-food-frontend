@@ -6,7 +6,7 @@ function EstablishmentCategory(props) {
     return (
         <>
             <Form.Control
-                value={props.category.description}
+                value={props.category}
                 onChange={props.handleCategoryChange}
                 as="select"
                 className="mr-sm-0"
@@ -16,7 +16,7 @@ function EstablishmentCategory(props) {
                 {props.establishmentCategories && props.establishmentCategories.map((item) => (
                     <option
                         key={item.id}
-                        value={item.description}>{item.description}
+                        value={item.id}>{item.description}
                     </option>
                 ))}
             </Form.Control>

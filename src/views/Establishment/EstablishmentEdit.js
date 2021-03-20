@@ -4,7 +4,6 @@ import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import EstablishmentCategory from "components/Utils/EstablishmentCategory"
-import UtilService from "../../services/UtilService";
 
 function EstablishmentEdit(props) {
 
@@ -18,7 +17,6 @@ function EstablishmentEdit(props) {
     let [mobilePhone, setMobilePhone] = useState('')
     let [category, setCategory] = useState('')
     let [categories, setCategories] = useState('')
-    let [deliveryTax, setDeliveryTax] = useState('')
     let [status, setStatus] = useState('')
 
     const handleCompanyNameChange = (event) => {
@@ -39,9 +37,6 @@ function EstablishmentEdit(props) {
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
     }
-    const handleDeliveryTaxChange = (event) => {
-        setDeliveryTax(event.target.value)
-    }
     const handleStatusChange = (event) => {
         setStatus(event.target.value)
     }
@@ -54,9 +49,7 @@ function EstablishmentEdit(props) {
                     setEmail(res.data.email)
                     setCommercialPhone(res.data.commercialPhone)
                     setMobilePhone(res.data.mobilePhone)
-                    setCategory(res.data.category)
-                    //setBusinessHours(res.data.businessHours)
-                    setDeliveryTax(res.data.deliveryTax)
+                    setCategory(res.data.category.id)
                     setStatus(res.data.status)
                 })
                 .catch((err) => {
@@ -81,6 +74,10 @@ function EstablishmentEdit(props) {
     const handlePutEstablishment = (e) => {
         e.preventDefault()
 
+        const selectedCategory = {
+            id: category
+        }
+
         const data = {
             id: establishmentId,
             companyName: companyName,
@@ -88,6 +85,7 @@ function EstablishmentEdit(props) {
             email: email,
             commercialPhone: commercialPhone,
             mobilePhone: mobilePhone,
+            category: selectedCategory,
             status: status
         }
 
@@ -101,7 +99,6 @@ function EstablishmentEdit(props) {
             .catch((err) => {
                 console.log(err)
             })
-        //window.location.reload();
     }
 
     return (
