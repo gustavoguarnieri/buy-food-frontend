@@ -5,7 +5,7 @@ import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import EstablishmentCategory from "components/Utils/EstablishmentCategory"
 
-function EstablishmentEdit(props) {
+function EstablishmentEdit() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
     const {establishmentId} = useParams();
@@ -90,9 +90,7 @@ function EstablishmentEdit(props) {
         }
 
         Api.put(`/api/v1/establishments/${establishmentId}`, data, axiosConfig)
-            .then((res) => {
-                console.log(res.data)
-            })
+            .then((res) => {})
             .then((res) => {
                 alert("Alterado com sucesso!")
             })
@@ -126,7 +124,7 @@ function EstablishmentEdit(props) {
                                                     onChange={handleCompanyNameChange}
                                                     placeholder="Razão Social"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -139,7 +137,7 @@ function EstablishmentEdit(props) {
                                                     onChange={handleTradingNameChange}
                                                     placeholder="Empresa"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -152,7 +150,7 @@ function EstablishmentEdit(props) {
                                                     onChange={handleEmailChange}
                                                     placeholder="Email"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                         <Col md="3">
@@ -163,7 +161,7 @@ function EstablishmentEdit(props) {
                                                     onChange={handleCommercialPhoneChange}
                                                     placeholder="Telefone Comercial"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                         <Col md="3">
@@ -174,7 +172,7 @@ function EstablishmentEdit(props) {
                                                     onChange={handleMobilePhoneChange}
                                                     placeholder="Telefone Móvel"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -205,13 +203,13 @@ function EstablishmentEdit(props) {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md="3">
-                                            <Link to="/home/establishment">&laquo; Taxa de Entrega</Link>
+                                        <Col md="12">
+                                            <Link to="/home/establishment">Taxa de Entrega &gt;&gt;</Link>
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md="3">
-                                            <Link to="/home/establishment">&laquo; Expediente</Link>
+                                        <Col md="12">
+                                            <Link to="/home/establishment">Expediente &gt;&gt;</Link>
                                         </Col>
                                     </Row>
                                     <Button
@@ -219,9 +217,9 @@ function EstablishmentEdit(props) {
                                         type="submit"
                                         variant="info"
                                     >
-                                        Update
+                                        Salvar Edição
                                     </Button>
-                                    <div className="clearfix"></div>
+                                    <div className="clearfix"/>
                                 </Form>
                             </Card.Body>
                         </Card>

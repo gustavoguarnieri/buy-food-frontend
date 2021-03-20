@@ -99,7 +99,7 @@ export default () => {
                                                     placeholder="Login"
                                                     type="text"
                                                     readOnly
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -112,7 +112,7 @@ export default () => {
                                                     onChange={handleFirstNameChange}
                                                     placeholder="Primeiro nome"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                         <Col md="6">
@@ -123,7 +123,7 @@ export default () => {
                                                     onChange={handleLastNameChange}
                                                     placeholder="Último nome"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -136,7 +136,7 @@ export default () => {
                                                     onChange={handlePhoneChange}
                                                     placeholder="Contato"
                                                     type="text"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                         <Col md="5">
@@ -146,7 +146,7 @@ export default () => {
                                                     onChange={handlePassChange}
                                                     placeholder="***"
                                                     type="password"
-                                                ></Form.Control>
+                                                />
                                             </Form.Group>
                                         </Col>
                                         <Col md="4">
@@ -173,7 +173,7 @@ export default () => {
                                     >
                                         Update
                                     </Button>
-                                    <div className="clearfix"></div>
+                                    <div className="clearfix"/>
                                 </Form>
                             </Card.Body>
                         </Card>

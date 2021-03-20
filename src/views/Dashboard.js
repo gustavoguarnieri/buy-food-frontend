@@ -26,7 +26,7 @@ function Dashboard() {
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-chart text-warning"></i>
+                      <i className="nc-icon nc-chart text-warning"/>
                     </div>
                   </Col>
                   <Col xs="7">
@@ -40,7 +40,7 @@ function Dashboard() {
               <Card.Footer>
                 <hr></hr>
                 <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
+                  <i className="fas fa-redo mr-1"/>
                   Update Now
                 </div>
               </Card.Footer>
@@ -52,7 +52,7 @@ function Dashboard() {
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-light-3 text-success"></i>
+                      <i className="nc-icon nc-light-3 text-success"/>
                     </div>
                   </Col>
                   <Col xs="7">
@@ -66,7 +66,7 @@ function Dashboard() {
               <Card.Footer>
                 <hr></hr>
                 <div className="stats">
-                  <i className="far fa-calendar-alt mr-1"></i>
+                  <i className="far fa-calendar-alt mr-1"/>
                   Last day
                 </div>
               </Card.Footer>
@@ -78,7 +78,7 @@ function Dashboard() {
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-vector text-danger"></i>
+                      <i className="nc-icon nc-vector text-danger"/>
                     </div>
                   </Col>
                   <Col xs="7">
@@ -92,7 +92,7 @@ function Dashboard() {
               <Card.Footer>
                 <hr></hr>
                 <div className="stats">
-                  <i className="far fa-clock-o mr-1"></i>
+                  <i className="far fa-clock-o mr-1"/>
                   In the last hour
                 </div>
               </Card.Footer>
@@ -104,7 +104,7 @@ function Dashboard() {
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-favourite-28 text-primary"></i>
+                      <i className="nc-icon nc-favourite-28 text-primary"/>
                     </div>
                   </Col>
                   <Col xs="7">
@@ -118,7 +118,7 @@ function Dashboard() {
               <Card.Footer>
                 <hr></hr>
                 <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
+                  <i className="fas fa-redo mr-1"/>
                   Update now
                 </div>
               </Card.Footer>
@@ -186,14 +186,14 @@ function Dashboard() {
               </Card.Body>
               <Card.Footer>
                 <div className="legend">
-                  <i className="fas fa-circle text-info"></i>
-                  Open <i className="fas fa-circle text-danger"></i>
-                  Click <i className="fas fa-circle text-warning"></i>
+                  <i className="fas fa-circle text-info"/>
+                  Open <i className="fas fa-circle text-danger"/>
+                  Click <i className="fas fa-circle text-warning"/>
                   Click Second Time
                 </div>
                 <hr></hr>
                 <div className="stats">
-                  <i className="fas fa-history"></i>
+                  <i className="fas fa-history"/>
                   Updated 3 minutes ago
                 </div>
               </Card.Footer>
@@ -219,14 +219,14 @@ function Dashboard() {
                   />
                 </div>
                 <div className="legend">
-                  <i className="fas fa-circle text-info"></i>
-                  Open <i className="fas fa-circle text-danger"></i>
-                  Bounce <i className="fas fa-circle text-warning"></i>
+                  <i className="fas fa-circle text-info"/>
+                  Open <i className="fas fa-circle text-danger"/>
+                  Bounce <i className="fas fa-circle text-warning"/>
                   Unsubscribe
                 </div>
                 <hr></hr>
                 <div className="stats">
-                  <i className="far fa-clock"></i>
+                  <i className="far fa-clock"/>
                   Campaign sent 2 days ago
                 </div>
               </Card.Body>
@@ -315,13 +315,13 @@ function Dashboard() {
               </Card.Body>
               <Card.Footer>
                 <div className="legend">
-                  <i className="fas fa-circle text-info"></i>
-                  Tesla Model S <i className="fas fa-circle text-danger"></i>
+                  <i className="fas fa-circle text-info"/>
+                  Tesla Model S <i className="fas fa-circle text-danger"/>
                   BMW 5 Series
                 </div>
-                <hr></hr>
+                <hr/>
                 <div className="stats">
-                  <i className="fas fa-check"></i>
+                  <i className="fas fa-check"/>
                   Data information certified
                 </div>
               </Card.Footer>
@@ -344,8 +344,8 @@ function Dashboard() {
                               <Form.Check.Input
                                 defaultValue=""
                                 type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
+                              />
+                              <span className="form-check-sign"/>
                             </Form.Check.Label>
                           </Form.Check>
                         </td>
@@ -366,7 +366,7 @@ function Dashboard() {
                               type="button"
                               variant="info"
                             >
-                              <i className="fas fa-edit"></i>
+                              <i className="fas fa-edit"/>
                             </Button>
                           </OverlayTrigger>
                           <OverlayTrigger
@@ -379,7 +379,7 @@ function Dashboard() {
                               type="button"
                               variant="danger"
                             >
-                              <i className="fas fa-times"></i>
+                              <i className="fas fa-times"/>
                             </Button>
                           </OverlayTrigger>
                         </td>
@@ -392,8 +392,8 @@ function Dashboard() {
                                 defaultChecked
                                 defaultValue=""
                                 type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
+                              />
+                              <span className="form-check-sign"/>
                             </Form.Check.Label>
                           </Form.Check>
                         </td>
@@ -414,7 +414,7 @@ function Dashboard() {
                               type="button"
                               variant="info"
                             >
-                              <i className="fas fa-edit"></i>
+                              <i className="fas fa-edit"/>
                             </Button>
                           </OverlayTrigger>
                           <OverlayTrigger
@@ -427,7 +427,7 @@ function Dashboard() {
                               type="button"
                               variant="danger"
                             >
-                              <i className="fas fa-times"></i>
+                              <i className="fas fa-times"/>
                             </Button>
                           </OverlayTrigger>
                         </td>
@@ -440,8 +440,8 @@ function Dashboard() {
                                 defaultChecked
                                 defaultValue=""
                                 type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
+                              />
+                              <span className="form-check-sign"/>
                             </Form.Check.Label>
                           </Form.Check>
                         </td>
@@ -463,7 +463,7 @@ function Dashboard() {
                               type="button"
                               variant="info"
                             >
-                              <i className="fas fa-edit"></i>
+                              <i className="fas fa-edit"/>
                             </Button>
                           </OverlayTrigger>
                           <OverlayTrigger
@@ -476,7 +476,7 @@ function Dashboard() {
                               type="button"
                               variant="danger"
                             >
-                              <i className="fas fa-times"></i>
+                              <i className="fas fa-times"/>
                             </Button>
                           </OverlayTrigger>
                         </td>
@@ -488,8 +488,8 @@ function Dashboard() {
                               <Form.Check.Input
                                 defaultChecked
                                 type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
+                              />
+                              <span className="form-check-sign"/>
                             </Form.Check.Label>
                           </Form.Check>
                         </td>
@@ -510,7 +510,7 @@ function Dashboard() {
                               type="button"
                               variant="info"
                             >
-                              <i className="fas fa-edit"></i>
+                              <i className="fas fa-edit"/>
                             </Button>
                           </OverlayTrigger>
                           <OverlayTrigger
@@ -523,7 +523,7 @@ function Dashboard() {
                               type="button"
                               variant="danger"
                             >
-                              <i className="fas fa-times"></i>
+                              <i className="fas fa-times"/>
                             </Button>
                           </OverlayTrigger>
                         </td>
@@ -535,8 +535,8 @@ function Dashboard() {
                               <Form.Check.Input
                                 defaultValue=""
                                 type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
+                              />
+                              <span className="form-check-sign"/>
                             </Form.Check.Label>
                           </Form.Check>
                         </td>
@@ -554,7 +554,7 @@ function Dashboard() {
                               type="button"
                               variant="info"
                             >
-                              <i className="fas fa-edit"></i>
+                              <i className="fas fa-edit"/>
                             </Button>
                           </OverlayTrigger>
                           <OverlayTrigger
@@ -567,7 +567,7 @@ function Dashboard() {
                               type="button"
                               variant="danger"
                             >
-                              <i className="fas fa-times"></i>
+                              <i className="fas fa-times"/>
                             </Button>
                           </OverlayTrigger>
                         </td>
@@ -580,8 +580,8 @@ function Dashboard() {
                                 defaultValue=""
                                 disabled
                                 type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
+                              />
+                              <span className="form-check-sign"/>
                             </Form.Check.Label>
                           </Form.Check>
                         </td>
@@ -599,7 +599,7 @@ function Dashboard() {
                               type="button"
                               variant="info"
                             >
-                              <i className="fas fa-edit"></i>
+                              <i className="fas fa-edit"/>
                             </Button>
                           </OverlayTrigger>
                           <OverlayTrigger
@@ -612,7 +612,7 @@ function Dashboard() {
                               type="button"
                               variant="danger"
                             >
-                              <i className="fas fa-times"></i>
+                              <i className="fas fa-times"/>
                             </Button>
                           </OverlayTrigger>
                         </td>
@@ -624,7 +624,7 @@ function Dashboard() {
               <Card.Footer>
                 <hr></hr>
                 <div className="stats">
-                  <i className="now-ui-icons loader_refresh spin"></i>
+                  <i className="now-ui-icons loader_refresh spin"/>
                   Updated 3 minutes ago
                 </div>
               </Card.Footer>

@@ -1,8 +1,6 @@
 import React from "react";
 import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import {Card, Col, Container, Row, Table, Button, Form} from "react-bootstrap";

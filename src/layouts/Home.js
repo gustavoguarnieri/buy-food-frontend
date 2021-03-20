@@ -8,7 +8,7 @@ import UserService from "services/UserService";
 
 import userRoutes from "../routes/UserRoutes";
 import adminRoutes from "../routes/AdminRoutes";
-import stablishmentRoutes from "../routes/EstablishmentRoutes";
+import establishmentRoutes from "../routes/EstablishmentRoutes";
 
 import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";
@@ -22,7 +22,7 @@ function getRoutes() {
   if (UserService.hasRole("admin")) {
     return adminRoutes
   } else if (UserService.hasRole("establishment")){
-    return stablishmentRoutes
+    return establishmentRoutes
   } else {
     return userRoutes
   }
