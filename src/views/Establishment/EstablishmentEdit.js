@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useHistory} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
@@ -10,6 +10,7 @@ function EstablishmentEdit() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
     const {establishmentId} = useParams();
 
+    const history = useHistory()
     let [companyName, setCompanyName] = useState('')
     let [tradingName, setTradingName] = useState('')
     let [email, setEmail] = useState('')
@@ -93,6 +94,7 @@ function EstablishmentEdit() {
             .then((res) => {})
             .then((res) => {
                 alert("Alterado com sucesso!")
+                history.push("/home/establishment")
             })
             .catch((err) => {
                 console.log(err)
@@ -228,7 +230,6 @@ function EstablishmentEdit() {
             </Container>
         </>
     )
-
 }
 
 export default EstablishmentEdit;
