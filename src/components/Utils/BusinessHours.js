@@ -67,7 +67,7 @@ function BusinessHours(props) {
                             {props.businessHours?.startTimeSecondPeriodSaturday}:{props.businessHours?.finalTimeSecondPeriodSaturday}
                         </option> : <></>
                     }
-                </Form.Control> : <>--</>
+                </Form.Control> : <>24/7</>
             }
         </>
     )
