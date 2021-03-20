@@ -1,5 +1,5 @@
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EstablishmentCategory from "../../components/Utils/EstablishmentCategory";
 import UserService from "../../services/UserService";
@@ -9,13 +9,16 @@ function EstablishmentNew() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
+    const history = useHistory()
     let [companyName, setCompanyName] = useState('')
     let [tradingName, setTradingName] = useState('')
     let [email, setEmail] = useState('')
     let [commercialPhone, setCommercialPhone] = useState('')
     let [mobilePhone, setMobilePhone] = useState('')
-    let [category, setCategory] = useState('')
+    let [category, setCategory] = useState(1)
     let [categories, setCategories] = useState('')
+    let [file, setFile] = useState('')
+    let [establishmentId, setEstablishmentId] = useState('')
 
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value)
@@ -35,6 +38,9 @@ function EstablishmentNew() {
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
     }
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0])
+    }
 
     useEffect(() => {
             Api.get(`/api/v1/establishments/category?status=1`, axiosConfig)
@@ -48,33 +54,121 @@ function EstablishmentNew() {
         []
     )
 
-    const handlePostEstablishment = (e) => {
-        e.preventDefault()
+    // async function handleNewEstablishment(e) {
+    //     e.preventDefault();
+    //
+    //     const newEstablishmentData = {
+    //         companyName: companyName,
+    //         tradingName: tradingName,
+    //         email: email,
+    //         commercialPhone: commercialPhone,
+    //         mobilePhone: mobilePhone,
+    //         category: {
+    //             id: category
+    //         },
+    //         status: 1
+    //     }
+    //
+    //     const formData = new FormData()
+    //     formData.append('file', file)
+    //
+    //     let establishment
+    //
+    //     try{
+    //         establishment = await  Api.post(`/api/v1/establishments`, newEstablishmentData, axiosConfig);
+    //     }catch (err) {
+    //         alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+    //         return err
+    //     }
+    //
+    //     setEstablishmentId(establishment.data.id)
+    //
+    //     let image
+    //
+    //     try{
+    //         image = await Api.post(`/api/v1/establishments/${establishment.data.id}/images/upload-file`, formData,
+    //             {
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Authorization': `Bearer ${UserService.getToken()}`
+    //                 }
+    //             });
+    //     }catch (err) {
+    //         alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+    //         return err
+    //     }
+    //
+    //     console.log(establishment)
+    //     console.log(image)
+    //
+    //     setCompanyName = ""
+    //     setTradingName = ""
+    //     setEmail = ""
+    //     setCommercialPhone = ""
+    //     setMobilePhone = ""
+    //     setCategory = 1
+    //     setCategories = ""
+    //     setFile = ""
+    //     setEstablishmentId = ""
+    //
+    //     handleCompanyNameChange
+    //     handleTradingNameChange
+    //     handleEmailChange
+    //     handleCommercialPhoneChange
+    //     handleMobilePhoneChange
+    //     handleCategoryChange
+    //     handleFileChange
+    //
+    //     alert("Estabelecimento criado com sucesso!")
+    //
+    // }
 
-        const selectedCategory = {
-            id: category
-        }
+    const handleNewEstablishment = async (e) => {
+        e.preventDefault();
 
-        const data = {
+        const newEstablishmentData = {
             companyName: companyName,
             tradingName: tradingName,
             email: email,
             commercialPhone: commercialPhone,
             mobilePhone: mobilePhone,
-            category: selectedCategory,
+            category: {
+                id: category
+            },
             status: 1
         }
 
-        Api.post(`/api/v1/establishments`, data, axiosConfig)
-            .then((res) => {
-                console.log(res.data)
-            })
-            .then((res) => {
-                alert("Salvo com sucesso!")
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        const formData = new FormData()
+        formData.append('file', file)
+
+        let establishment
+
+        try{
+            establishment = await  Api.post(`/api/v1/establishments`, newEstablishmentData, axiosConfig);
+        }catch (err) {
+            alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+            return err
+        }
+
+        setEstablishmentId(establishment.data.id)
+
+        try{
+            await Api.post(`/api/v1/establishments/${establishment.data.id}/images/upload-file`, formData,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${UserService.getToken()}`
+                    }
+                });
+        }catch (err) {
+            alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+            return err
+        }
+
+        alert("Estabelecimento criado com sucesso!")
+
+        history.push("/home/establishment")
+
     }
 
     return (
@@ -92,9 +186,7 @@ function EstablishmentNew() {
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
-                                <Form onSubmit={handlePostEstablishment}>
-                                        <input type="password" className="form-control"
-                                        name="email" />
+                                <Form onSubmit={handleNewEstablishment}>
                                     <Row>
                                         <Col md="12">
                                             <Form.Group>
@@ -172,19 +264,28 @@ function EstablishmentNew() {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md="3">
+                                        <Col md="6">
+                                                <label>File Upload</label>
+                                                <input type="file" onChange={handleFileChange}/>
+                                                <Form.Text className="text-muted">
+                                                    Faça upload de imagem do logo do estabelecimento.
+                                                </Form.Text>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md="6">
                                             <Link to="/home/establishment">Taxa de Entrega  &gt;&gt;</Link>
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col md="3">
-                                            <Link to="/home/establishment">Expediente  &gt;&gt;</Link>
+                                        <Col md="6">
+                                            <Link to="/home/establishment">Horário de Funcionamento  &gt;&gt;</Link>
                                         </Col>
                                     </Row>
                                     <Button
                                         className="btn-fill float-right"
-                                        type="submit"
                                         variant="info"
+                                        type="submit"
                                     >
                                         Salvar
                                     </Button>

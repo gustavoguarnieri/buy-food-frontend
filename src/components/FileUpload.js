@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 
 class FileUpload extends Component {
 
@@ -8,13 +7,13 @@ class FileUpload extends Component {
         this.state = {
             file: null
         }
-        this.onFormSubmit = this.onFormSubmit.bind(this)
-        this.onChange = this.onChange.bind(this)
-        this.fileUpload = this.fileUpload.bind(this)
+        // this.onFormSubmit = this.onFormSubmit.bind(this)
+        // this.onChange = this.onChange.bind(this)
+        // this.fileUpload = this.fileUpload.bind(this)
     }
 
     onFormSubmit(e) {
-        e.preventDefault() // Stop form submit
+        e.preventDefault()
         this.fileUpload(this.state.file).then((response) => {
             console.log(response.data);
         })
@@ -39,13 +38,12 @@ class FileUpload extends Component {
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
+                <h6>File Upload</h6>
                 <input type="file" onChange={this.onChange}/>
                 <button type="submit">Upload</button>
             </form>
         )
     }
-
 }
 
 export default FileUpload;
