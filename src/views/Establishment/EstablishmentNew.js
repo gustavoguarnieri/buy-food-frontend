@@ -54,75 +54,6 @@ function EstablishmentNew() {
         []
     )
 
-    // async function handleNewEstablishment(e) {
-    //     e.preventDefault();
-    //
-    //     const newEstablishmentData = {
-    //         companyName: companyName,
-    //         tradingName: tradingName,
-    //         email: email,
-    //         commercialPhone: commercialPhone,
-    //         mobilePhone: mobilePhone,
-    //         category: {
-    //             id: category
-    //         },
-    //         status: 1
-    //     }
-    //
-    //     const formData = new FormData()
-    //     formData.append('file', file)
-    //
-    //     let establishment
-    //
-    //     try{
-    //         establishment = await  Api.post(`/api/v1/establishments`, newEstablishmentData, axiosConfig);
-    //     }catch (err) {
-    //         alert("Ops, ocorreu um erro verifique os dados e tente novamente")
-    //         return err
-    //     }
-    //
-    //     setEstablishmentId(establishment.data.id)
-    //
-    //     let image
-    //
-    //     try{
-    //         image = await Api.post(`/api/v1/establishments/${establishment.data.id}/images/upload-file`, formData,
-    //             {
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                     'Authorization': `Bearer ${UserService.getToken()}`
-    //                 }
-    //             });
-    //     }catch (err) {
-    //         alert("Ops, ocorreu um erro verifique os dados e tente novamente")
-    //         return err
-    //     }
-    //
-    //     console.log(establishment)
-    //     console.log(image)
-    //
-    //     setCompanyName = ""
-    //     setTradingName = ""
-    //     setEmail = ""
-    //     setCommercialPhone = ""
-    //     setMobilePhone = ""
-    //     setCategory = 1
-    //     setCategories = ""
-    //     setFile = ""
-    //     setEstablishmentId = ""
-    //
-    //     handleCompanyNameChange
-    //     handleTradingNameChange
-    //     handleEmailChange
-    //     handleCommercialPhoneChange
-    //     handleMobilePhoneChange
-    //     handleCategoryChange
-    //     handleFileChange
-    //
-    //     alert("Estabelecimento criado com sucesso!")
-    //
-    // }
-
     const handleNewEstablishment = async (e) => {
         e.preventDefault();
 
@@ -138,9 +69,6 @@ function EstablishmentNew() {
             status: 1
         }
 
-        const formData = new FormData()
-        formData.append('file', file)
-
         let establishment
 
         try{
@@ -153,6 +81,13 @@ function EstablishmentNew() {
         setEstablishmentId(establishment.data.id)
 
         try{
+            if (file === '') {
+                return
+            }
+
+            const formData = new FormData()
+            formData.append('file', file)
+
             await Api.post(`/api/v1/establishments/${establishment.data.id}/images/upload-file`, formData,
                 {
                     headers: {
@@ -165,10 +100,9 @@ function EstablishmentNew() {
             return err
         }
 
-        alert("Estabelecimento criado com sucesso!")
+        alert("Inserido com sucesso!")
 
         history.push("/home/establishment")
-
     }
 
     return (
