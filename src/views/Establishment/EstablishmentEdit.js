@@ -83,12 +83,12 @@ function EstablishmentEdit(props) {
 
         const data = {
             id: establishmentId,
-            companyName: "Restaurante do Erus",
-            tradingName: "Restaurante do Erus",
-            email: "Erus@teste.com.br",
-            commercialPhone: "1938061112",
-            mobilePhone: "1999963551111",
-            status: 1
+            companyName: companyName,
+            tradingName: tradingName,
+            email: email,
+            commercialPhone: commercialPhone,
+            mobilePhone: mobilePhone,
+            status: status
         }
 
         Api.put(`/api/v1/establishments/${establishmentId}`, data, axiosConfig)
@@ -192,20 +192,10 @@ function EstablishmentEdit(props) {
                                         </Col>
                                         <Col md="3">
                                             <Form.Group>
-                                                <label>Taxa de Entrega</label>
-                                                <Form.Control
-                                                    value={deliveryTax?.taxAmount && UtilService.formCurrency(deliveryTax?.taxAmount)}
-                                                    onChange={handleDeliveryTaxChange}
-                                                    placeholder="Taxa de Entrega"
-                                                    type="text"
-                                                ></Form.Control>
-                                            </Form.Group>
-                                        </Col>
-                                        <Col md="3">
-                                            <Form.Group>
                                                 <label>Status</label>
                                                 <Form.Control
                                                     value={status}
+                                                    onChange={handleStatusChange}
                                                     as="select"
                                                     className="mr-sm-0"
                                                     id="inlineFormCustomSelect"
@@ -215,6 +205,16 @@ function EstablishmentEdit(props) {
                                                     <option value="0">INATIVO</option>
                                                 </Form.Control>
                                             </Form.Group>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md="3">
+                                            <Link to="/home/establishment">&laquo; Taxa de Entrega</Link>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md="3">
+                                            <Link to="/home/establishment">&laquo; Expediente</Link>
                                         </Col>
                                     </Row>
                                     <Button
