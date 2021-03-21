@@ -10,13 +10,16 @@ import userRoutes from "../routes/UserRoutes";
 import adminRoutes from "../routes/AdminRoutes";
 import establishmentRoutes from "../routes/EstablishmentRoutes";
 
+import NotFound from "../components/NotFound";
 import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";
 import TableList from "views/TableList.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentEdit from "views/Establishment/EstablishmentEdit.js"
 import EstablishmentNew from "views/Establishment/EstablishmentNew.js"
-import NotFound from "../components/NotFound";
+import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
+import EstablishmentCategoryNew from "../views/EstablishmentCategory/EstablishmentCategoryNew";
+import EstablishmentCategoryEdit from "../views/EstablishmentCategory/EstablishmentCategoryEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -33,21 +36,6 @@ function Home() {
   const location = useLocation();
   const mainPanel = React.useRef(null);
 
-  const getRoutesByLayout = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/home") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            render={(props) => <prop.component {...props} />}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -81,11 +69,20 @@ function Home() {
               <Route exact path="/home/establishment">
                 <EstablishmentMyList/>
               </Route>
+              <Route exact path="/home/establishment/new">
+                <EstablishmentNew/>
+              </Route>
               <Route exact path="/home/establishment/edit/:establishmentId">
                 <EstablishmentEdit/>
               </Route>
-              <Route exact path="/home/establishment/new">
-                <EstablishmentNew/>
+              <Route exact path="/home/establishment/category">
+                <EstablishmentCategoryList/>
+              </Route>
+              <Route exact path="/home/establishment/category/new">
+                <EstablishmentCategoryNew/>
+              </Route>
+              <Route exact path="/home/establishment/category/edit/:establishmentCategoryId">
+                <EstablishmentCategoryEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

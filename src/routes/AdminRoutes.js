@@ -1,7 +1,7 @@
 import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";
-import TableList from "views/TableList.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
+import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 
 const routes = [
     {
@@ -13,24 +13,24 @@ const routes = [
     },
     {
         path: "/user",
-        name: "User Profile",
+        name: "Usuários",
         icon: "nc-icon nc-circle-09",
         component: UserProfile,
         layout: "/home",
     },
     {
-        path: "/table",
-        name: "Table List",
+        path: "/establishment",
+        name: "Rel. Estabelecimento",
         icon: "nc-icon nc-notes",
-        component: TableList,
+        component: EstablishmentMyList,
         layout: "/home",
         profiles: "admin"
     },
     {
-        path: "/establishment",
-        name: "Establishment List",
+        path: "/establishment/category",
+        name: "Categoria de Estabelecimentos ",
         icon: "nc-icon nc-notes",
-        component: EstablishmentMyList,
+        component: EstablishmentCategoryList,
         layout: "/home",
         profiles: "admin"
     },
