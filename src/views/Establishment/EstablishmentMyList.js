@@ -105,55 +105,55 @@ function EstablishmentMyList() {
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped">
                                     <thead>
-                                    <tr>
-                                        <th className="border-0">Id</th>
-                                        <th className="border-0">Nome</th>
-                                        <th className="border-0">Email</th>
-                                        <th className="border-0">Tel Comercial</th>
-                                        <th className="border-0">Celular</th>
-                                        <th className="border-0">Categoria</th>
-                                        <th className="border-0">Expediente</th>
-                                        <th className="border-0">Taxa de Entrega</th>
-                                        <th className="border-0">Status</th>
-                                    </tr>
+                                        <tr>
+                                            <th className="border-0">Id</th>
+                                            <th className="border-0">Nome</th>
+                                            <th className="border-0">Email</th>
+                                            <th className="border-0">Tel Comercial</th>
+                                            <th className="border-0">Celular</th>
+                                            <th className="border-0">Categoria</th>
+                                            <th className="border-0">Expediente</th>
+                                            <th className="border-0">Taxa de Entrega</th>
+                                            <th className="border-0">Status</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    {establishments && establishments.map((item) => (
-                                        <tr key={item.id}>
-                                            <td>{item.id}</td>
-                                            <td>{item.tradingName}</td>
-                                            <td>{item.email}</td>
-                                            <td>{item.commercialPhone}</td>
-                                            <td>{item.mobilePhone}</td>
-                                            <td>{item.category?.description}</td>
-                                            <td>
-                                                <BusinessHours businessHours={item.businessHours}/>
-                                            </td>
-                                            <td>{item.deliveryTax?.taxAmount ? UtilService.formCurrency(item.deliveryTax?.taxAmount) : "Grátis"}</td>
-                                            <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
-                                            <td>
-                                                {item.status === 1 ? (
-                                                    <Button className="btn-fill" variant="danger" size="sm"
-                                                            onClick={() => {
-                                                                if (window.confirm(`Deseja realmente deletar este item (${item.tradingName}) ?`)) {
-                                                                    handleDeleteEstablishment(item.id)
-                                                                }
-                                                            }}>
-                                                        Deletar
-                                                    </Button>
-                                                ) : (
-                                                    <></>
-                                                )}
-                                            </td>
-                                            <td>
-                                                <Link to={`/home/establishment/edit/${item.id}`}>
-                                                    <Button className="btn-fill" variant="secondary" size="sm">
-                                                        Editar
-                                                    </Button>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                        {establishments && establishments.map((item) => (
+                                            <tr key={item.id}>
+                                                <td>{item.id}</td>
+                                                <td>{item.tradingName}</td>
+                                                <td>{item.email}</td>
+                                                <td>{item.commercialPhone}</td>
+                                                <td>{item.mobilePhone}</td>
+                                                <td>{item.category?.description}</td>
+                                                <td>
+                                                    <BusinessHours businessHours={item.businessHours}/>
+                                                </td>
+                                                <td>{item.deliveryTax?.taxAmount ? UtilService.formCurrency(item.deliveryTax?.taxAmount) : "Grátis"}</td>
+                                                <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
+                                                <td>
+                                                    {item.status === 1 ? (
+                                                        <Button className="btn-fill" variant="danger" size="sm"
+                                                                onClick={() => {
+                                                                    if (window.confirm(`Deseja realmente deletar este item (${item.tradingName}) ?`)) {
+                                                                        handleDeleteEstablishment(item.id)
+                                                                    }
+                                                                }}>
+                                                            Deletar
+                                                        </Button>
+                                                    ) : (
+                                                        <></>
+                                                    )}
+                                                </td>
+                                                <td>
+                                                    <Link to={`/home/establishment/edit/${item.id}`}>
+                                                        <Button className="btn-fill" variant="secondary" size="sm">
+                                                            Editar
+                                                        </Button>
+                                                    </Link>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </Table>
                             </Card.Body>

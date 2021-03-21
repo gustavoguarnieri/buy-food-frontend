@@ -1,5 +1,5 @@
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
-import {Link, useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EstablishmentCategory from "../../components/Utils/EstablishmentCategory";
 import UserService from "../../services/UserService";
@@ -43,7 +43,7 @@ function EstablishmentNew() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/category?status=1`, axiosConfig)
+            Api.get(`/api/v1/establishments/categories?status=1`, axiosConfig)
                 .then((res) => {
                     setCategories(res.data)
                 })
@@ -71,16 +71,16 @@ function EstablishmentNew() {
 
         let establishment
 
-        try{
-            establishment = await  Api.post(`/api/v1/establishments`, newEstablishmentData, axiosConfig);
-        }catch (err) {
+        try {
+            establishment = await Api.post(`/api/v1/establishments`, newEstablishmentData, axiosConfig);
+        } catch (err) {
             alert("Ops, ocorreu um erro verifique os dados e tente novamente")
             return err
         }
 
         setEstablishmentId(establishment.data.id)
 
-        try{
+        try {
             if (file === '') {
                 return
             }
@@ -95,7 +95,7 @@ function EstablishmentNew() {
                         'Authorization': `Bearer ${UserService.getToken()}`
                     }
                 });
-        }catch (err) {
+        } catch (err) {
             alert("Ops, ocorreu um erro verifique os dados e tente novamente")
             return err
         }
@@ -199,11 +199,11 @@ function EstablishmentNew() {
                                     </Row>
                                     <Row>
                                         <Col md="6">
-                                                <label>File Upload</label>
-                                                <input type="file" onChange={handleFileChange}/>
-                                                <Form.Text className="text-muted">
-                                                    Faça upload de imagem do logo do estabelecimento.
-                                                </Form.Text>
+                                            <label>File Upload</label>
+                                            <input type="file" onChange={handleFileChange}/>
+                                            <Form.Text className="text-muted">
+                                                Faça upload de imagem do logo do estabelecimento.
+                                            </Form.Text>
                                         </Col>
                                     </Row>
                                     <Row>

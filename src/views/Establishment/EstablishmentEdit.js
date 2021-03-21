@@ -61,7 +61,7 @@ function EstablishmentEdit() {
     )
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/category?status=1`, axiosConfig)
+            Api.get(`/api/v1/establishments/categories?status=1`, axiosConfig)
                 .then((res) => {
                     setCategories(res.data)
                 })
