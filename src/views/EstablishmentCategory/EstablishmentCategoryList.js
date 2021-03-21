@@ -9,7 +9,13 @@ import WindowPrint from "components/Utils/WindowPrint.js"
 function EstablishmentCategoryList() {
 
     const [establishmentCategories, setEstablishmentCategories] = useState('');
+    const [statusFilter, setStatusFilter] = useState('-1');
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
+
+    const handleStatusFilterChange = (event) => {
+        setStatusFilter(event.target.value)
+        handleStatusFilter(event.target.value)
+    }
 
     useEffect(() => {
             Api.get(`/api/v1/establishments/categories`, axiosConfig)
@@ -22,6 +28,23 @@ function EstablishmentCategoryList() {
         },
         []
     )
+
+    const handleStatusFilter = (statusCode) => {
+
+        let url = `/api/v1/establishments/categories`
+
+        if (statusCode !== "-1") {
+            url = url + `?status=${statusCode}`
+        }
+
+        Api.get(`${url}`, axiosConfig)
+            .then((res) => {
+                setEstablishmentCategories(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     const handleDeleteEstablishment = (id) => {
         Api.delete(`/api/v1/establishments/categories/${id}`, axiosConfig)
@@ -55,6 +78,25 @@ function EstablishmentCategoryList() {
                                             </Button>
                                         </Link>
                                         <WindowPrint/>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="12">
+                                    <Form.Group className="m-2 float-right">
+                                        <label>Status</label>
+                                        <Form.Control
+                                            value={statusFilter}
+                                            onChange={handleStatusFilterChange}
+                                            as="select"
+                                            className="mr-sm-0"
+                                            id="inlineFormCustomSelect"
+                                            custom
+                                        >
+                                            <option value="-1">TODOS</option>
+                                            <option value="1">ATIVO</option>
+                                            <option value="0">INATIVO</option>
+                                        </Form.Control>
                                     </Form.Group>
                                 </Col>
                             </Row>
