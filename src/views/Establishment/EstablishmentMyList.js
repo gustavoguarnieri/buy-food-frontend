@@ -11,7 +11,7 @@ import UtilService from "../../services/UtilService";
 function EstablishmentMyList() {
 
     const [establishments, setEstablishments] = useState('');
-    const [statusFilter, setStatusFilter] = useState('');
+    const [statusFilter, setStatusFilter] = useState('-1');
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     const handleStatusFilterChange = (event) => {
@@ -102,7 +102,6 @@ function EstablishmentMyList() {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <hr/>
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped">
                                     <thead>
