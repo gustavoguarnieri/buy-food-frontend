@@ -146,6 +146,7 @@ function EstablishmentNew() {
                                                     onChange={handleCompanyNameChange}
                                                     placeholder="Razão Social"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -159,6 +160,7 @@ function EstablishmentNew() {
                                                     onChange={handleTradingNameChange}
                                                     placeholder="Empresa"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -169,10 +171,10 @@ function EstablishmentNew() {
                                                 <label>Email</label>
                                                 <Form.Control
                                                     type="email"
-                                                    required="required"
                                                     value={email}
                                                     onChange={handleEmailChange}
                                                     placeholder="nome@exemplo.com.br"
+                                                    required
                                                 />
                                                 <Form.Text className="text-muted">
                                                     Informe um e-mail válido.

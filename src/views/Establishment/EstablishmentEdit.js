@@ -146,6 +146,7 @@ function EstablishmentEdit() {
                                                     onChange={handleCompanyNameChange}
                                                     placeholder="Razão Social"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -159,6 +160,7 @@ function EstablishmentEdit() {
                                                     onChange={handleTradingNameChange}
                                                     placeholder="Empresa"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -172,6 +174,7 @@ function EstablishmentEdit() {
                                                     onChange={handleEmailChange}
                                                     placeholder="Email"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
