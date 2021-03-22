@@ -2,6 +2,7 @@ import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import {Link, useHistory} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EstablishmentCategory from "../../components/Utils/EstablishmentCategory";
+import EstablishmentDeliveryTax from "../../components/Utils/EstablishmentDeliveryTax";
 import UserService from "../../services/UserService";
 import Api from "../../services/Api";
 
@@ -17,8 +18,9 @@ function EstablishmentNew() {
     let [mobilePhone, setMobilePhone] = useState('')
     let [category, setCategory] = useState(1)
     let [categories, setCategories] = useState('')
+    let [delivery, setDelivery] = useState(1)
+    let [deliveries, setDeliveries] = useState('')
     let [file, setFile] = useState('')
-    let [establishmentId, setEstablishmentId] = useState('')
 
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value)
@@ -38,6 +40,9 @@ function EstablishmentNew() {
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
     }
+    const handleDeliveryChange = (event) => {
+        setDelivery(event.target.value)
+    }
     const handleFileChange = (event) => {
         setFile(event.target.files[0])
     }
@@ -46,6 +51,18 @@ function EstablishmentNew() {
             Api.get(`/api/v1/establishments/categories?status=1`, axiosConfig)
                 .then((res) => {
                     setCategories(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
+    useEffect(() => {
+            Api.get(`/api/v1/establishments/delivery-tax/mine?status=1`, axiosConfig)
+                .then((res) => {
+                    setDeliveries(res.data)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -66,6 +83,9 @@ function EstablishmentNew() {
             category: {
                 id: category
             },
+            deliveryTax: {
+                id: delivery
+            },
             status: 1
         }
 
@@ -78,26 +98,22 @@ function EstablishmentNew() {
             return err
         }
 
-        setEstablishmentId(establishment.data.id)
+        if (file !== '') {
+            try {
+                const formData = new FormData()
+                formData.append('file', file)
 
-        try {
-            if (file === '') {
-                return
+                await Api.post(`/api/v1/establishments/${establishment.data.id}/images/upload-file`, formData,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${UserService.getToken()}`
+                        }
+                    });
+            } catch (err) {
+                alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+                return err
             }
-
-            const formData = new FormData()
-            formData.append('file', file)
-
-            await Api.post(`/api/v1/establishments/${establishment.data.id}/images/upload-file`, formData,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${UserService.getToken()}`
-                    }
-                });
-        } catch (err) {
-            alert("Ops, ocorreu um erro verifique os dados e tente novamente")
-            return err
         }
 
         alert("Inserido com sucesso!")
@@ -194,6 +210,14 @@ function EstablishmentNew() {
                                                 <EstablishmentCategory establishmentCategories={categories}
                                                                        category={category}
                                                                        handleCategoryChange={handleCategoryChange}/>
+                                            </Form.Group>
+                                        </Col>
+                                        <Col md="6">
+                                            <Form.Group>
+                                                <label>Taxa de Entrega</label>
+                                                <EstablishmentDeliveryTax establishmentDeliveries={deliveries}
+                                                                          delivery={delivery}
+                                                                          handleDeliveryChange={handleDeliveryChange}/>
                                             </Form.Group>
                                         </Col>
                                     </Row>

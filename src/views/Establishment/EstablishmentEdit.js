@@ -4,6 +4,7 @@ import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import EstablishmentCategory from "components/Utils/EstablishmentCategory"
+import EstablishmentDeliveryTax from "../../components/Utils/EstablishmentDeliveryTax";
 
 function EstablishmentEdit() {
 
@@ -18,6 +19,8 @@ function EstablishmentEdit() {
     let [mobilePhone, setMobilePhone] = useState('')
     let [category, setCategory] = useState('')
     let [categories, setCategories] = useState('')
+    let [delivery, setDelivery] = useState('')
+    let [deliveries, setDeliveries] = useState('')
     let [status, setStatus] = useState('')
 
     const handleCompanyNameChange = (event) => {
@@ -38,6 +41,9 @@ function EstablishmentEdit() {
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
     }
+    const handleDeliveryChange = (event) => {
+        setDelivery(event.target.value)
+    }
     const handleStatusChange = (event) => {
         setStatus(event.target.value)
     }
@@ -51,6 +57,7 @@ function EstablishmentEdit() {
                     setCommercialPhone(res.data.commercialPhone)
                     setMobilePhone(res.data.mobilePhone)
                     setCategory(res.data.category.id)
+                    setDelivery(res.data.deliveryTax.id)
                     setStatus(res.data.status)
                 })
                 .catch((err) => {
@@ -72,12 +79,20 @@ function EstablishmentEdit() {
         []
     )
 
+    useEffect(() => {
+            Api.get(`/api/v1/establishments/delivery-tax/mine?status=1`, axiosConfig)
+                .then((res) => {
+                    setDeliveries(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
     const handlePutEstablishment = (e) => {
         e.preventDefault()
-
-        const selectedCategory = {
-            id: category
-        }
 
         const data = {
             id: establishmentId,
@@ -86,7 +101,12 @@ function EstablishmentEdit() {
             email: email,
             commercialPhone: commercialPhone,
             mobilePhone: mobilePhone,
-            category: selectedCategory,
+            category: {
+                id: category
+            },
+            deliveryTax: {
+                id: delivery
+            },
             status: status
         }
 
@@ -187,6 +207,16 @@ function EstablishmentEdit() {
                                                                        handleCategoryChange={handleCategoryChange}/>
                                             </Form.Group>
                                         </Col>
+                                        <Col md="6">
+                                            <Form.Group>
+                                                <label>Taxa de Entrega</label>
+                                                <EstablishmentDeliveryTax establishmentDeliveries={deliveries}
+                                                                          delivery={delivery}
+                                                                          handleDeliveryChange={handleDeliveryChange}/>
+                                            </Form.Group>
+                                        </Col>
+                                    </Row>
+                                    <Row>
                                         <Col md="3">
                                             <Form.Group>
                                                 <label>Status</label>
