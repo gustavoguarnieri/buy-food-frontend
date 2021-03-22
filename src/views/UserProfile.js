@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import {useHistory} from "react-router-dom";
 import UserService from "../services/UserService";
 import Api from "../services/Api";
 import {Card, Button, Col, Container, Form, Row} from "react-bootstrap";
 
 export default () => {
 
-    let [email, setEmail] = useState()
+    let [email, setEmail] = useState(UserService.getEmail())
     let [firstName, setFirstName] = useState(`${UserService.getUsername()}`)
     let [lastName, setLastName] = useState('')
     let [nickName, setNickName] = useState('')
@@ -13,6 +14,7 @@ export default () => {
     let [password, setPassword] = useState('')
     let [role, setRole] = useState('USER')
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
+    const history = useHistory()
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value)
@@ -34,6 +36,7 @@ export default () => {
         e.preventDefault()
 
         const data = {
+            email,
             firstName,
             lastName,
             nickName,
@@ -43,8 +46,10 @@ export default () => {
         }
 
         Api.put(`/api/v1/users/${UserService.getUserId()}`, data, axiosConfig)
+            .then((res) => {})
             .then((res) => {
-                console.log(res.data)
+                alert("Alterado com sucesso!")
+                history.push("/home")
             })
             .catch((err) => {
                 console.log(err)
@@ -112,6 +117,7 @@ export default () => {
                                                     onChange={handleFirstNameChange}
                                                     placeholder="Primeiro nome"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -123,6 +129,7 @@ export default () => {
                                                     onChange={handleLastNameChange}
                                                     placeholder="Último nome"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -130,12 +137,13 @@ export default () => {
                                     <Row>
                                         <Col md="3">
                                             <Form.Group>
-                                                <label>Contato</label>
+                                                <label>Tel. Contato</label>
                                                 <Form.Control
                                                     value={phone}
                                                     onChange={handlePhoneChange}
                                                     placeholder="Contato"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -160,6 +168,11 @@ export default () => {
                                                     id="inlineFormCustomSelect"
                                                     custom
                                                 >
+                                                    { role === "ADMIN" ? (
+                                                        <option value="ADMIN">ADMIN</option>
+                                                    ) : (
+                                                        <></>
+                                                    )}
                                                     <option value="USER">USUARIO</option>
                                                     <option value="ESTABLISHMENT">ESTABELECIMENTO</option>
                                                 </Form.Control>
@@ -171,7 +184,7 @@ export default () => {
                                         type="submit"
                                         variant="info"
                                     >
-                                        Update
+                                        Salvar
                                     </Button>
                                     <div className="clearfix"/>
                                 </Form>
