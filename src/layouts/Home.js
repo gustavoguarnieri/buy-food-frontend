@@ -20,6 +20,9 @@ import EstablishmentNew from "views/Establishment/EstablishmentNew.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import EstablishmentCategoryNew from "../views/EstablishmentCategory/EstablishmentCategoryNew";
 import EstablishmentCategoryEdit from "../views/EstablishmentCategory/EstablishmentCategoryEdit";
+import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliveryTaxList";
+import EstablishmentDeliveryNew from "../views/DeliveryTax/EstablishmentDeliveryTaxNew";
+import EstablishmentDeliveryTaxEdit from "../views/DeliveryTax/EstablishmentDeliveryTaxEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -83,6 +86,15 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/category/edit/:establishmentCategoryId">
                 <EstablishmentCategoryEdit/>
+              </Route>
+              <Route exact path="/home/establishment/delivery-tax">
+                <EstablishmentDeliveryList/>
+              </Route>
+              <Route exact path="/home/establishment/delivery-tax/new">
+                <EstablishmentDeliveryNew/>
+              </Route>
+              <Route exact path="/home/establishment/delivery-tax/edit/:establishmentDeliveryId">
+                <EstablishmentDeliveryTaxEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

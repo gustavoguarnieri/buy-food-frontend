@@ -2,6 +2,7 @@ import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
+import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliveryTaxList";
 
 const routes = [
     {
@@ -28,9 +29,17 @@ const routes = [
     },
     {
         path: "/establishment/category",
-        name: "Categoria de Estabelecimentos ",
+        name: "Categoria de Est.",
         icon: "nc-icon nc-notes",
         component: EstablishmentCategoryList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/delivery-tax",
+        name: "Taxa de Entrega ",
+        icon: "nc-icon nc-notes",
+        component: EstablishmentDeliveryList,
         layout: "/home",
         profiles: "admin"
     },
