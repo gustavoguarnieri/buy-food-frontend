@@ -9,21 +9,21 @@ function EstablishmentCategoryNew() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     const history = useHistory()
-    let [establishmentCategory, setEstablishmentCategory] = useState('')
+    let [establishmentCategoryDescription, setEstablishmentCategoryDescription] = useState('')
 
-    const handleEstablishmentCategoryChange = (event) => {
-        setEstablishmentCategory(event.target.value)
+    const handleEstablishmentCategoryDescriptionChange = (event) => {
+        setEstablishmentCategoryDescription(event.target.value)
     }
 
     const handleNewEstablishmentCategory = async (e) => {
         e.preventDefault();
 
-        const newEstablishmentData = {
-            description: establishmentCategory
+        const newEstablishmentCategoryData = {
+            description: establishmentCategoryDescription
         }
 
         try{
-            await  Api.post(`/api/v1/establishments/categories`, newEstablishmentData, axiosConfig);
+            await  Api.post(`/api/v1/establishments/categories`, newEstablishmentCategoryData, axiosConfig);
         }catch (err) {
             alert("Ops, ocorreu um erro verifique os dados e tente novamente")
             return err
@@ -55,10 +55,11 @@ function EstablishmentCategoryNew() {
                                             <Form.Group>
                                                 <label>Categoria</label>
                                                 <Form.Control
-                                                    value={establishmentCategory}
-                                                    onChange={handleEstablishmentCategoryChange}
+                                                    value={establishmentCategoryDescription}
+                                                    onChange={handleEstablishmentCategoryDescriptionChange}
                                                     placeholder="Categoria"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>

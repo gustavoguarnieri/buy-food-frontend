@@ -4,7 +4,7 @@ import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 
-function EstablishmentEdit() {
+function EstablishmentCategoryEdit() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
     const {establishmentCategoryId} = useParams();
@@ -78,6 +78,7 @@ function EstablishmentEdit() {
                                                     onChange={handleDescriptionChange}
                                                     placeholder="Categoria"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>
@@ -116,4 +117,4 @@ function EstablishmentEdit() {
     )
 }
 
-export default EstablishmentEdit;
+export default EstablishmentCategoryEdit;
