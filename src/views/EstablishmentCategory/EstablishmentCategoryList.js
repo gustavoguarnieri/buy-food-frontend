@@ -103,41 +103,41 @@ function EstablishmentCategoryList() {
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped">
                                     <thead>
-                                    <tr>
-                                        <th className="border-0">Id</th>
-                                        <th className="border-0">Categoria</th>
-                                        <th className="border-0">Status</th>
-                                    </tr>
+                                        <tr>
+                                            <th className="border-0">Id</th>
+                                            <th className="border-0">Categoria</th>
+                                            <th className="border-0">Status</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    {establishmentCategories && establishmentCategories.map((item) => (
-                                        <tr key={item.id}>
-                                            <td>{item.id}</td>
-                                            <td>{item.description}</td>
-                                            <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
-                                            <td>
-                                                {item.status === 1 ? (
-                                                    <Button className="btn-fill" variant="danger" size="sm"
-                                                            onClick={() => {
-                                                                if (window.confirm(`Deseja realmente deletar este item (${item.description}) ?`)) {
-                                                                    handleDeleteEstablishment(item.id)
-                                                                }
-                                                            }}>
-                                                        Deletar
-                                                    </Button>
-                                                ) : (
-                                                    <></>
-                                                )}
-                                            </td>
-                                            <td>
-                                                <Link to={`/home/establishment/category/edit/${item.id}`}>
-                                                    <Button className="btn-fill" variant="secondary" size="sm">
-                                                        Editar
-                                                    </Button>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                        {establishmentCategories && establishmentCategories.map((item) => (
+                                            <tr key={item.id}>
+                                                <td>{item.id}</td>
+                                                <td>{item.description}</td>
+                                                <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
+                                                <td>
+                                                    {item.status === 1 ? (
+                                                        <Button className="btn-fill" variant="danger" size="sm"
+                                                                onClick={() => {
+                                                                    if (window.confirm(`Deseja realmente deletar este item (${item.description}) ?`)) {
+                                                                        handleDeleteEstablishment(item.id)
+                                                                    }
+                                                                }}>
+                                                            Deletar
+                                                        </Button>
+                                                    ) : (
+                                                        <></>
+                                                    )}
+                                                </td>
+                                                <td>
+                                                    <Link to={`/home/establishment/category/edit/${item.id}`}>
+                                                        <Button className="btn-fill" variant="secondary" size="sm">
+                                                            Editar
+                                                        </Button>
+                                                    </Link>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </Table>
                             </Card.Body>
