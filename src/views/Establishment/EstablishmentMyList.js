@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useRef} from "react";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import {Card, Col, Container, Row, Table, Button, Form} from "react-bootstrap";
 import BusinessHours from "components/Utils/BusinessHours.js"
-import WindowPrint from "components/Utils/WindowPrint.js"
 import UtilService from "../../services/UtilService";
+import ReactToPrint from "react-to-print";
 
 function EstablishmentMyList() {
 
+    const componentRef = useRef();
     const [establishments, setEstablishments] = useState('');
     const [statusFilter, setStatusFilter] = useState('-1');
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
@@ -79,7 +80,13 @@ function EstablishmentMyList() {
                                                 Novo
                                             </Button>
                                         </Link>
-                                        <WindowPrint/>
+                                        <ReactToPrint
+                                            trigger={() =>
+                                                <Button className="m-2 btn-fill float-right" variant="info" size="sm">
+                                                    Print / Export
+                                                </Button>}
+                                            content={() => componentRef.current}
+                                        />
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -103,7 +110,7 @@ function EstablishmentMyList() {
                                 </Col>
                             </Row>
                             <Card.Body className="table-full-width table-responsive px-0">
-                                <Table className="table-hover table-striped">
+                                <Table className="table-hover table-striped" ref={componentRef}>
                                     <thead>
                                         <tr>
                                             <th className="border-0">Id</th>
