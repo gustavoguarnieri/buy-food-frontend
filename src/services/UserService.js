@@ -24,8 +24,6 @@ const doLogout = _kc.logout;
 
 const getToken = () => _kc.token;
 
-const getUserInfo = () => _kc.userInfo;
-
 const isLoggedIn = () => !!_kc.token;
 
 const updateToken = (successCallback) =>
@@ -37,6 +35,8 @@ const getUsername = () => _kc.tokenParsed?.preferred_username;
 
 const getUserId = () => _kc.tokenParsed?.user_id;
 
+const getEmail = () => _kc.tokenParsed?.email;
+
 const hasRole = (role) => _kc.hasRealmRole(role);
 
 const UserService = {
@@ -46,9 +46,10 @@ const UserService = {
   isLoggedIn,
   getToken,
   updateToken,
+  getEmail,
   getUserId,
   getUsername,
-  hasRole,
+  hasRole
 };
 
 export default UserService;
