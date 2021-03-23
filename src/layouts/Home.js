@@ -25,6 +25,7 @@ import EstablishmentDeliveryNew from "../views/DeliveryTax/EstablishmentDelivery
 import EstablishmentDeliveryTaxEdit from "../views/DeliveryTax/EstablishmentDeliveryTaxEdit";
 import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
 import EstablishmentBusinessHoursNew from "../views/BusinessHours/EstablishmentBusinessHoursNew";
+import EstablishmentBusinessHoursEdit from "../views/BusinessHours/EstablishmentBusinessHoursEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -103,6 +104,9 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/business-hours/new">
                 <EstablishmentBusinessHoursNew/>
+              </Route>
+              <Route exact path="/home/establishment/:establishmentId/business-hours/edit/:establishmentBusinessHoursId">
+                <EstablishmentBusinessHoursEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

@@ -1,48 +1,51 @@
+import React, {useEffect, useState} from 'react';
+import {Link, useHistory, useParams} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import {Link, useHistory} from "react-router-dom";
-import React, {useEffect, useState} from "react";
-import UserService from "../../services/UserService";
 import Api from "../../services/Api";
+import UserService from "../../services/UserService";
 import InputMask from "react-input-mask";
-import Establishment from "../../components/Utils/Establishment";
 
-function EstablishmentBusinessHoursNew() {
+function EstablishmentBusinessHoursEdit() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
+    const {establishmentId} = useParams();
+    const {establishmentBusinessHoursId} = useParams();
 
     const history = useHistory()
-    const [establishments, setEstablishments] = useState('');
     const [establishment, setEstablishment] = useState('');
-
     const [startTimeFirstPeriodSunday, setStartTimeFirstPeriodSunday] = useState('');
     const [finalTimeFirstPeriodSunday, setFinalTimeFirstPeriodSunday] = useState('');
     const [startTimeSecondPeriodSunday, setStartTimeSecondPeriodSunday] = useState('');
     const [finalTimeSecondPeriodSunday, setFinalTimeSecondPeriodSunday] = useState('');
-    const [startTimeFirstPeriodMonday, setStartTimeFirstPeriodMonday] = useState('09:30');
-    const [finalTimeFirstPeriodMonday, setFinalTimeFirstPeriodMonday] = useState('14:00');
-    const [startTimeSecondPeriodMonday, setStartTimeSecondPeriodMonday] = useState('17:30');
-    const [finalTimeSecondPeriodMonday, setFinalTimeSecondPeriodMonday] = useState('22:00');
-    const [startTimeFirstPeriodTuesday, setStartTimeFirstPeriodTuesday] = useState('09:30');
-    const [finalTimeFirstPeriodTuesday, setFinalTimeFirstPeriodTuesday] = useState('14:00');
-    const [startTimeSecondPeriodTuesday, setStartTimeSecondPeriodTuesday] = useState('17:30');
-    const [finalTimeSecondPeriodTuesday, setFinalTimeSecondPeriodTuesday] = useState('22:00');
-    const [startTimeFirstPeriodWednesday, setStartTimeFirstPeriodWednesday] = useState('09:30');
-    const [finalTimeFirstPeriodWednesday, setFinalTimeFirstPeriodWednesday] = useState('14:00');
-    const [startTimeSecondPeriodWednesday, setStartTimeSecondPeriodWednesday] = useState('17:30');
-    const [finalTimeSecondPeriodWednesday, setFinalTimeSecondPeriodWednesday] = useState('22:00');
-    const [startTimeFirstPeriodThursday, setStartTimeFirstPeriodThursday] = useState('09:30');
-    const [finalTimeFirstPeriodThursday, setFinalTimeFirstPeriodThursday] = useState('14:00');
-    const [startTimeSecondPeriodThursday, setStartTimeSecondPeriodThursday] = useState('17:30');
-    const [finalTimeSecondPeriodThursday, setFinalTimeSecondPeriodThursday] = useState('22:00');
-    const [startTimeFirstPeriodFriday, setStartTimeFirstPeriodFriday] = useState('09:30');
-    const [finalTimeFirstPeriodFriday, setFinalTimeFirstPeriodFriday] = useState('14:00');
-    const [startTimeSecondPeriodFriday, setStartTimeSecondPeriodFriday] = useState('17:30');
-    const [finalTimeSecondPeriodFriday, setFinalTimeSecondPeriodFriday] = useState('22:00');
-    const [startTimeFirstPeriodSaturday, setStartTimeFirstPeriodSaturday] = useState('09:30');
-    const [finalTimeFirstPeriodSaturday, setFinalTimeFirstPeriodSaturday] = useState('14:00');
-    const [startTimeSecondPeriodSaturday, setStartTimeSecondPeriodSaturday] = useState('17:30');
-    const [finalTimeSecondPeriodSaturday, setFinalTimeSecondPeriodSaturday] = useState('22:00');
+    const [startTimeFirstPeriodMonday, setStartTimeFirstPeriodMonday] = useState('');
+    const [finalTimeFirstPeriodMonday, setFinalTimeFirstPeriodMonday] = useState('');
+    const [startTimeSecondPeriodMonday, setStartTimeSecondPeriodMonday] = useState('');
+    const [finalTimeSecondPeriodMonday, setFinalTimeSecondPeriodMonday] = useState('');
+    const [startTimeFirstPeriodTuesday, setStartTimeFirstPeriodTuesday] = useState('');
+    const [finalTimeFirstPeriodTuesday, setFinalTimeFirstPeriodTuesday] = useState('');
+    const [startTimeSecondPeriodTuesday, setStartTimeSecondPeriodTuesday] = useState('');
+    const [finalTimeSecondPeriodTuesday, setFinalTimeSecondPeriodTuesday] = useState('');
+    const [startTimeFirstPeriodWednesday, setStartTimeFirstPeriodWednesday] = useState('');
+    const [finalTimeFirstPeriodWednesday, setFinalTimeFirstPeriodWednesday] = useState('');
+    const [startTimeSecondPeriodWednesday, setStartTimeSecondPeriodWednesday] = useState('');
+    const [finalTimeSecondPeriodWednesday, setFinalTimeSecondPeriodWednesday] = useState('');
+    const [startTimeFirstPeriodThursday, setStartTimeFirstPeriodThursday] = useState('');
+    const [finalTimeFirstPeriodThursday, setFinalTimeFirstPeriodThursday] = useState('');
+    const [startTimeSecondPeriodThursday, setStartTimeSecondPeriodThursday] = useState('');
+    const [finalTimeSecondPeriodThursday, setFinalTimeSecondPeriodThursday] = useState('');
+    const [startTimeFirstPeriodFriday, setStartTimeFirstPeriodFriday] = useState('');
+    const [finalTimeFirstPeriodFriday, setFinalTimeFirstPeriodFriday] = useState('');
+    const [startTimeSecondPeriodFriday, setStartTimeSecondPeriodFriday] = useState('');
+    const [finalTimeSecondPeriodFriday, setFinalTimeSecondPeriodFriday] = useState('');
+    const [startTimeFirstPeriodSaturday, setStartTimeFirstPeriodSaturday] = useState('');
+    const [finalTimeFirstPeriodSaturday, setFinalTimeFirstPeriodSaturday] = useState('');
+    const [startTimeSecondPeriodSaturday, setStartTimeSecondPeriodSaturday] = useState('');
+    const [finalTimeSecondPeriodSaturday, setFinalTimeSecondPeriodSaturday] = useState('');
+    let [status, setStatus] = useState('')
 
+    const handleEstablishmentChange = (event) => {
+        setEstablishment(event.target.value)
+    }
 
     const handleStartTimeFirstPeriodSundayChange = (event) => {
         setStartTimeFirstPeriodSunday(event.target.value)
@@ -156,15 +159,14 @@ function EstablishmentBusinessHoursNew() {
         setFinalTimeSecondPeriodSaturday(event.target.value)
     }
 
-    const handleEstablishmentChange = (event) => {
-        setEstablishment(event.target.value)
+    const handleStatusChange = (event) => {
+        setStatus(event.target.value)
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/mine?status=1`, axiosConfig)
+            Api.get(`/api/v1/establishments/${establishmentId}`, axiosConfig)
                 .then((res) => {
-                    setEstablishments(res.data)
-                    setEstablishment(res.data[0].id)
+                    setEstablishment(res.data)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -173,10 +175,50 @@ function EstablishmentBusinessHoursNew() {
         []
     )
 
-    const handleNewEstablishmentBusinessHours = async (e) => {
-        e.preventDefault();
+    useEffect(() => {
+            Api.get(`/api/v1/establishments/${establishmentId}/business-hours/${establishmentBusinessHoursId}`, axiosConfig)
+                .then((res) => {
+                    setStartTimeFirstPeriodSunday(res.data.startTimeFirstPeriodSunday)
+                    setFinalTimeFirstPeriodSunday(res.data.finalTimeFirstPeriodSunday)
+                    setStartTimeSecondPeriodSunday(res.data.startTimeSecondPeriodSunday)
+                    setFinalTimeSecondPeriodSunday(res.data.finalTimeSecondPeriodSunday)
+                    setStartTimeFirstPeriodMonday(res.data.startTimeFirstPeriodMonday)
+                    setFinalTimeFirstPeriodMonday(res.data.finalTimeFirstPeriodMonday)
+                    setStartTimeSecondPeriodMonday(res.data.startTimeSecondPeriodMonday)
+                    setFinalTimeSecondPeriodMonday(res.data.finalTimeSecondPeriodMonday)
+                    setStartTimeFirstPeriodTuesday(res.data.startTimeFirstPeriodTuesday)
+                    setFinalTimeFirstPeriodTuesday(res.data.finalTimeFirstPeriodTuesday)
+                    setStartTimeSecondPeriodTuesday(res.data.startTimeSecondPeriodTuesday)
+                    setFinalTimeSecondPeriodTuesday(res.data.finalTimeSecondPeriodTuesday)
+                    setStartTimeFirstPeriodWednesday(res.data.startTimeFirstPeriodWednesday)
+                    setFinalTimeFirstPeriodWednesday(res.data.finalTimeFirstPeriodWednesday)
+                    setStartTimeSecondPeriodWednesday(res.data.startTimeSecondPeriodWednesday)
+                    setFinalTimeSecondPeriodWednesday(res.data.finalTimeSecondPeriodWednesday)
+                    setStartTimeFirstPeriodThursday(res.data.startTimeFirstPeriodThursday)
+                    setFinalTimeFirstPeriodThursday(res.data.finalTimeFirstPeriodThursday)
+                    setStartTimeSecondPeriodThursday(res.data.startTimeSecondPeriodThursday)
+                    setFinalTimeSecondPeriodThursday(res.data.finalTimeSecondPeriodThursday)
+                    setStartTimeFirstPeriodFriday(res.data.startTimeFirstPeriodFriday)
+                    setFinalTimeFirstPeriodFriday(res.data.finalTimeFirstPeriodFriday)
+                    setStartTimeSecondPeriodFriday(res.data.startTimeSecondPeriodFriday)
+                    setFinalTimeSecondPeriodFriday(res.data.finalTimeSecondPeriodFriday)
+                    setStartTimeFirstPeriodSaturday(res.data.startTimeFirstPeriodSaturday)
+                    setFinalTimeFirstPeriodSaturday(res.data.finalTimeFirstPeriodSaturday)
+                    setStartTimeSecondPeriodSaturday(res.data.startTimeSecondPeriodSaturday)
+                    setFinalTimeSecondPeriodSaturday(res.data.finalTimeSecondPeriodSaturday)
+                    setStatus(res.data.status)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
 
-        const newEstablishmentBusinessHoursData = {
+    const handlePutEstablishmentBusinessHours = (e) => {
+        e.preventDefault()
+
+        const data = {
             startTimeFirstPeriodSunday: startTimeFirstPeriodSunday,
             finalTimeFirstPeriodSunday: finalTimeFirstPeriodSunday,
             startTimeSecondPeriodSunday: startTimeSecondPeriodSunday,
@@ -204,19 +246,20 @@ function EstablishmentBusinessHoursNew() {
             startTimeFirstPeriodSaturday: startTimeFirstPeriodSaturday,
             finalTimeFirstPeriodSaturday: finalTimeFirstPeriodSaturday,
             startTimeSecondPeriodSaturday: startTimeSecondPeriodSaturday,
-            finalTimeSecondPeriodSaturday: finalTimeSecondPeriodSaturday
+            finalTimeSecondPeriodSaturday: finalTimeSecondPeriodSaturday,
+            status: status
         }
 
-        try {
-            await Api.post(`/api/v1/establishments/${establishment}/business-hours`, newEstablishmentBusinessHoursData, axiosConfig);
-        } catch (err) {
-            alert("Ops, ocorreu um erro verifique os dados e tente novamente")
-            return err
-        }
-
-        alert("Inserido com sucesso!")
-
-        history.push("/home/establishment/business-hours")
+        Api.put(`/api/v1/establishments/${establishmentId}/business-hours/${establishmentBusinessHoursId}`, data, axiosConfig)
+            .then((res) => {
+            })
+            .then((res) => {
+                alert("Alterado com sucesso!")
+                history.push("/home/establishment/business-hours")
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     return (
@@ -230,18 +273,22 @@ function EstablishmentBusinessHoursNew() {
                                     <Link to="/home/establishment/business-hours">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
-                                    Criar Horário de Funcionamento
+                                    Alterar Horário de Funcionamento
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
-                                <Form onSubmit={handleNewEstablishmentBusinessHours}>
+                                <Form onSubmit={handlePutEstablishmentBusinessHours}>
                                     <Row>
                                         <Col md="6">
                                             <Form.Group>
                                                 <label>Estabelecimento</label>
-                                                <Establishment establishments={establishments}
-                                                               establishment={establishment}
-                                                               handleEstablishmentChange={handleEstablishmentChange}/>
+                                                <Form.Control
+                                                    value={`${establishment.id} - ${establishment.tradingName}`}
+                                                    onChange={handleEstablishmentChange}
+                                                    placeholder="Estabelecimento"
+                                                    type="text"
+                                                    readOnly
+                                                />
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -680,6 +727,24 @@ function EstablishmentBusinessHoursNew() {
                                         </Col>
                                     </Row>
                                     <br/>
+                                    <Row>
+                                        <Col md="3">
+                                            <Form.Group>
+                                                <label>Status</label>
+                                                <Form.Control
+                                                    value={status}
+                                                    onChange={handleStatusChange}
+                                                    as="select"
+                                                    className="mr-sm-0"
+                                                    id="inlineFormCustomSelect"
+                                                    custom
+                                                >
+                                                    <option value="1">ATIVO</option>
+                                                    <option value="0">INATIVO</option>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Col>
+                                    </Row>
                                     <Button
                                         className="btn-fill float-right"
                                         variant="info"
@@ -698,4 +763,4 @@ function EstablishmentBusinessHoursNew() {
     )
 }
 
-export default EstablishmentBusinessHoursNew;
+export default EstablishmentBusinessHoursEdit;
