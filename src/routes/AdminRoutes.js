@@ -3,6 +3,7 @@ import UserProfile from "views/UserProfile.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliveryTaxList";
+import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
 
 const routes = [
     {
@@ -37,12 +38,20 @@ const routes = [
     },
     {
         path: "/establishment/delivery-tax",
-        name: "Taxa de Entrega ",
+        name: "Taxa de Entrega",
         icon: "nc-icon nc-notes",
         component: EstablishmentDeliveryList,
         layout: "/home",
         profiles: "admin"
     },
+    {
+        path: "/establishment/business-hours",
+        name: "Horário de Funcionamento",
+        icon: "nc-icon nc-notes",
+        component: EstablishmentBusinessHoursList,
+        layout: "/home",
+        profiles: "admin"
+    }
 ];
 
 export default routes;

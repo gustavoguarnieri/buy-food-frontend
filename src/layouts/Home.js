@@ -23,6 +23,8 @@ import EstablishmentCategoryEdit from "../views/EstablishmentCategory/Establishm
 import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliveryTaxList";
 import EstablishmentDeliveryNew from "../views/DeliveryTax/EstablishmentDeliveryTaxNew";
 import EstablishmentDeliveryTaxEdit from "../views/DeliveryTax/EstablishmentDeliveryTaxEdit";
+import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
+import EstablishmentBusinessHoursNew from "../views/BusinessHours/EstablishmentBusinessHoursNew";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -95,6 +97,12 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/delivery-tax/edit/:establishmentDeliveryId">
                 <EstablishmentDeliveryTaxEdit/>
+              </Route>
+              <Route exact path="/home/establishment/business-hours">
+                <EstablishmentBusinessHoursList/>
+              </Route>
+              <Route exact path="/home/establishment/business-hours/new">
+                <EstablishmentBusinessHoursNew/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>
