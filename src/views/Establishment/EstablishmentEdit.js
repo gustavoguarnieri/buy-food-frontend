@@ -252,7 +252,7 @@ function EstablishmentEdit() {
                                         type="submit"
                                         variant="info"
                                     >
-                                        Salvar Edição
+                                        Salvar Alteração
                                     </Button>
                                     <div className="clearfix"/>
                                 </Form>
