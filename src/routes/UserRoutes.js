@@ -1,4 +1,4 @@
-import UserProfile from "views/UserProfile.js";
+import UserProfile from "views/User/UserProfile.js";
 import EstablishmentMyList from "../views/Establishment/EstablishmentMyList";
 
 const routes = [

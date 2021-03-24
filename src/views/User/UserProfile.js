@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useHistory} from "react-router-dom";
-import UserService from "../services/UserService";
-import Api from "../services/Api";
+import UserService from "../../services/UserService";
+import Api from "../../services/Api";
 import {Card, Button, Col, Container, Form, Row} from "react-bootstrap";
 
 export default () => {

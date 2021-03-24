@@ -1,9 +1,10 @@
 import Dashboard from "views/Dashboard.js";
-import UserProfile from "views/UserProfile.js";
+import UserProfile from "views/User/UserProfile.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliveryTaxList";
 import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
+import UserAddressList from "../views/User/Address/UserAddressList";
 
 const routes = [
     {
@@ -49,6 +50,14 @@ const routes = [
         name: "Horário de Funcionamento",
         icon: "nc-icon nc-notes",
         component: EstablishmentBusinessHoursList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/user/address",
+        name: "Endereço",
+        icon: "nc-icon nc-notes",
+        component: UserAddressList,
         layout: "/home",
         profiles: "admin"
     }

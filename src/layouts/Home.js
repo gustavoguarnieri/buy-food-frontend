@@ -12,7 +12,7 @@ import establishmentRoutes from "../routes/EstablishmentRoutes";
 
 import NotFound from "../components/NotFound";
 import Dashboard from "views/Dashboard.js";
-import UserProfile from "views/UserProfile.js";
+import UserProfile from "views/User/UserProfile.js";
 import TableList from "views/TableList.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentEdit from "views/Establishment/EstablishmentEdit.js"
@@ -26,6 +26,9 @@ import EstablishmentDeliveryTaxEdit from "../views/DeliveryTax/EstablishmentDeli
 import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
 import EstablishmentBusinessHoursNew from "../views/BusinessHours/EstablishmentBusinessHoursNew";
 import EstablishmentBusinessHoursEdit from "../views/BusinessHours/EstablishmentBusinessHoursEdit";
+import UserAddressList from "../views/User/Address/UserAddressList";
+import UserAddressNew from "../views/User/Address/UserAddressNew";
+import UserAddressEdit from "../views/User/Address/UserAddressEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -107,6 +110,15 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/:establishmentId/business-hours/edit/:establishmentBusinessHoursId">
                 <EstablishmentBusinessHoursEdit/>
+              </Route>
+              <Route exact path="/home/user/address">
+                <UserAddressList/>
+              </Route>
+              <Route exact path="/home/user/address/new">
+                <UserAddressNew/>
+              </Route>
+              <Route exact path="/home/user/address/edit/:addressId">
+                <UserAddressEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>
