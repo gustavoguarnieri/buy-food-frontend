@@ -5,6 +5,7 @@ import EstablishmentCategoryList from "../views/EstablishmentCategory/Establishm
 import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliveryTaxList";
 import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
 import UserAddressList from "../views/User/Address/UserAddressList";
+import ProductList from "../views/Product/ProductList";
 
 const routes = [
     {
@@ -58,6 +59,14 @@ const routes = [
         name: "Endereço",
         icon: "nc-icon nc-notes",
         component: UserAddressList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/product",
+        name: "Produto",
+        icon: "nc-icon nc-notes",
+        component: ProductList,
         layout: "/home",
         profiles: "admin"
     }

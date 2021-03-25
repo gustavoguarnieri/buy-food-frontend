@@ -29,6 +29,9 @@ import EstablishmentBusinessHoursEdit from "../views/BusinessHours/Establishment
 import UserAddressList from "../views/User/Address/UserAddressList";
 import UserAddressNew from "../views/User/Address/UserAddressNew";
 import UserAddressEdit from "../views/User/Address/UserAddressEdit";
+import ProductList from "../views/Product/ProductList"
+import ProductNew from "../views/Product/ProductNew";
+import ProductEdit from "../views/Product/ProductEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -119,6 +122,15 @@ function Home() {
               </Route>
               <Route exact path="/home/user/address/edit/:addressId">
                 <UserAddressEdit/>
+              </Route>
+              <Route exact path="/home/establishment/product">
+                <ProductList/>
+              </Route>
+              <Route exact path="/home/establishment/product/new">
+                <ProductNew/>
+              </Route>
+              <Route exact path="/home/establishment/:establishmentId/product/edit/:productId">
+                <ProductEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>
