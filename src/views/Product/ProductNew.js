@@ -10,10 +10,11 @@ function ProductNew() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
     const history = useHistory()
     const [establishments, setEstablishments] = useState('');
-    const [establishment, setEstablishment] = useState('');
+    const [establishment, setEstablishment] = useState(0);
     const [description, setDescription] = useState('');
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
+    let [file, setFile] = useState('')
 
     const handleDescriptionChange = (event) => {
         setDescription(event.target.value)
@@ -24,7 +25,9 @@ function ProductNew() {
     const handlePriceChange = (event) => {
         setPrice(event.target.value)
     }
-
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0])
+    }
     const handleEstablishmentChange = (event) => {
         setEstablishment(event.target.value)
     }
@@ -57,14 +60,34 @@ function ProductNew() {
             status: 1
         }
 
+        let productResp
+
         try {
-            await Api.post(`/api/v1/establishments/${establishment}/products`, newProductData, axiosConfig);
+            productResp = await Api.post(`/api/v1/establishments/${establishment}/products`, newProductData, axiosConfig);
         } catch (err) {
             alert("Ops, ocorreu um erro verifique os dados e tente novamente")
             return err
         }
 
-        alert("Inserido com sucesso!")
+        if (file !== '') {
+            try {
+                const formData = new FormData()
+                formData.append('file', file)
+
+                await Api.post(`/api/v1/establishments/${establishment}/products/${productResp.data.id}/images/upload-file`, formData,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${UserService.getToken()}`
+                        }
+                    });
+            } catch (err) {
+                alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+                return err
+            }
+        }
+
+        alert("Cadastro realizado com sucesso!")
 
         history.push("/home/establishment/product")
     }
@@ -133,6 +156,15 @@ function ProductNew() {
                                                     required
                                                 />
                                             </Form.Group>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md="6">
+                                            <label>File Upload</label>
+                                            <input type="file" onChange={handleFileChange}/>
+                                            <Form.Text className="text-muted">
+                                                Faça upload de imagem principal do produto.
+                                            </Form.Text>
                                         </Col>
                                     </Row>
                                     <Row>
