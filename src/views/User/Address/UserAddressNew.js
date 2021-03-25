@@ -66,7 +66,7 @@ function UserAddressNew() {
             return err
         }
 
-        alert("Inserido com sucesso!")
+        alert("Cadastro realizado com sucesso!")
 
         history.push("/home/user/address")
     }

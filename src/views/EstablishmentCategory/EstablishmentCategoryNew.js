@@ -29,7 +29,7 @@ function EstablishmentCategoryNew() {
             return err
         }
 
-        alert("Inserido com sucesso!")
+        alert("Cadastro realizado com sucesso!")
 
         history.push("/home/establishment/category")
     }
