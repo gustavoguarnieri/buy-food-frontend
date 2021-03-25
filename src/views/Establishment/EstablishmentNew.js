@@ -89,10 +89,10 @@ function EstablishmentNew() {
             status: 1
         }
 
-        let establishment
+        let establishmentResp
 
         try {
-            establishment = await Api.post(`/api/v1/establishments`, newEstablishmentData, axiosConfig);
+            establishmentResp = await Api.post(`/api/v1/establishments`, newEstablishmentData, axiosConfig);
         } catch (err) {
             alert("Ops, ocorreu um erro verifique os dados e tente novamente")
             return err
@@ -103,7 +103,7 @@ function EstablishmentNew() {
                 const formData = new FormData()
                 formData.append('file', file)
 
-                await Api.post(`/api/v1/establishments/${establishment.data.id}/images/upload-file`, formData,
+                await Api.post(`/api/v1/establishments/${establishmentResp.data.id}/images/upload-file`, formData,
                     {
                         headers: {
                             'Content-Type': 'application/json',
