@@ -10,8 +10,8 @@ function EstablishmentDeliveryTaxEdit() {
     const {establishmentDeliveryId} = useParams();
 
     const history = useHistory()
-    let [taxAmount, setTaxAmount] = useState('')
-    let [status, setStatus] = useState('')
+    const [taxAmount, setTaxAmount] = useState('')
+    const [status, setStatus] = useState('')
 
     const handleTaxAmountChange = (event) => {
         setTaxAmount(event.target.value)
@@ -70,7 +70,7 @@ function EstablishmentDeliveryTaxEdit() {
                             <Card.Body>
                                 <Form onSubmit={handlePutEstablishmentDelivery}>
                                     <Row>
-                                        <Col md="6">
+                                        <Col md="4">
                                             <Form.Group>
                                                 <label>Taxa de Entrega</label>
                                                 <Form.Control

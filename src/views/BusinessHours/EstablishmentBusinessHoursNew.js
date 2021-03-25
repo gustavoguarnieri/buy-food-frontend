@@ -163,8 +163,9 @@ function EstablishmentBusinessHoursNew() {
     useEffect(() => {
             Api.get(`/api/v1/establishments/mine?status=1`, axiosConfig)
                 .then((res) => {
-                    setEstablishments(res.data.filter(item => item.businessHours === undefined))
-                    setEstablishment(res.data.filter(item => item.businessHours === undefined)[0].id)
+                    let allEstablishment = res.data.filter(item => item.businessHours === undefined)
+                    setEstablishments(allEstablishment)
+                    allEstablishment.length > 0 ? setEstablishment(allEstablishment[0].id) : 0
                 })
                 .catch((err) => {
                     console.log(err)

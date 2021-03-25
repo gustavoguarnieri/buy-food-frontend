@@ -43,10 +43,6 @@ function EstablishmentBusinessHoursEdit() {
     const [finalTimeSecondPeriodSaturday, setFinalTimeSecondPeriodSaturday] = useState('');
     let [status, setStatus] = useState('')
 
-    const handleEstablishmentChange = (event) => {
-        setEstablishment(event.target.value)
-    }
-
     const handleStartTimeFirstPeriodSundayChange = (event) => {
         setStartTimeFirstPeriodSunday(event.target.value)
     }
@@ -284,7 +280,6 @@ function EstablishmentBusinessHoursEdit() {
                                                 <label>Estabelecimento</label>
                                                 <Form.Control
                                                     value={`${establishment.id} - ${establishment.tradingName}`}
-                                                    onChange={handleEstablishmentChange}
                                                     placeholder="Estabelecimento"
                                                     type="text"
                                                     readOnly

@@ -51,13 +51,13 @@ function EstablishmentDeliveryNew() {
                             <Card.Body>
                                 <Form onSubmit={handleNewEstablishmentDelivery}>
                                     <Row>
-                                        <Col md="6">
+                                        <Col md="4">
                                             <Form.Group>
                                                 <label>Taxa de Entrega</label>
                                                 <Form.Control
                                                     value={establishmentDeliveryTaxAmount}
                                                     onChange={handleEstablishmentDeliveryChange}
-                                                    placeholder="Taxa de Entrega"
+                                                    placeholder="10,50"
                                                     type="text"
                                                     required
                                                 />
