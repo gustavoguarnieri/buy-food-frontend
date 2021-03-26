@@ -81,7 +81,7 @@ function ProductList() {
                 console.log(res.data)
             })
             .then((res) => {
-                alert("Deletado com sucesso!")
+                alert("Removido com sucesso!")
             })
             .catch((err) => {
                 console.log(err)
@@ -166,7 +166,7 @@ function ProductList() {
                                                 {item.status === 1 ? (
                                                     <Button className="btn-fill" variant="danger" size="sm"
                                                             onClick={() => {
-                                                                if (window.confirm(`Deseja realmente deletar este item (${item.description}) ?`)) {
+                                                                if (window.confirm(`Deseja realmente remover este item (${item.description}) ?`)) {
                                                                     handleDeleteProducts(item.id)
                                                                 }
                                                             }}>
