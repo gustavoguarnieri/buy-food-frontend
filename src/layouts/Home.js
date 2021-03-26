@@ -35,6 +35,9 @@ import ProductEdit from "../views/Product/ProductEdit";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
 import IngredientNew from "../views/Product/Ingredients/IngredientNew";
 import IngredientEdit from "../views/Product/Ingredients/IngredientEdit";
+import ImageList from "../views/Product/Image/ImageList";
+import ImageNew from "../views/Product/Image/ImageNew";
+import ImageEdit from "../views/Product/Image/ImageEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -143,6 +146,15 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/:establishmentId/product/:productId/ingredient/:ingredientId/edit">
                 <IngredientEdit/>
+              </Route>
+              <Route exact path="/home/establishment/product/image">
+                <ImageList/>
+              </Route>
+              <Route exact path="/home/establishment/product/image/new">
+                <ImageNew/>
+              </Route>
+              <Route exact path="/home/establishment/:establishmentId/product/:productId/image/:imageId/edit">
+                <ImageEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

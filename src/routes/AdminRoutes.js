@@ -7,6 +7,7 @@ import EstablishmentBusinessHoursList from "../views/BusinessHours/Establishment
 import UserAddressList from "../views/User/Address/UserAddressList";
 import ProductList from "../views/Product/ProductList";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
+import ImageList from "../views/Product/Image/ImageList";
 
 const routes = [
     {
@@ -76,6 +77,14 @@ const routes = [
         name: "Ingrediente",
         icon: "nc-icon nc-notes",
         component: IngredientList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/product/image",
+        name: "Image",
+        icon: "nc-icon nc-notes",
+        component: ImageList,
         layout: "/home",
         profiles: "admin"
     }
