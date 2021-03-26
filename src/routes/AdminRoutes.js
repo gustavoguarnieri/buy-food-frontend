@@ -6,6 +6,7 @@ import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliver
 import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
 import UserAddressList from "../views/User/Address/UserAddressList";
 import ProductList from "../views/Product/ProductList";
+import IngredientList from "../views/Product/Ingredients/IngredientList";
 
 const routes = [
     {
@@ -67,6 +68,14 @@ const routes = [
         name: "Produto",
         icon: "nc-icon nc-notes",
         component: ProductList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/product/ingredient",
+        name: "Ingrediente",
+        icon: "nc-icon nc-notes",
+        component: IngredientList,
         layout: "/home",
         profiles: "admin"
     }
