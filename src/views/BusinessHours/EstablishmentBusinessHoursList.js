@@ -214,7 +214,7 @@ function EstablishmentBusinessHoursList() {
                                             </td>
                                             <td>
                                                 <Link
-                                                    to={`/home/establishment/${item.establishment?.id}/business-hours/edit/${item.id}`}>
+                                                    to={`/home/establishment/${item.establishment?.id}/business-hours/${item.id}/edit`}>
                                                     <Button className="btn-fill" variant="secondary" size="sm">
                                                         Editar
                                                     </Button>

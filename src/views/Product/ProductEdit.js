@@ -60,9 +60,7 @@ function ProductEdit() {
     const handlePutProduct = (e) => {
         e.preventDefault()
 
-        console.log(price)
-
-        const data = {
+        let data = {
             description: description,
             name: name,
             price: price.toString().replace(",", "."),

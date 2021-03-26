@@ -177,7 +177,7 @@ function EstablishmentBusinessHoursNew() {
     const handleNewEstablishmentBusinessHours = async (e) => {
         e.preventDefault();
 
-        const newEstablishmentBusinessHoursData = {
+        let newEstablishmentBusinessHoursData = {
             startTimeFirstPeriodSunday: startTimeFirstPeriodSunday,
             finalTimeFirstPeriodSunday: finalTimeFirstPeriodSunday,
             startTimeSecondPeriodSunday: startTimeSecondPeriodSunday,

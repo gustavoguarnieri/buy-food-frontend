@@ -1,20 +1,20 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useHistory} from "react-router-dom";
 import UserService from "../../services/UserService";
 import Api from "../../services/Api";
-import {Card, Button, Col, Container, Form, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 
 export default () => {
 
-    let [email, setEmail] = useState(UserService.getEmail())
-    let [firstName, setFirstName] = useState(`${UserService.getUsername()}`)
-    let [lastName, setLastName] = useState('')
-    let [nickName, setNickName] = useState('')
-    let [phone, setPhone] = useState('')
-    let [password, setPassword] = useState('')
-    let [role, setRole] = useState('USER')
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
     const history = useHistory()
+    const [email, setEmail] = useState(UserService.getEmail())
+    const [firstName, setFirstName] = useState(`${UserService.getUsername()}`)
+    const [lastName, setLastName] = useState('')
+    const [nickName, setNickName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
+    const [role, setRole] = useState('USER')
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value)
@@ -35,7 +35,7 @@ export default () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const data = {
+        let data = {
             email,
             firstName,
             lastName,
@@ -46,7 +46,8 @@ export default () => {
         }
 
         Api.put(`/api/v1/users/${UserService.getUserId()}`, data, axiosConfig)
-            .then((res) => {})
+            .then((res) => {
+            })
             .then((res) => {
                 alert("Alterado com sucesso!")
                 history.push("/home")
@@ -168,7 +169,7 @@ export default () => {
                                                     id="inlineFormCustomSelect"
                                                     custom
                                                 >
-                                                    { role === "ADMIN" ? (
+                                                    {role === "ADMIN" ? (
                                                         <option value="ADMIN">ADMIN</option>
                                                     ) : (
                                                         <></>

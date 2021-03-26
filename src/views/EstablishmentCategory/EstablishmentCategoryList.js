@@ -1,9 +1,8 @@
-import React, {useRef} from "react";
-import {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
-import {Card, Col, Container, Row, Table, Button, Form} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
 
 function EstablishmentCategoryList() {
@@ -110,41 +109,41 @@ function EstablishmentCategoryList() {
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped" ref={componentRef}>
                                     <thead>
-                                        <tr>
-                                            <th className="border-0">Id</th>
-                                            <th className="border-0">Categoria</th>
-                                            <th className="border-0">Status</th>
-                                        </tr>
+                                    <tr>
+                                        <th className="border-0">Id</th>
+                                        <th className="border-0">Categoria</th>
+                                        <th className="border-0">Status</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {establishmentCategories && establishmentCategories.map((item) => (
-                                            <tr key={item.id}>
-                                                <td>{item.id}</td>
-                                                <td>{item.description}</td>
-                                                <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
-                                                <td>
-                                                    {item.status === 1 ? (
-                                                        <Button className="btn-fill" variant="danger" size="sm"
-                                                                onClick={() => {
-                                                                    if (window.confirm(`Deseja realmente remover este item (${item.description}) ?`)) {
-                                                                        handleDeleteEstablishment(item.id)
-                                                                    }
-                                                                }}>
-                                                            Deletar
-                                                        </Button>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </td>
-                                                <td>
-                                                    <Link to={`/home/establishment/category/edit/${item.id}`}>
-                                                        <Button className="btn-fill" variant="secondary" size="sm">
-                                                            Editar
-                                                        </Button>
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                        ))}
+                                    {establishmentCategories && establishmentCategories.map((item) => (
+                                        <tr key={item.id}>
+                                            <td>{item.id}</td>
+                                            <td>{item.description}</td>
+                                            <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
+                                            <td>
+                                                {item.status === 1 ? (
+                                                    <Button className="btn-fill" variant="danger" size="sm"
+                                                            onClick={() => {
+                                                                if (window.confirm(`Deseja realmente remover este item (${item.description}) ?`)) {
+                                                                    handleDeleteEstablishment(item.id)
+                                                                }
+                                                            }}>
+                                                        Deletar
+                                                    </Button>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                            </td>
+                                            <td>
+                                                <Link to={`/home/establishment/category/${item.id}/edit`}>
+                                                    <Button className="btn-fill" variant="secondary" size="sm">
+                                                        Editar
+                                                    </Button>
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    ))}
                                     </tbody>
                                 </Table>
                             </Card.Body>

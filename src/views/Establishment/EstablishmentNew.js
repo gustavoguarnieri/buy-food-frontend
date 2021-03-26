@@ -1,4 +1,4 @@
-import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import {Link, useHistory} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EstablishmentCategory from "../../components/Utils/EstablishmentCategory";
@@ -11,16 +11,16 @@ function EstablishmentNew() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     const history = useHistory()
-    let [companyName, setCompanyName] = useState('')
-    let [tradingName, setTradingName] = useState('')
-    let [email, setEmail] = useState('')
-    let [commercialPhone, setCommercialPhone] = useState('')
-    let [mobilePhone, setMobilePhone] = useState('')
-    let [category, setCategory] = useState(1)
-    let [categories, setCategories] = useState('')
-    let [delivery, setDelivery] = useState(1)
-    let [deliveries, setDeliveries] = useState('')
-    let [file, setFile] = useState('')
+    const [companyName, setCompanyName] = useState('')
+    const [tradingName, setTradingName] = useState('')
+    const [email, setEmail] = useState('')
+    const [commercialPhone, setCommercialPhone] = useState('')
+    const [mobilePhone, setMobilePhone] = useState('')
+    const [category, setCategory] = useState(1)
+    const [categories, setCategories] = useState('')
+    const [delivery, setDelivery] = useState(1)
+    const [deliveries, setDeliveries] = useState('')
+    const [file, setFile] = useState('')
 
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value)
@@ -74,7 +74,7 @@ function EstablishmentNew() {
     const handleNewEstablishment = async (e) => {
         e.preventDefault();
 
-        const newEstablishmentData = {
+        let newEstablishmentData = {
             companyName: companyName,
             tradingName: tradingName,
             email: email,

@@ -32,6 +32,9 @@ import UserAddressEdit from "../views/User/Address/UserAddressEdit";
 import ProductList from "../views/Product/ProductList"
 import ProductNew from "../views/Product/ProductNew";
 import ProductEdit from "../views/Product/ProductEdit";
+import IngredientList from "../views/Product/Ingredients/IngredientList";
+import IngredientNew from "../views/Product/Ingredients/IngredientNew";
+import IngredientEdit from "../views/Product/Ingredients/IngredientEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -84,7 +87,7 @@ function Home() {
               <Route exact path="/home/establishment/new">
                 <EstablishmentNew/>
               </Route>
-              <Route exact path="/home/establishment/edit/:establishmentId">
+              <Route exact path="/home/establishment/:establishmentId/edit">
                 <EstablishmentEdit/>
               </Route>
               <Route exact path="/home/establishment/category">
@@ -93,7 +96,7 @@ function Home() {
               <Route exact path="/home/establishment/category/new">
                 <EstablishmentCategoryNew/>
               </Route>
-              <Route exact path="/home/establishment/category/edit/:establishmentCategoryId">
+              <Route exact path="/home/establishment/category/:establishmentCategoryId/edit">
                 <EstablishmentCategoryEdit/>
               </Route>
               <Route exact path="/home/establishment/delivery-tax">
@@ -102,7 +105,7 @@ function Home() {
               <Route exact path="/home/establishment/delivery-tax/new">
                 <EstablishmentDeliveryNew/>
               </Route>
-              <Route exact path="/home/establishment/delivery-tax/edit/:establishmentDeliveryId">
+              <Route exact path="/home/establishment/delivery-tax/:establishmentDeliveryId/edit">
                 <EstablishmentDeliveryTaxEdit/>
               </Route>
               <Route exact path="/home/establishment/business-hours">
@@ -111,7 +114,7 @@ function Home() {
               <Route exact path="/home/establishment/business-hours/new">
                 <EstablishmentBusinessHoursNew/>
               </Route>
-              <Route exact path="/home/establishment/:establishmentId/business-hours/edit/:establishmentBusinessHoursId">
+              <Route exact path="/home/establishment/:establishmentId/business-hours/:establishmentBusinessHoursId/edit">
                 <EstablishmentBusinessHoursEdit/>
               </Route>
               <Route exact path="/home/user/address">
@@ -120,7 +123,7 @@ function Home() {
               <Route exact path="/home/user/address/new">
                 <UserAddressNew/>
               </Route>
-              <Route exact path="/home/user/address/edit/:addressId">
+              <Route exact path="/home/user/address/:addressId/edit">
                 <UserAddressEdit/>
               </Route>
               <Route exact path="/home/establishment/product">
@@ -129,8 +132,17 @@ function Home() {
               <Route exact path="/home/establishment/product/new">
                 <ProductNew/>
               </Route>
-              <Route exact path="/home/establishment/:establishmentId/product/edit/:productId">
+              <Route exact path="/home/establishment/:establishmentId/product/:productId/edit">
                 <ProductEdit/>
+              </Route>
+              <Route exact path="/home/establishment/product/ingredient">
+                <IngredientList/>
+              </Route>
+              <Route exact path="/home/establishment/product/ingredient/new">
+                <IngredientNew/>
+              </Route>
+              <Route exact path="/home/establishment/:establishmentId/product/:productId/ingredient/:ingredientId/edit">
+                <IngredientEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

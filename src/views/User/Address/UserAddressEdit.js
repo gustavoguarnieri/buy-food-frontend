@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams, useHistory} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
@@ -12,15 +12,15 @@ function UserAddressNewEdit() {
     const {addressId} = useParams();
 
     const history = useHistory()
-    let [recipientName, setRecipientName] = useState('')
-    let [zipCode, setZipCode] = useState('')
-    let [address, setAddress] = useState('')
-    let [addressNumber, setAddressNumber] = useState('')
-    let [neighbourhood, setNeighbourhood] = useState('')
-    let [city, setCity] = useState('')
-    let [state, setState] = useState('SP')
-    let [observation, setObservation] = useState('')
-    let [status, setStatus] = useState('')
+    const [recipientName, setRecipientName] = useState('')
+    const [zipCode, setZipCode] = useState('')
+    const [address, setAddress] = useState('')
+    const [addressNumber, setAddressNumber] = useState('')
+    const [neighbourhood, setNeighbourhood] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('SP')
+    const [observation, setObservation] = useState('')
+    const [status, setStatus] = useState('')
 
     const handleRecipientNameChange = (event) => {
         setRecipientName(event.target.value)
@@ -73,7 +73,7 @@ function UserAddressNewEdit() {
     const handlePutUserAddress = (e) => {
         e.preventDefault()
 
-        const data = {
+        let data = {
             recipientName: recipientName,
             zipCode: zipCode,
             address: address,
@@ -86,7 +86,8 @@ function UserAddressNewEdit() {
         }
 
         Api.put(`/api/v1/users/address/${addressId}`, data, axiosConfig)
-            .then((res) => {})
+            .then((res) => {
+            })
             .then((res) => {
                 alert("Alterado com sucesso!")
                 history.push("/home/user/address")

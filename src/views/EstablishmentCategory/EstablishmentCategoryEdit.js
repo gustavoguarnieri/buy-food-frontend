@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams, useHistory} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
@@ -10,8 +10,8 @@ function EstablishmentCategoryEdit() {
     const {establishmentCategoryId} = useParams();
 
     const history = useHistory()
-    let [description, setDescription] = useState('')
-    let [status, setStatus] = useState('')
+    const [description, setDescription] = useState('')
+    const [status, setStatus] = useState('')
 
     const handleDescriptionChange = (event) => {
         setDescription(event.target.value)
@@ -37,13 +37,14 @@ function EstablishmentCategoryEdit() {
     const handlePutEstablishmentCategory = (e) => {
         e.preventDefault()
 
-        const data = {
+        let data = {
             description: description,
             status: status
         }
 
         Api.put(`/api/v1/establishments/categories/${establishmentCategoryId}`, data, axiosConfig)
-            .then((res) => {})
+            .then((res) => {
+            })
             .then((res) => {
                 alert("Alterado com sucesso!")
                 history.push("/home/establishment/category")

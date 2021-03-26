@@ -37,7 +37,7 @@ function EstablishmentDeliveryTaxEdit() {
     const handlePutEstablishmentDelivery = (e) => {
         e.preventDefault()
 
-        const data = {
+        let data = {
             taxAmount: taxAmount.replace(",", "."),
             status: status
         }

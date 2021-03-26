@@ -1,5 +1,5 @@
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import {Link, useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import React, {useState} from "react";
 import UserService from "../../services/UserService";
 import Api from "../../services/Api";
@@ -7,9 +7,8 @@ import Api from "../../services/Api";
 function EstablishmentDeliveryNew() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
-
     const history = useHistory()
-    let [establishmentDeliveryTaxAmount, setEstablishmentDeliveryTaxAmount] = useState('')
+    const [establishmentDeliveryTaxAmount, setEstablishmentDeliveryTaxAmount] = useState('')
 
     const handleEstablishmentDeliveryChange = (event) => {
         setEstablishmentDeliveryTaxAmount(event.target.value)
@@ -22,9 +21,9 @@ function EstablishmentDeliveryNew() {
             taxAmount: establishmentDeliveryTaxAmount.replace(",", ".")
         }
 
-        try{
-            await  Api.post(`/api/v1/establishments/delivery-tax`, newEstablishmentDeliveryData, axiosConfig);
-        }catch (err) {
+        try {
+            await Api.post(`/api/v1/establishments/delivery-tax`, newEstablishmentDeliveryData, axiosConfig);
+        } catch (err) {
             alert("Ops, ocorreu um erro verifique os dados e tente novamente")
             return err
         }

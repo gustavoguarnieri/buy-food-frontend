@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams, useHistory} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
@@ -12,16 +12,16 @@ function EstablishmentEdit() {
     const {establishmentId} = useParams();
 
     const history = useHistory()
-    let [companyName, setCompanyName] = useState('')
-    let [tradingName, setTradingName] = useState('')
-    let [email, setEmail] = useState('')
-    let [commercialPhone, setCommercialPhone] = useState('')
-    let [mobilePhone, setMobilePhone] = useState('')
-    let [category, setCategory] = useState('')
-    let [categories, setCategories] = useState('')
-    let [delivery, setDelivery] = useState('')
-    let [deliveries, setDeliveries] = useState('')
-    let [status, setStatus] = useState('')
+    const [companyName, setCompanyName] = useState('')
+    const [tradingName, setTradingName] = useState('')
+    const [email, setEmail] = useState('')
+    const [commercialPhone, setCommercialPhone] = useState('')
+    const [mobilePhone, setMobilePhone] = useState('')
+    const [category, setCategory] = useState('')
+    const [categories, setCategories] = useState('')
+    const [delivery, setDelivery] = useState('')
+    const [deliveries, setDeliveries] = useState('')
+    const [status, setStatus] = useState('')
 
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value)
@@ -94,7 +94,7 @@ function EstablishmentEdit() {
     const handlePutEstablishment = (e) => {
         e.preventDefault()
 
-        const data = {
+        let data = {
             id: establishmentId,
             companyName: companyName,
             tradingName: tradingName,
@@ -111,7 +111,8 @@ function EstablishmentEdit() {
         }
 
         Api.put(`/api/v1/establishments/${establishmentId}`, data, axiosConfig)
-            .then((res) => {})
+            .then((res) => {
+            })
             .then((res) => {
                 alert("Alterado com sucesso!")
                 history.push("/home/establishment")

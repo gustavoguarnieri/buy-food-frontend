@@ -1,4 +1,4 @@
-import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import {Link, useHistory} from "react-router-dom";
 import React, {useState} from "react";
 import UserService from "../../../services/UserService";
@@ -11,14 +11,14 @@ function UserAddressNew() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     const history = useHistory()
-    let [recipientName, setRecipientName] = useState('')
-    let [zipCode, setZipCode] = useState('')
-    let [address, setAddress] = useState('')
-    let [addressNumber, setAddressNumber] = useState('')
-    let [neighbourhood, setNeighbourhood] = useState('')
-    let [city, setCity] = useState('')
-    let [state, setState] = useState('SP')
-    let [observation, setObservation] = useState('')
+    const [recipientName, setRecipientName] = useState('')
+    const [zipCode, setZipCode] = useState('')
+    const [address, setAddress] = useState('')
+    const [addressNumber, setAddressNumber] = useState('')
+    const [neighbourhood, setNeighbourhood] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('SP')
+    const [observation, setObservation] = useState('')
 
     const handleRecipientNameChange = (event) => {
         setRecipientName(event.target.value)
@@ -48,7 +48,7 @@ function UserAddressNew() {
     const handleNewUserAddress = async (e) => {
         e.preventDefault();
 
-        const newUserAddressData = {
+        let newUserAddressData = {
             recipientName: recipientName,
             zipCode: zipCode,
             address: address,

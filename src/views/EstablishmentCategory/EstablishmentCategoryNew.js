@@ -1,5 +1,5 @@
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import {Link, useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import React, {useState} from "react";
 import UserService from "../../services/UserService";
 import Api from "../../services/Api";
@@ -9,7 +9,7 @@ function EstablishmentCategoryNew() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     const history = useHistory()
-    let [establishmentCategoryDescription, setEstablishmentCategoryDescription] = useState('')
+    const [establishmentCategoryDescription, setEstablishmentCategoryDescription] = useState('')
 
     const handleEstablishmentCategoryDescriptionChange = (event) => {
         setEstablishmentCategoryDescription(event.target.value)
@@ -18,13 +18,13 @@ function EstablishmentCategoryNew() {
     const handleNewEstablishmentCategory = async (e) => {
         e.preventDefault();
 
-        const newEstablishmentCategoryData = {
+        let newEstablishmentCategoryData = {
             description: establishmentCategoryDescription
         }
 
-        try{
-            await  Api.post(`/api/v1/establishments/categories`, newEstablishmentCategoryData, axiosConfig);
-        }catch (err) {
+        try {
+            await Api.post(`/api/v1/establishments/categories`, newEstablishmentCategoryData, axiosConfig);
+        } catch (err) {
             alert("Ops, ocorreu um erro verifique os dados e tente novamente")
             return err
         }

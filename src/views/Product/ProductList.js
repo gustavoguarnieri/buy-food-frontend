@@ -177,7 +177,8 @@ function ProductList() {
                                                 )}
                                             </td>
                                             <td>
-                                                <Link to={`/home/establishment/${establishmentId}/product/edit/${item.id}`}>
+                                                <Link
+                                                    to={`/home/establishment/${establishmentId}/product/${item.id}/edit`}>
                                                     <Button className="btn-fill" variant="secondary" size="sm">
                                                         Editar
                                                     </Button>

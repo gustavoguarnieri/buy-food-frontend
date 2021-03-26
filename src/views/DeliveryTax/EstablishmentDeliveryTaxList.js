@@ -136,7 +136,7 @@ function EstablishmentDeliveryList() {
                                                     )}
                                                 </td>
                                                 <td>
-                                                    <Link to={`/home/establishment/delivery-tax/edit/${item.id}`}>
+                                                    <Link to={`/home/establishment/delivery-tax/${item.id}/edit`}>
                                                         <Button className="btn-fill" variant="secondary" size="sm">
                                                             Editar
                                                         </Button>

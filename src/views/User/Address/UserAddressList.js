@@ -1,9 +1,8 @@
-import React, {useRef} from "react";
-import {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
-import {Card, Col, Container, Row, Table, Button, Form} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
 
 function UserAddressList() {
@@ -110,55 +109,55 @@ function UserAddressList() {
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped" ref={componentRef}>
                                     <thead>
-                                        <tr>
-                                            <th className="border-0">Id</th>
-                                            <th className="border-0">Endereço</th>
-                                            <th className="border-0">Número</th>
-                                            <th className="border-0">Bairro</th>
-                                            <th className="border-0">Cidade</th>
-                                            <th className="border-0">Estado</th>
-                                            <th className="border-0">CEP</th>
-                                            <th className="border-0">Observação</th>
-                                            <th className="border-0">Contato</th>
-                                            <th className="border-0">Status</th>
-                                        </tr>
+                                    <tr>
+                                        <th className="border-0">Id</th>
+                                        <th className="border-0">Endereço</th>
+                                        <th className="border-0">Número</th>
+                                        <th className="border-0">Bairro</th>
+                                        <th className="border-0">Cidade</th>
+                                        <th className="border-0">Estado</th>
+                                        <th className="border-0">CEP</th>
+                                        <th className="border-0">Observação</th>
+                                        <th className="border-0">Contato</th>
+                                        <th className="border-0">Status</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {addresses && addresses.map((item) => (
-                                            <tr key={item.id}>
-                                                <td>{item.id}</td>
-                                                <td>{item.address}</td>
-                                                <td>{item.addressNumber}</td>
-                                                <td>{item.neighbourhood}</td>
-                                                <td>{item.city}</td>
-                                                <td>{item.state}</td>
-                                                <td>{item.zipCode}</td>
-                                                <td>{item.observation}</td>
-                                                <td>{item.recipientName}</td>
-                                                <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
-                                                <td>
-                                                    {item.status === 1 ? (
-                                                        <Button className="btn-fill" variant="danger" size="sm"
-                                                                onClick={() => {
-                                                                    if (window.confirm(`Deseja realmente remover este item (${item.address}) ?`)) {
-                                                                        handleDeleteUserAddress(item.id)
-                                                                    }
-                                                                }}>
-                                                            Deletar
-                                                        </Button>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </td>
-                                                <td>
-                                                    <Link to={`/home/user/address/edit/${item.id}`}>
-                                                        <Button className="btn-fill" variant="secondary" size="sm">
-                                                            Editar
-                                                        </Button>
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                        ))}
+                                    {addresses && addresses.map((item) => (
+                                        <tr key={item.id}>
+                                            <td>{item.id}</td>
+                                            <td>{item.address}</td>
+                                            <td>{item.addressNumber}</td>
+                                            <td>{item.neighbourhood}</td>
+                                            <td>{item.city}</td>
+                                            <td>{item.state}</td>
+                                            <td>{item.zipCode}</td>
+                                            <td>{item.observation}</td>
+                                            <td>{item.recipientName}</td>
+                                            <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
+                                            <td>
+                                                {item.status === 1 ? (
+                                                    <Button className="btn-fill" variant="danger" size="sm"
+                                                            onClick={() => {
+                                                                if (window.confirm(`Deseja realmente remover este item (${item.address}) ?`)) {
+                                                                    handleDeleteUserAddress(item.id)
+                                                                }
+                                                            }}>
+                                                        Deletar
+                                                    </Button>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                            </td>
+                                            <td>
+                                                <Link to={`/home/user/address/${item.id}/edit`}>
+                                                    <Button className="btn-fill" variant="secondary" size="sm">
+                                                        Editar
+                                                    </Button>
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    ))}
                                     </tbody>
                                 </Table>
                             </Card.Body>

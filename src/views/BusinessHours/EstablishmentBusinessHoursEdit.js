@@ -41,7 +41,7 @@ function EstablishmentBusinessHoursEdit() {
     const [finalTimeFirstPeriodSaturday, setFinalTimeFirstPeriodSaturday] = useState('');
     const [startTimeSecondPeriodSaturday, setStartTimeSecondPeriodSaturday] = useState('');
     const [finalTimeSecondPeriodSaturday, setFinalTimeSecondPeriodSaturday] = useState('');
-    let [status, setStatus] = useState('')
+    const [status, setStatus] = useState('')
 
     const handleStartTimeFirstPeriodSundayChange = (event) => {
         setStartTimeFirstPeriodSunday(event.target.value)
@@ -214,7 +214,7 @@ function EstablishmentBusinessHoursEdit() {
     const handlePutEstablishmentBusinessHours = (e) => {
         e.preventDefault()
 
-        const data = {
+        let data = {
             startTimeFirstPeriodSunday: startTimeFirstPeriodSunday,
             finalTimeFirstPeriodSunday: finalTimeFirstPeriodSunday,
             startTimeSecondPeriodSunday: startTimeSecondPeriodSunday,
