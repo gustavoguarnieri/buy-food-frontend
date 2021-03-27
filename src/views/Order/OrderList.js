@@ -6,20 +6,12 @@ import DefaultNoImg from "../../assets/img/no-image.jpg"
 
 function EstablishmentMyList() {
 
-    const componentRef = useRef();
     const [products, setProducts] = useState('');
-    const [purchasedProducts, setPurchasedProducts] = useState([]);
-    //const [establishments, setEstablishments] = useState('');
-    //const [statusFilter, setStatusFilter] = useState('-1');
+    const [orderItens, setOrderItens] = useState([]);
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
-    // const handleStatusFilterChange = (event) => {
-    //     setStatusFilter(event.target.value)
-    //     handleStatusFilter(event.target.value)
-    // }
-
     useEffect(() => {
-            Api.get(`/api/v1/products`, axiosConfig)
+            Api.get(`/api/v1/products?status=1`, axiosConfig)
                 .then((res) => {
                     setProducts(res.data)
                 })
@@ -30,75 +22,45 @@ function EstablishmentMyList() {
         []
     )
 
-    const handleAddFilterChange = (setPurchasedProducts) => {
-        setPurchasedProducts(setPurchasedProducts)
+    const handleAdd = product => () => {
+        const itens = Array.from(orderItens.length > 0 ? orderItens : product)
+        itens.push(product)
+        setOrderItens(itens)
+        //console.log(itens)
+        alert(`Item ${product.name} adicionado com sucesso!`)
+
     }
-
-    // useEffect(() => {
-    //         Api.get(`/api/v1/establishments`, axiosConfig)
-    //             .then((res) => {
-    //                 setEstablishments(res.data)
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err)
-    //             })
-    //     },
-    //     []
-    // )
-
-    // const handleStatusFilter = (statusCode) => {
-    //
-    //     let url = `/api/v1/establishments/mine`
-    //
-    //     if (statusCode !== "-1") {
-    //         url = url + `?status=${statusCode}`
-    //     }
-    //
-    //     Api.get(`${url}`, axiosConfig)
-    //         .then((res) => {
-    //             setEstablishments(res.data)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }
-
-    // const handleDeleteEstablishment = (id) => {
-    //     Api.delete(`/api/v1/establishments/${id}`, axiosConfig)
-    //         .then((res) => {
-    //             console.log(res.data)
-    //         })
-    //         .then((res) => {
-    //             alert("Removido com sucesso!")
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //     window.location.reload();
-    // }
 
     return (
         <>
             <Container fluid>
-                <Row>
-                    <CardDeck>
-                        {products && products.map((item) => (
-                            <Col md="2" className="m-2">
-                                <Card style={{ width: '15rem'}}>
-                                <Card.Img variant="top" src={item.images[0]?.fileUri || DefaultNoImg}/>
-                                    <Card.Body>
-                                        <Card.Title style={{textAlign: 'center'}}>{item.name.toUpperCase()}</Card.Title>
-                                    </Card.Body>
-                                    <ListGroup className="list-group-flush">
-                                        <Button className="m-2 btn-fill float-right" variant="info" size="sm">
-                                            Adicionar
-                                        </Button>
-                                    </ListGroup>
-                                </Card>
-                            </Col>
-                        ))}
-                    </CardDeck>
-                </Row>
+                <CardDeck>
+                    {products && products.map((item) => (
+                        <Col md="2" className="m-1">
+                            <Card style={{height: '22rem'}}>
+                                <Card.Img variant="top" style={{height: '10rem'}}
+                                          src={item.images[0]?.fileUri || DefaultNoImg}/>
+                                <Card.Body>
+                                    <Card.Title style={{textAlign: 'center', fontWeight: 'bold'}}>
+                                        {item.name} - R$ {item.price.replace(".", ",")}
+                                    </Card.Title>
+                                </Card.Body>
+                                <ListGroup className="list-group-flush">
+                                    <ListGroupItem style={{textAlign: 'center'}}>
+                                        <>{item.establishment?.tradingName}</>
+                                    </ListGroupItem>
+                                    <Button
+                                        className="m-2 btn-fill float-right"
+                                        variant="info"
+                                        size="sm"
+                                        onClick={handleAdd(item)}>
+                                        Adicionar
+                                    </Button>
+                                </ListGroup>
+                            </Card>
+                        </Col>
+                    ))}
+                </CardDeck>
             </Container>
         </>
     )
