@@ -1,8 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
-import {Button, Card, CardDeck, Col, Container, ListGroup, ListGroupItem, Row} from "react-bootstrap";
+import {Button, Card, CardDeck, Col, Container, Form, ListGroup, ListGroupItem, Row} from "react-bootstrap";
 import DefaultNoImg from "../../assets/img/no-image.jpg"
+import UtilService from "../../services/UtilService";
+import {Link} from "react-router-dom";
 
 function EstablishmentMyList() {
 
@@ -26,17 +28,27 @@ function EstablishmentMyList() {
         const itens = Array.from(orderItens.length > 0 ? orderItens : product)
         itens.push(product)
         setOrderItens(itens)
-        //console.log(itens)
         alert(`Item ${product.name} adicionado com sucesso!`)
-
     }
 
     return (
         <>
             <Container fluid>
+                <Row>
+                    <Col md="12" className="m-1">
+                        <Link to={{
+                            pathname: `/home/order/cart`,
+                            state: { products: products }
+                        }}>
+                            <Button className="m-2 btn-fill float-right" variant="info" size="sm">
+                                Fechar Carrinho
+                            </Button>
+                        </Link>
+                    </Col>
+                </Row>
                 <CardDeck>
                     {products && products.map((item) => (
-                        <Col md="2" className="m-1">
+                        <Col md="3" className="m-1">
                             <Card style={{height: '22rem'}}>
                                 <Card.Img variant="top" style={{height: '10rem'}}
                                           src={item.images[0]?.fileUri || DefaultNoImg}/>
@@ -46,8 +58,13 @@ function EstablishmentMyList() {
                                     </Card.Title>
                                 </Card.Body>
                                 <ListGroup className="list-group-flush">
-                                    <ListGroupItem style={{textAlign: 'center'}}>
+                                    <ListGroupItem style={{textAlign: 'center', fontSize: '12px'}}>
                                         <>{item.establishment?.tradingName}</>
+                                    </ListGroupItem>
+                                    <ListGroupItem style={{textAlign: 'center', fontSize: '10px'}}>
+                                        Taxa Entrega: &nbsp;
+                                        {item.establishment?.deliveryTax?.taxAmount ?
+                                            UtilService.formCurrency(item.establishment?.deliveryTax?.taxAmount) : "Grátis"}
                                     </ListGroupItem>
                                     <Button
                                         className="m-2 btn-fill float-right"

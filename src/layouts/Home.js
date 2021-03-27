@@ -42,6 +42,7 @@ import EstablishmentImageList from "../views/Establishment/Image/EstablishmentIm
 import EstablishmentImageNew from "../views/Establishment/Image/EstablishmentImageNew";
 import EstablishmentImageEdit from "../views/Establishment/Image/EstablishmentImageEdit";
 import OrderList from "../views/Order/OrderList";
+import OrderCart from "../views/Order/OrderCart";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -171,6 +172,9 @@ function Home() {
               </Route>
               <Route exact path="/home/order/itens">
                 <OrderList/>
+              </Route>
+              <Route exact path="/home/order/cart">
+                <OrderCart/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>
