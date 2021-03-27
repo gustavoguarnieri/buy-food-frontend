@@ -5,14 +5,11 @@ import UserService from "../../../services/UserService";
 import {Button, Card, Col, Container, Figure, Form, Image, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
 import Establishment from "../../../components/Utils/Establishment";
-import Product from "../../../components/Utils/Product";
 
-function IngredientList() {
+function EstablishmentImageList() {
 
     const componentRef = useRef();
     const [images, setImages] = useState('');
-    const [products, setProducts] = useState('');
-    const [productId, setProductId] = useState('-1');
     const [establishments, setEstablishments] = useState('');
     const [establishmentId, setEstablishmentId] = useState(0);
     const [statusFilter, setStatusFilter] = useState('-1');
@@ -26,12 +23,6 @@ function IngredientList() {
 
     const handleEstablishmentChange = (event) => {
         setEstablishmentId(event.target.value)
-        setProductId('-1')
-        handleProducts(event.target.value)
-    }
-
-    const handleProductChange = (event) => {
-        setProductId(event.target.value)
         handleImages(event.target.value)
     }
 
@@ -50,8 +41,8 @@ function IngredientList() {
                 let establishmentIdResp = establishmentsResp.data.length > 0 ? establishmentsResp.data[0].id : 0
 
                 if (establishmentIdResp > 0) {
-                    let response = await Api.get(`/api/v1/establishments/${establishmentIdResp}/products`, axiosConfig)
-                    setProducts(response.data)
+                    let response = await Api.get(`/api/v1/establishments/${establishmentIdResp}/images`, axiosConfig)
+                    setImages(response.data)
                 }
             } catch (err) {
                 alert("Ops, ocorreu um erro verifique os dados e tente novamente")
@@ -61,20 +52,8 @@ function IngredientList() {
         []
     )
 
-    const handleProducts = async (establishmentIdEventValue) => {
-        let url = `/api/v1/establishments/${establishmentIdEventValue}/products`
-
-        Api.get(`${url}`, axiosConfig)
-            .then((res) => {
-                setProducts(res.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
     const handleImages = (statusCode) => {
-        let url = `/api/v1/establishments/${establishmentId}/products/${statusCode}/images`
+        let url = `/api/v1/establishments/${statusCode}/images`
 
         Api.get(`${url}`, axiosConfig)
             .then((res) => {
@@ -86,12 +65,7 @@ function IngredientList() {
     }
 
     const handleStatusFilter = (statusCode) => {
-
-        if (productId === "-1") {
-            return
-        }
-
-        let url = `/api/v1/establishments/${establishmentId}/products/${productId}/images`
+        let url = `/api/v1/establishments/${establishmentId}/images`
 
         if (statusCode !== "-1") {
             url = url + `?status=${statusCode}`
@@ -107,7 +81,7 @@ function IngredientList() {
     }
 
     const handleDeleteImages = (id) => {
-        Api.delete(`/api/v1/establishments/${establishmentId}/products/${productId}/images/${id}`, axiosConfig)
+        Api.delete(`/api/v1/establishments/${establishmentId}/images/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -127,12 +101,12 @@ function IngredientList() {
                     <Col md="8">
                         <Card className="strpied-tabled-with-hover">
                             <Card.Header>
-                                <Card.Title as="h4">Lista de Imagens de Produto</Card.Title>
+                                <Card.Title as="h4">Lista de Imagens de Estabelecimento</Card.Title>
                             </Card.Header>
                             <Row>
                                 <Col md="12">
                                     <Form.Group>
-                                        <Link to={`/home/establishment/product/image/new`}>
+                                        <Link to={`/home/establishment/image/new`}>
                                             <Button className="m-2 btn-fill float-right" variant="info" size="sm">
                                                 Novo
                                             </Button>
@@ -154,16 +128,6 @@ function IngredientList() {
                                         <Establishment establishments={establishments}
                                                        establishment={establishmentId}
                                                        handleEstablishmentChange={handleEstablishmentChange}
-                                        />
-                                    </Form.Group>
-                                </Col>
-                                <Col md="4">
-                                    <Form.Group className="m-2">
-                                        <label>Produto</label>
-                                        <Product products={products}
-                                                 product={productId}
-                                                 handleProductChange={handleProductChange}
-                                                 isSelectVisible={true}
                                         />
                                     </Form.Group>
                                 </Col>
@@ -201,8 +165,7 @@ function IngredientList() {
                                             <td>{item.id}</td>
                                             <td>
                                                 <Figure.Image
-                                                    width={180}
-                                                    height={100}
+                                                    width={80}
                                                     src={item.fileUri}
                                                 />
                                             </td>
@@ -224,7 +187,7 @@ function IngredientList() {
                                             </td>
                                             <td>
                                                 <Link
-                                                    to={`/home/establishment/${establishmentId}/product/${productId}/image/${item.id}/edit`}>
+                                                    to={`/home/establishment/${establishmentId}/image/${item.id}/edit`}>
                                                     <Button className="btn-fill" variant="secondary" size="sm">
                                                         Editar
                                                     </Button>
@@ -243,4 +206,4 @@ function IngredientList() {
     )
 }
 
-export default IngredientList;
+export default EstablishmentImageList;

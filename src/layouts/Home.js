@@ -35,9 +35,12 @@ import ProductEdit from "../views/Product/ProductEdit";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
 import IngredientNew from "../views/Product/Ingredients/IngredientNew";
 import IngredientEdit from "../views/Product/Ingredients/IngredientEdit";
-import ImageList from "../views/Product/Image/ImageList";
-import ImageNew from "../views/Product/Image/ImageNew";
-import ImageEdit from "../views/Product/Image/ImageEdit";
+import ImageList from "../views/Product/Image/ProductImageList";
+import ProductImageNew from "../views/Product/Image/ProductImageNew";
+import ProductImageEdit from "../views/Product/Image/ProductImageEdit";
+import EstablishmentImageList from "../views/Establishment/Image/EstablishmentImageList";
+import EstablishmentImageNew from "../views/Establishment/Image/EstablishmentImageNew";
+import EstablishmentImageEdit from "../views/Establishment/Image/EstablishmentImageEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -151,10 +154,19 @@ function Home() {
                 <ImageList/>
               </Route>
               <Route exact path="/home/establishment/product/image/new">
-                <ImageNew/>
+                <ProductImageNew/>
               </Route>
               <Route exact path="/home/establishment/:establishmentId/product/:productId/image/:imageId/edit">
-                <ImageEdit/>
+                <ProductImageEdit/>
+              </Route>
+              <Route exact path="/home/establishment/image">
+                <EstablishmentImageList/>
+              </Route>
+              <Route exact path="/home/establishment/image/new">
+                <EstablishmentImageNew/>
+              </Route>
+              <Route exact path="/home/establishment/:establishmentId/image/:imageId/edit">
+                <EstablishmentImageEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

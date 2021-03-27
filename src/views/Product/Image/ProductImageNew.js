@@ -6,7 +6,7 @@ import Api from "../../../services/Api";
 import Establishment from "../../../components/Utils/Establishment";
 import Product from "../../../components/Utils/Product";
 
-function ImageNew() {
+function ProductImageNew() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
@@ -165,4 +165,4 @@ function ImageNew() {
     )
 }
 
-export default ImageNew;
+export default ProductImageNew;

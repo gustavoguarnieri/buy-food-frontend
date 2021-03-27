@@ -4,7 +4,7 @@ import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
 
-function ImageEdit() {
+function ProductImageEdit() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
     const {establishmentId} = useParams();
@@ -14,7 +14,6 @@ function ImageEdit() {
     const history = useHistory()
     const [establishment, setEstablishment] = useState('');
     const [product, setProduct] = useState('');
-    const [image, setImage] = useState('')
 
     const [fileName, setFileName] = useState('')
     const [fileType, setFileType] = useState('')
@@ -181,4 +180,4 @@ function ImageEdit() {
     )
 }
 
-export default ImageEdit;
+export default ProductImageEdit;
