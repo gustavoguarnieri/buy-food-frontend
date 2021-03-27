@@ -9,6 +9,7 @@ import ProductList from "../views/Product/ProductList";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
 import ImageList from "../views/Product/Image/ProductImageList";
 import EstablishmentImageList from "../views/Establishment/Image/EstablishmentImageList";
+import OrderList from "../views/Order/OrderList";
 
 const routes = [
     {
@@ -78,6 +79,13 @@ const routes = [
         path: "/establishment/image",
         name: "Estabelecimento Imagem",
         component: EstablishmentImageList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/order/itens",
+        name: "Produtos",
+        component: OrderList,
         layout: "/home",
         profiles: "admin"
     },
