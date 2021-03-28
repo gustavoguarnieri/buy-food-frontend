@@ -28,6 +28,7 @@ function EstablishmentMyList() {
         const itens = Array.from(orderItens.length > 0 ? orderItens : product)
         itens.push(product)
         setOrderItens(itens)
+        console.log(orderItens)
         alert(`Item ${product.name} adicionado com sucesso!`)
     }
 
@@ -38,10 +39,10 @@ function EstablishmentMyList() {
                     <Col md="12" className="m-1">
                         <Link to={{
                             pathname: `/home/order/cart`,
-                            state: { products: products }
+                            state: { orderItens: orderItens }
                         }}>
                             <Button className="m-2 btn-fill float-right" variant="info" size="sm">
-                                Fechar Carrinho
+                                Carrinho de Compra
                             </Button>
                         </Link>
                     </Col>
