@@ -15,7 +15,8 @@ function EstablishmentMyList() {
     useEffect(() => {
             Api.get(`/api/v1/products?status=1`, axiosConfig)
                 .then((res) => {
-                    setProducts(res.data)
+                    let productList = res.data.map(item => {return {...item, quantity: 1}})
+                    setProducts(productList)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -25,10 +26,14 @@ function EstablishmentMyList() {
     )
 
     const handleAdd = product => () => {
+        if (orderItens.filter(item => item.id === product.id).length > 0) {
+            alert("Este produto já está adiiconado ao carrinho")
+            return
+        }
+
         const itens = Array.from(orderItens.length > 0 ? orderItens : product)
         itens.push(product)
         setOrderItens(itens)
-        console.log(orderItens)
         alert(`Item ${product.name} adicionado com sucesso!`)
     }
 
