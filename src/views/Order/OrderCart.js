@@ -144,6 +144,9 @@ function OrderCart() {
 
         alert("Compra realizada com sucesso!")
         setCartProducts([])
+        setAddress('-1')
+        setpaymentWay('-1')
+        setTotal(0)
 
         //TODO apos comprar redirecionar para um relatorio de pedidos do usuario
     }
