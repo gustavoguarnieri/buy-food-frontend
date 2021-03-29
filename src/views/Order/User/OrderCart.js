@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
-import UtilService from "../../services/UtilService";
-import BusinessHours from "../../components/Utils/BusinessHours";
-import Api from "../../services/Api";
-import UserService from "../../services/UserService";
-import Addresses from "../../components/Utils/Addresses"
-import PaymentWay from "../../components/Utils/PaymentWay";
+import UtilService from "../../../services/UtilService";
+import BusinessHours from "../../../components/Utils/BusinessHours";
+import Api from "../../../services/Api";
+import UserService from "../../../services/UserService";
+import Addresses from "../../../components/Utils/Addresses"
+import PaymentWay from "../../../components/Utils/PaymentWay";
 
 function OrderCart() {
 

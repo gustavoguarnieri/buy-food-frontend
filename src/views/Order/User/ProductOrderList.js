@@ -1,19 +1,19 @@
 import React, {useEffect, useRef, useState} from "react";
-import Api from "../../services/Api";
-import UserService from "../../services/UserService";
+import Api from "../../../services/Api";
+import UserService from "../../../services/UserService";
 import {Button, Card, CardDeck, Col, Container, Form, ListGroup, ListGroupItem, Row} from "react-bootstrap";
-import DefaultNoImg from "../../assets/img/no-image.jpg"
-import UtilService from "../../services/UtilService";
+import DefaultNoImg from "../../../assets/img/no-image.jpg"
+import UtilService from "../../../services/UtilService";
 import {Link} from "react-router-dom";
 
-function EstablishmentMyList() {
+function ProductOrderList() {
 
     const [products, setProducts] = useState('');
     const [orderItens, setOrderItens] = useState([]);
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     useEffect(() => {
-            Api.get(`/api/v1/products?status=1`, axiosConfig)
+            Api.get(`/api/v1/users/products?status=1`, axiosConfig)
                 .then((res) => {
                     let productList = res.data.map(item => {return {...item, quantity: 1}})
                     setProducts(productList)
@@ -90,4 +90,4 @@ function EstablishmentMyList() {
     )
 }
 
-export default EstablishmentMyList;
+export default ProductOrderList;

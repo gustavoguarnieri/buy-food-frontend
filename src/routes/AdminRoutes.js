@@ -9,7 +9,8 @@ import ProductList from "../views/Product/ProductList";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
 import ImageList from "../views/Product/Image/ProductImageList";
 import EstablishmentImageList from "../views/Establishment/Image/EstablishmentImageList";
-import OrderList from "../views/Order/OrderList";
+import OrderList from "../views/Order/User/ProductOrderList";
+import PurchasedOrderList from "../views/Order/User/PurchasedOrderList";
 
 const routes = [
     {
@@ -86,6 +87,13 @@ const routes = [
         path: "/order/itens",
         name: "Produtos",
         component: OrderList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/order/purchasedOrder",
+        name: "Pedidos",
+        component: PurchasedOrderList,
         layout: "/home",
         profiles: "admin"
     },
