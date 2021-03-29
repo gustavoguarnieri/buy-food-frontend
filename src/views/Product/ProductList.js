@@ -5,6 +5,7 @@ import UserService from "../../services/UserService";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
 import Establishment from "../../components/Utils/Establishment";
+import UtilService from "../../services/UtilService";
 
 function ProductList() {
 
@@ -160,7 +161,7 @@ function ProductList() {
                                             <td>{item.id}</td>
                                             <td>{item.name}</td>
                                             <td>{item.description}</td>
-                                            <td>R$ {item.price}</td>
+                                            <td>{UtilService.formCurrency(item.price)}</td>
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
                                                 {item.status === 1 ? (

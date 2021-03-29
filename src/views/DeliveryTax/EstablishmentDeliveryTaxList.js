@@ -4,6 +4,7 @@ import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
+import UtilService from "../../services/UtilService";
 
 function EstablishmentDeliveryList() {
 
@@ -119,7 +120,7 @@ function EstablishmentDeliveryList() {
                                         {establishmentDeliveries && establishmentDeliveries.map((item) => (
                                             <tr key={item.id}>
                                                 <td>{item.id}</td>
-                                                <td>R$ {item.taxAmount}</td>
+                                                <td>{UtilService.formCurrency(item.taxAmount)}</td>
                                                 <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                                 <td>
                                                     {item.status === 1 ? (
