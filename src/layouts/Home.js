@@ -44,6 +44,7 @@ import EstablishmentImageEdit from "../views/Establishment/Image/EstablishmentIm
 import OrderList from "../views/Order/User/ProductOrderList";
 import OrderCart from "../views/Order/User/OrderCart";
 import PurchasedOrderList from "../views/Order/User/PurchasedOrderList";
+import PurchasedOrderListDetailsUser from "../views/Order/User/PurchasedOrderListDetailsUser";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -179,6 +180,9 @@ function Home() {
               </Route>
               <Route exact path="/home/order/purchasedOrder">
                 <PurchasedOrderList/>
+              </Route>
+              <Route exact path="/home/order/purchased-order/:orderId/details">
+                <PurchasedOrderListDetailsUser/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

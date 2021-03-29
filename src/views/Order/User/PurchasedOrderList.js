@@ -4,8 +4,9 @@ import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
-import Establishment from "../../../components/Utils/Establishment";
-import Product from "../../../components/Utils/Product";
+import PaymentWayText from "../../../components/Utils/PaymentWayText";
+import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
+import PreparationStatusText from "../../../components/Utils/PreparationStatusText";
 
 function PurchasedOrderList() {
 
@@ -110,70 +111,13 @@ function PurchasedOrderList() {
                                             <tr>
                                                 <td>{item.id}</td>
                                                 <td>{item.establishment?.tradingName}</td>
-                                                {(() => {
-                                                    switch (item.paymentWay) {
-                                                        case 'MONEY':
-                                                            return (
-                                                                <td>DINHEIRO</td>
-                                                            )
-                                                        case 'CREDIT_CARD':
-                                                            return (
-                                                                <td>CARTÃO DE CRÉDITO</td>
-                                                            )
-                                                        case 'DEBIT_CARD':
-                                                            return (
-                                                                <td>CARTÃO DE DÉBITO</td>
-                                                            )
-                                                        default:
-                                                            return (
-                                                                <div>NI</div>
-                                                            )
-                                                    }
-                                                })()}
-                                                {(() => {
-                                                    switch (item.paymentStatus) {
-                                                        case 'PENDING':
-                                                            return (
-                                                                <td>PENDENTE</td>
-                                                            )
-                                                        case 'DECLINED':
-                                                            return (
-                                                                <td>RECUSADO</td>
-                                                            )
-                                                        case 'APPROVED':
-                                                            return (
-                                                                <td>APROVADO</td>
-                                                            )
-                                                        default:
-                                                            return (
-                                                                <div>NI</div>
-                                                            )
-                                                    }
-                                                })()}
-                                                {(() => {
-                                                    switch (item.preparationStatus) {
-                                                        case 'PENDING':
-                                                            return (
-                                                                <td>PENDENTE</td>
-                                                            )
-                                                        case 'COOKING':
-                                                            return (
-                                                                <td>COZINHANDO</td>
-                                                            )
-                                                        case 'DELIVERY':
-                                                            return (
-                                                                <td>ENTREGANDO</td>
-                                                            )
-                                                        default:
-                                                            return (
-                                                                <div>NI</div>
-                                                            )
-                                                    }
-                                                })()}
+                                                <PaymentWayText paymentWay={item.paymentWay}/>
+                                                <PaymentStatusText paymentStatus={item.paymentStatus}/>
+                                                <PreparationStatusText preparationStatus={item.preparationStatus}/>
                                                 <td>{item.observation}</td>
                                                 <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                                 <td>
-                                                    <Link to={`home/order/purchasedOrder/details`}>
+                                                    <Link to={`/home/order/purchased-order/${item.id}/details`}>
                                                         <Button className="btn-fill" variant="secondary" size="sm">
                                                             + Detalhes
                                                         </Button>

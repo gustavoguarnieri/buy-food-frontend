@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
+import {useLocation, useHistory} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import UtilService from "../../../services/UtilService";
 import BusinessHours from "../../../components/Utils/BusinessHours";
@@ -11,6 +11,7 @@ import PaymentWay from "../../../components/Utils/PaymentWay";
 function OrderCart() {
 
     let location = useLocation();
+    const history = useHistory()
     const [addresses, setAddresses] = useState('');
     const [address, setAddress] = useState('-1')
     const [total, setTotal] = useState(0)
@@ -148,7 +149,7 @@ function OrderCart() {
         setpaymentWay('-1')
         setTotal(0)
 
-        //TODO apos comprar redirecionar para um relatorio de pedidos do usuario
+        history.push("/home/order/purchasedOrder")
     }
 
     return (

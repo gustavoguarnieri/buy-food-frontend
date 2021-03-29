@@ -11,7 +11,8 @@ function PaymentWay(props) {
                 as="select"
                 className="mr-sm-0"
                 id="inlineFormCustomSelect"
-                custom
+                //custom
+                readOnly={props.isReadOnly}
             >
                 {props.isSelectVisible ?
                     <option
