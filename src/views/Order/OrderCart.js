@@ -6,12 +6,15 @@ import BusinessHours from "../../components/Utils/BusinessHours";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
 import Addresses from "../../components/Utils/Addresses"
+import PaymentWay from "../../components/Utils/PaymentWay";
 
 function OrderCart() {
 
     let location = useLocation();
     const [addresses, setAddresses] = useState('');
     const [address, setAddress] = useState('-1')
+    const [total, setTotal] = useState(0)
+    const [paymentWay, setpaymentWay] = useState('-1')
     const [cartProducts, setCartProducts] = useState(location.state?.orderItens);
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
@@ -19,11 +22,22 @@ function OrderCart() {
         let changeProductsValue = [...cartProducts]
         changeProductsValue[index].quantity = e.target.value
         setCartProducts(changeProductsValue)
+        handleTotal()
     }
 
     const handleAddressChange = (event) => {
         setAddress(event.target.value)
     }
+
+    const handlePaymentWayChange = (event) => {
+        setpaymentWay(event.target.value)
+    }
+
+    useEffect(() => {
+            handleTotal()
+        },
+        []
+    )
 
     useEffect(() => {
             Api.get(`/api/v1/users/addresses`, axiosConfig)
@@ -37,8 +51,35 @@ function OrderCart() {
         []
     )
 
+    const handleTotal = () => {
+        let total = 0
+
+        let uniqueEstablishmentList = []
+        cartProducts && cartProducts.map(item => {
+
+            if (uniqueEstablishmentList.indexOf(item.establishment?.id) === -1) {
+                uniqueEstablishmentList.push(item.establishment?.id)
+            }
+
+            let subTotal = Number(item.price) * Number(item.quantity)
+            total += subTotal
+        })
+
+        uniqueEstablishmentList.map(uniqueEstablishment => {
+
+            let cartProductsByEstablishment = cartProducts.filter(product => product.establishment.id === uniqueEstablishment)
+
+            if (cartProductsByEstablishment[0].establishment.deliveryTax) {
+                total +=  Number(cartProductsByEstablishment[0].establishment?.deliveryTax?.taxAmount)
+            }
+        })
+
+        setTotal(total)
+    }
+
     const handleDeleteItem = (id) => {
         setCartProducts(cartProducts.filter(item => item.id !== id))
+        handleTotal()
     }
 
     const handleCloseCar = async (e) => {
@@ -46,6 +87,9 @@ function OrderCart() {
 
         if (address === '-1') {
             alert("Selecione um endereço para entrega")
+            return
+        } else if (paymentWay === '-1') {
+            alert("Selecione uma forma de pagamento")
             return
         }
 
@@ -131,6 +175,15 @@ function OrderCart() {
                                         />
                                     </Form.Group>
                                 </Col>
+                                <Col md="2" className="m-1">
+                                    <Form.Group className="m-2">
+                                        <label>Forma de Pagamento</label>
+                                        <PaymentWay paymentWay={paymentWay}
+                                                    handlePaymentWayChange={handlePaymentWayChange}
+                                                    isSelectVisible={true}
+                                        />
+                                    </Form.Group>
+                                </Col>
                             </Row>
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped">
@@ -138,6 +191,7 @@ function OrderCart() {
                                         <tr>
                                             <th className="border-0">Id</th>
                                             <th className="border-0">Quantidade</th>
+                                            <th className="border-0">Valor</th>
                                             <th className="border-0">Nome</th>
                                             <th className="border-0">Descrição</th>
                                             <th className="border-0">Ingredientes</th>
@@ -158,25 +212,30 @@ function OrderCart() {
                                                            onChange={e => handleQuantityFilterChange(e, index)}
                                                     />
                                                 </td>
+                                                <td>{UtilService.formCurrency(item.price)}</td>
                                                 <td>{item.name}</td>
                                                 <td>
                                                     {item.description}
                                                 </td>
                                                 <td>
-                                                    <Form.Control
-                                                        style={{width: '15rem'}}
-                                                        as="select"
-                                                        className="mr-sm-0"
-                                                        id="inlineFormCustomSelect"
-                                                        custom
-                                                    >
-                                                        {item.ingredients && item.ingredients.map((ing) => (
-                                                            <option
-                                                                key={ing.id}
-                                                                value={ing.id}>{ing.ingredient} ({ing.portion})
-                                                            </option>
-                                                        ))}
-                                                    </Form.Control>
+                                                    {item.ingredients.length > 0 ? (
+                                                        <Form.Control
+                                                            style={{width: '15rem'}}
+                                                            as="select"
+                                                            className="mr-sm-0"
+                                                            id="inlineFormCustomSelect"
+                                                            custom
+                                                        >
+                                                            {item.ingredients && item.ingredients.map((ing) => (
+                                                                <option
+                                                                    key={ing.id}
+                                                                    value={ing.id}>{ing.ingredient} ({ing.portion})
+                                                                </option>
+                                                            ))}
+                                                        </Form.Control>
+                                                    ) : (
+                                                        <></>
+                                                    )}
                                                 </td>
 
                                                 <td>{item.establishment?.tradingName}</td>
@@ -207,7 +266,7 @@ function OrderCart() {
                                 </Table>
                             </Card.Body>
                             <Row>
-                                <Col md="12" className="m-1">
+                                <Col md="12">
                                     <Button className="m-3 btn-fill float-right"
                                             variant="info"
                                             size="sm-2"
@@ -215,6 +274,11 @@ function OrderCart() {
                                     >
                                         Fechar Carrinho de Compra
                                     </Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="12" className="text-right">
+                                    <p className="m-4 text-right">Total: {UtilService.formCurrency(total)}</p>
                                 </Col>
                             </Row>
                         </Card>
