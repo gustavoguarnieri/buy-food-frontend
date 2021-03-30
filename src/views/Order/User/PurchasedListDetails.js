@@ -8,12 +8,12 @@ import PaymentWayText from "../../../components/Utils/PaymentWayText";
 import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
 import PreparationStatusText from "../../../components/Utils/PreparationStatusText";
 
-function PurchasedOrderListDetailsUser() {
+function PurchasedListDetails() {
 
-    const componentRef = useRef();
     const {orderId} = useParams();
 
     const [order, setOrder] = useState('');
+    const [total, setTotal] = useState(0)
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     useEffect(() => {
@@ -22,6 +22,7 @@ function PurchasedOrderListDetailsUser() {
             Api.get(`${url}`, axiosConfig)
                 .then((res) => {
                     setOrder(res.data)
+                    handleTotal(res.data)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -29,6 +30,23 @@ function PurchasedOrderListDetailsUser() {
         },
         []
     )
+
+    const handleTotal = (orderParam) => {
+        let total = 0
+
+        let deliveryTax = orderParam.establishment?.deliveryTax ? orderParam.establishment.deliveryTax?.taxAmount : 0
+
+        console.log(orderParam.items)
+
+        orderParam?.items ?
+            orderParam?.items.map((item => {
+                total += Number(item.product.price) * Number(item.quantity)
+            })) : <></>
+
+        total += deliveryTax
+
+        setTotal(total)
+    }
 
     return (
         <>
@@ -38,10 +56,10 @@ function PurchasedOrderListDetailsUser() {
                         <Card>
                             <Card.Header>
                                 <p>
-                                    <Link to="/home/order/purchasedOrder">&laquo; voltar</Link>
+                                    <Link to="/home/user/order/purchasedOrder">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
-                                    Alterar Endereço de Entrega
+                                    Detalhes do Pedido
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
@@ -81,26 +99,11 @@ function PurchasedOrderListDetailsUser() {
                                                 <td>{order.observation}</td>
                                             </Form.Group>
                                         </Col>
-                                        <Col md="3">
-                                            <Form.Group>
-                                                <label>Status</label>
-                                                <Form.Control
-                                                    value={order.status}
-                                                    as="select"
-                                                    className="mr-sm-0"
-                                                    id="inlineFormCustomSelect"
-                                                    readonly
-                                                >
-                                                    <option value="1">ATIVO</option>
-                                                    <option value="0">INATIVO</option>
-                                                </Form.Control>
-                                            </Form.Group>
-                                        </Col>
                                     </Row>
                                 </Form>
                             </Card.Body>
                             <Card.Body className="table-full-width table-responsive px-0">
-                                <Table className="table-hover table-striped" ref={componentRef}>
+                                <Table className="table-hover table-striped">
                                     <thead>
                                         <tr>
                                             <th className="border-0">Id</th>
@@ -125,14 +128,24 @@ function PurchasedOrderListDetailsUser() {
                                     </tbody>
                                 </Table>
                                 <Row>
+                                    <Col md="12" className="text-right">
+                                        <p className="m-4 text-right">Total: {UtilService.formCurrency(total)}</p>
+                                        {order.establishment?.deliveryTax ?
+                                            <p className="m-4 text-right">
+                                                (Frete incluso:{UtilService.formCurrency(order.establishment?.deliveryTax.taxAmount)})
+                                            </p> : <></>
+                                        }
+                                    </Col>
+                                </Row>
+                                <Row>
                                     <Col md="12">
-                                <Button
-                                    className="btn-fill float-right m-3"
-                                    variant="info"
-                                    type="submit"
-                                >
-                                    Salvar Alteração
-                                </Button>
+                                        <Button
+                                            className="btn-fill float-right m-3"
+                                            variant="info"
+                                            type="submit"
+                                        >
+                                            Salvar Alteração
+                                        </Button>
                                     </Col>
                                 </Row>
                                 <div className="clearfix"/>
@@ -145,4 +158,4 @@ function PurchasedOrderListDetailsUser() {
     )
 }
 
-export default PurchasedOrderListDetailsUser;
+export default PurchasedListDetails;

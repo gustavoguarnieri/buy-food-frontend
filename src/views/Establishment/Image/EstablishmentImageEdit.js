@@ -139,11 +139,12 @@ function EstablishmentImageEdit() {
                                     </Row>
                                     <Button
                                         className="btn-fill float-right"
-                                        variant="info"
                                         type="submit"
+                                        variant="info"
                                     >
-                                        Salvar
+                                        Salvar Alteração
                                     </Button>
+
                                     <div className="clearfix"/>
                                 </Form>
                             </Card.Body>

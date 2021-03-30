@@ -8,7 +8,7 @@ import PaymentWayText from "../../../components/Utils/PaymentWayText";
 import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
 import PreparationStatusText from "../../../components/Utils/PreparationStatusText";
 
-function PurchasedOrderList() {
+function PurchasedList() {
 
     const componentRef = useRef();
     const [statusFilter, setStatusFilter] = useState('-1');
@@ -59,7 +59,7 @@ function PurchasedOrderList() {
                     <Col md="9">
                         <Card className="strpied-tabled-with-hover">
                             <Card.Header>
-                                <Card.Title as="h4">Lista de Compras</Card.Title>
+                                <Card.Title as="h4">Pedidos</Card.Title>
                             </Card.Header>
                             <Row>
                                 <Col md="12">
@@ -117,7 +117,7 @@ function PurchasedOrderList() {
                                                 <td>{item.observation}</td>
                                                 <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                                 <td>
-                                                    <Link to={`/home/order/purchased-order/${item.id}/details`}>
+                                                    <Link to={`/home/user/order/purchased-order/${item.id}/details`}>
                                                         <Button className="btn-fill" variant="secondary" size="sm">
                                                             + Detalhes
                                                         </Button>
@@ -136,4 +136,4 @@ function PurchasedOrderList() {
     )
 }
 
-export default PurchasedOrderList;
+export default PurchasedList;

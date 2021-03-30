@@ -8,14 +8,14 @@ import UserService from "../../../services/UserService";
 import Addresses from "../../../components/Utils/Addresses"
 import PaymentWay from "../../../components/Utils/PaymentWay";
 
-function OrderCart() {
+function Cart() {
 
     let location = useLocation();
     const history = useHistory()
     const [addresses, setAddresses] = useState('');
     const [address, setAddress] = useState('-1')
     const [total, setTotal] = useState(0)
-    const [paymentWay, setpaymentWay] = useState('-1')
+    const [paymentWay, setPaymentWay] = useState('-1')
     const [cartProducts, setCartProducts] = useState(location.state?.orderItens);
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
@@ -31,7 +31,7 @@ function OrderCart() {
     }
 
     const handlePaymentWayChange = (event) => {
-        setpaymentWay(event.target.value)
+        setPaymentWay(event.target.value)
     }
 
     useEffect(() => {
@@ -146,10 +146,10 @@ function OrderCart() {
         alert("Compra realizada com sucesso!")
         setCartProducts([])
         setAddress('-1')
-        setpaymentWay('-1')
+        setPaymentWay('-1')
         setTotal(0)
 
-        history.push("/home/order/purchasedOrder")
+        history.push("/home/user/order/purchasedOrder")
     }
 
     return (
@@ -293,4 +293,4 @@ function OrderCart() {
     )
 }
 
-export default OrderCart;
+export default Cart;

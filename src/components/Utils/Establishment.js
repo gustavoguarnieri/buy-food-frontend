@@ -13,6 +13,12 @@ function Establishment(props) {
                 id="inlineFormCustomSelect"
                 custom
             >
+                {props.isSelectVisible ?
+                    <option
+                        key="-1"
+                        value="-1">Selecione...
+                    </option> : <></>
+                }
                 {props.establishments && props.establishments.map((item) => (
                     <option
                         key={item.id}

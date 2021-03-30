@@ -9,8 +9,9 @@ import ProductList from "../views/Product/ProductList";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
 import ImageList from "../views/Product/Image/ProductImageList";
 import EstablishmentImageList from "../views/Establishment/Image/EstablishmentImageList";
-import OrderList from "../views/Order/User/ProductOrderList";
-import PurchasedOrderList from "../views/Order/User/PurchasedOrderList";
+import OrderList from "../views/Order/User/ProductList";
+import PurchasedList from "../views/Order/User/PurchasedList";
+import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 
 const routes = [
     {
@@ -84,16 +85,23 @@ const routes = [
         profiles: "admin"
     },
     {
-        path: "/order/itens",
+        path: "/user/order/itens",
         name: "Produtos",
         component: OrderList,
         layout: "/home",
         profiles: "admin"
     },
     {
-        path: "/order/purchasedOrder",
+        path: "/user/order/purchasedOrder",
         name: "Pedidos",
-        component: PurchasedOrderList,
+        component: PurchasedList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/order/purchasedOrder",
+        name: "Pedidos - Est",
+        component: PurchasedEstablishmentList,
         layout: "/home",
         profiles: "admin"
     },

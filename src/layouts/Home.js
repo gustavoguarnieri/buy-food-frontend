@@ -41,10 +41,12 @@ import ProductImageEdit from "../views/Product/Image/ProductImageEdit";
 import EstablishmentImageList from "../views/Establishment/Image/EstablishmentImageList";
 import EstablishmentImageNew from "../views/Establishment/Image/EstablishmentImageNew";
 import EstablishmentImageEdit from "../views/Establishment/Image/EstablishmentImageEdit";
-import OrderList from "../views/Order/User/ProductOrderList";
-import OrderCart from "../views/Order/User/OrderCart";
-import PurchasedOrderList from "../views/Order/User/PurchasedOrderList";
-import PurchasedOrderListDetailsUser from "../views/Order/User/PurchasedOrderListDetailsUser";
+import OrderList from "../views/Order/User/ProductList";
+import Cart from "../views/Order/User/Cart";
+import PurchasedList from "../views/Order/User/PurchasedList";
+import PurchasedListDetails from "../views/Order/User/PurchasedListDetails";
+import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
+import PurchasedEstablishmentEdit from "../views/Order/Establishment/PurchasedEstablishmentEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -172,17 +174,23 @@ function Home() {
               <Route exact path="/home/establishment/:establishmentId/image/:imageId/edit">
                 <EstablishmentImageEdit/>
               </Route>
-              <Route exact path="/home/order/itens">
+              <Route exact path="/home/user/order/itens">
                 <OrderList/>
               </Route>
-              <Route exact path="/home/order/cart">
-                <OrderCart/>
+              <Route exact path="/home/user/order/cart">
+                <Cart/>
               </Route>
-              <Route exact path="/home/order/purchasedOrder">
-                <PurchasedOrderList/>
+              <Route exact path="/home/user/order/purchasedOrder">
+                <PurchasedList/>
               </Route>
-              <Route exact path="/home/order/purchased-order/:orderId/details">
-                <PurchasedOrderListDetailsUser/>
+              <Route exact path="/home/user/order/purchased-order/:orderId/details">
+                <PurchasedListDetails/>
+              </Route>
+              <Route exact path="/home/establishment/order/purchasedOrder">
+                <PurchasedEstablishmentList/>
+              </Route>
+              <Route exact path="/home/establishment/order/purchasedOrder/:orderId/edit">
+                <PurchasedEstablishmentEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>

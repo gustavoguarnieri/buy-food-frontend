@@ -6,7 +6,7 @@ import DefaultNoImg from "../../../assets/img/no-image.jpg"
 import UtilService from "../../../services/UtilService";
 import {Link} from "react-router-dom";
 
-function ProductOrderList() {
+function ProductList() {
 
     const [products, setProducts] = useState('');
     const [orderItens, setOrderItens] = useState([]);
@@ -44,7 +44,7 @@ function ProductOrderList() {
                 <Row>
                     <Col md="12" className="m-1">
                         <Link to={{
-                            pathname: `/home/order/cart`,
+                            pathname: `/home/user/order/cart`,
                             state: { orderItens: orderItens }
                         }}>
                             <Button className="m-2 btn-fill float-right" variant="info" size="sm">
@@ -90,4 +90,4 @@ function ProductOrderList() {
     )
 }
 
-export default ProductOrderList;
+export default ProductList;
