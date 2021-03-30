@@ -21,7 +21,7 @@ function PaymentStatusText(props) {
                         )
                     default:
                         return (
-                            <div>NI</div>
+                            <td>NI</td>
                         )
                 }
             })()}
