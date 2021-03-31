@@ -132,13 +132,8 @@ function Cart() {
         })
 
         let url = `/api/v1/users/orders`
-        orders.map(order => {
-            Api.post(`${url}`, order, axiosConfig)
-                .then((res) => {})
-                .catch((err) => {
-                    console.log(err)
-                })
-        })
+
+        await saveOrder(url, orders)
 
         alert("Compra realizada com sucesso!")
         setCartProducts([])
@@ -149,6 +144,16 @@ function Cart() {
         history.push("/home/user/order/purchasedOrder")
 
         window.location.reload();
+    }
+
+    const saveOrder = (url, orders) => {
+        orders.map(order => {
+            Api.post(`${url}`, order, axiosConfig)
+                .then((res) => {})
+                .catch((err) => {
+                    console.log(err)
+                })
+        })
     }
 
     return (
