@@ -172,10 +172,11 @@ export default () => {
                                                     {role === "ADMIN" ? (
                                                         <option value="ADMIN">ADMIN</option>
                                                     ) : (
-                                                        <></>
+                                                        <>
+                                                            <option value="USER">USUARIO</option>
+                                                            <option value="ESTABLISHMENT">ESTABELECIMENTO</option>
+                                                        </>
                                                     )}
-                                                    <option value="USER">USUARIO</option>
-                                                    <option value="ESTABLISHMENT">ESTABELECIMENTO</option>
                                                 </Form.Control>
                                             </Form.Group>
                                         </Col>
