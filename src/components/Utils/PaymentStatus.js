@@ -19,7 +19,6 @@ function PaymentStatus(props) {
                         value="-1">Selecione...
                     </option> : <></>
                 }
-
                 <option
                     key="APPROVED"
                     value="APPROVED"
@@ -38,7 +37,6 @@ function PaymentStatus(props) {
                 >
                     RECUSADO
                 </option>
-
             </Form.Control>
         </>
     )

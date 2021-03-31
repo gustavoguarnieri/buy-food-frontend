@@ -19,7 +19,6 @@ function Addresses(props) {
                         value="-1">Selecione...
                     </option> : <></>
                 }
-
                 {props.addresses && props.addresses.map((item) => (
                     <option
                         key={item.id}

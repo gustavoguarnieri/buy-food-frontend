@@ -21,7 +21,6 @@ function PaymentWay(props) {
                         Selecione...
                     </option> : <></>
                 }
-
                 <option
                     key="MONEY"
                     value="MONEY"
@@ -34,7 +33,6 @@ function PaymentWay(props) {
                 >
                     CARTÃO DE CRÉDITO
                 </option>
-
             </Form.Control>
         </>
     )

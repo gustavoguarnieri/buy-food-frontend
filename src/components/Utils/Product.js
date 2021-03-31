@@ -19,7 +19,6 @@ function Product(props) {
                         value="-1">Selecione...
                     </option> : <></>
                 }
-
                 {props.products && props.products.map((item) => (
                     <option
                         key={item.id}

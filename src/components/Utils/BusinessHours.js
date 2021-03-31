@@ -20,7 +20,6 @@ function BusinessHours(props) {
                             {props.businessHours?.startTimeSecondPeriodSunday}:{props.businessHours?.finalTimeSecondPeriodSunday}
                         </option> : <></>
                     }
-
                     {props.businessHours?.startTimeFirstPeriodMonday ?
                         <option
                             key={"MON_START_FIRST" + props.businessHours.id}
@@ -29,7 +28,6 @@ function BusinessHours(props) {
                             {props.businessHours?.startTimeSecondPeriodMonday}:{props.businessHours?.finalTimeSecondPeriodMonday}
                         </option> : <></>
                     }
-
                     {props.businessHours?.startTimeFirstPeriodTuesday ?
                         <option
                             key={"TUE_START_FIRST" + props.businessHours.id}
@@ -38,7 +36,6 @@ function BusinessHours(props) {
                             {props.businessHours?.startTimeSecondPeriodTuesday}:{props.businessHours?.finalTimeSecondPeriodTuesday}
                         </option> : <></>
                     }
-
                     {props.businessHours?.startTimeFirstPeriodWednesday ?
                         <option
                             key={"WED_START_FIRST" + props.businessHours.id}
@@ -47,7 +44,6 @@ function BusinessHours(props) {
                             {props.businessHours?.startTimeSecondPeriodWednesday}:{props.businessHours?.finalTimeSecondPeriodWednesday}
                         </option> : <></>
                     }
-
                     {props.businessHours?.startTimeFirstPeriodThursday ?
                         <option
                             key={"THU_START_FIRST" + props.businessHours.id}
@@ -56,7 +52,6 @@ function BusinessHours(props) {
                             {props.businessHours?.startTimeSecondPeriodThursday}:{props.businessHours?.finalTimeSecondPeriodThursday}
                         </option> : <></>
                     }
-
                     {props.businessHours?.startTimeFirstPeriodFriday ?
                         <option
                             key={"FRI_START_FIRST" + props.businessHours.id}
@@ -65,7 +60,6 @@ function BusinessHours(props) {
                             {props.businessHours?.startTimeSecondPeriodFriday}:{props.businessHours?.finalTimeSecondPeriodFriday}
                         </option> : <></>
                     }
-
                     {props.businessHours?.startTimeFirstPeriodSaturday ?
                         <option
                             key={"SAT_START_FIRST" + props.businessHours.id}

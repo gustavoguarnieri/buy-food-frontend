@@ -19,7 +19,6 @@ function EstablishmentDeliveryTax(props) {
                         value="-1">Selecione...
                     </option> : <></>
                 }
-
                 {props.establishmentDeliveries && props.establishmentDeliveries.map((item) => (
                     <option
                         key={item.id}

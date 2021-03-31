@@ -38,7 +38,12 @@ function PreparationStatus(props) {
                 >
                     ENTREGANDO
                 </option>
-
+                <option
+                    key="DELIVERED"
+                    value="DELIVERED"
+                >
+                    ENTREGUE
+                </option>
             </Form.Control>
         </>
     )

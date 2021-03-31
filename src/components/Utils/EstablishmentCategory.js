@@ -19,7 +19,6 @@ function EstablishmentCategory(props) {
                         value="-1">Selecione...
                     </option> : <></>
                 }
-
                 {props.establishmentCategories && props.establishmentCategories.map((item) => (
                     <option
                         key={item.id}
