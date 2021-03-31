@@ -50,7 +50,7 @@ function EstablishmentDeliveryNew() {
                             <Card.Body>
                                 <Form onSubmit={handleNewEstablishmentDelivery}>
                                     <Row>
-                                        <Col md="4">
+                                        <Col md="5">
                                             <Form.Group>
                                                 <label>Taxa de Entrega</label>
                                                 <Form.Control
@@ -60,6 +60,9 @@ function EstablishmentDeliveryNew() {
                                                     type="text"
                                                     required
                                                 />
+                                                <Form.Text className="text-muted">
+                                                    Informe o valor para taxa de entrega (ex: 10,50)
+                                                </Form.Text>
                                             </Form.Group>
                                         </Col>
                                     </Row>

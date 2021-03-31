@@ -13,6 +13,13 @@ function ProductList() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     useEffect(() => {
+        console.log("Usuario esta logado? " + UserService.isLoggedIn())
+        !UserService.isLoggedIn() ? UserService.doLogout() : <></>
+        },
+        []
+    )
+
+    useEffect(() => {
             Api.get(`/api/v1/users/products?status=1`, axiosConfig)
                 .then((res) => {
                     let productList = res.data.map(item => {return {...item, quantity: 1}})

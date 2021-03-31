@@ -129,6 +129,9 @@ function ProductNew() {
                                                     type="text"
                                                     required
                                                 />
+                                                <Form.Text className="text-muted">
+                                                    Informe o nome do produto (ex: pizza)
+                                                </Form.Text>
                                             </Form.Group>
                                         </Col>
                                         <Col md="2">

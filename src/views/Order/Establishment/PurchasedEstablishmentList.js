@@ -26,14 +26,16 @@ function PurchasedEstablishmentList() {
 
     const handleEstablishmentChange = (event) => {
         setEstablishmentId(event.target.value)
+        
+        if (event.target.value === "-1"){
+            return
+        }
 
         let url = `/api/v1/establishments/orders`
 
-        if (statusFilter !== "-1" && event.target.value !== "-1") {
+        if (statusFilter !== "-1") {
             url += `?status=${statusFilter}&establishment=${event.target.value}`
-        } else if (statusFilter !== "-1" && event.target.value === "-1") {
-            url += `?status=${statusFilter}`
-        } else if (statusFilter === "-1" && event.target.value !== "-1") {
+        } else {
             url += `?establishment=${event.target.value}`
         }
 
@@ -47,26 +49,17 @@ function PurchasedEstablishmentList() {
     }
 
     useEffect(() => {
-            let url = `/api/v1/establishments/orders`
+            let url
 
-            Api.get(`${url}`, axiosConfig)
-                .then((res) => {
-                    setOrders(res.data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        },
-        []
-    )
-
-    useEffect(() => {
-            let url = `/api/v1/establishments/mine?status=1`
+            if (UserService.hasRole("admin")) {
+                url = `/api/v1/establishments?status=1`
+            } else {
+                url = `/api/v1/establishments/mine?status=1`
+            }
 
             Api.get(`${url}`, axiosConfig)
                 .then((res) => {
                     setEstablishments(res.data)
-                    //res.data.length > 0 ? setEstablishmentId(res.data[0].id) : setEstablishmentId('-1')
                 })
                 .catch((err) => {
                     console.log(err)
@@ -77,10 +70,17 @@ function PurchasedEstablishmentList() {
 
     const handleStatusFilter = (statusCode) => {
 
+        if (establishmentId === "-1"){
+            alert("Selecione um estabelecimento para filtrar os registros")
+            return
+        }
+
         let url = `/api/v1/establishments/orders`
 
         if (statusCode !== "-1") {
-            url = url + `?status=${statusCode}`
+            url += `?status=${statusCode}&establishment=${establishmentId}`
+        } else {
+            url += `?establishment=${establishmentId}`
         }
 
         Api.get(`${url}`, axiosConfig)

@@ -7,9 +7,6 @@ class FileUpload extends Component {
         this.state = {
             file: null
         }
-        // this.onFormSubmit = this.onFormSubmit.bind(this)
-        // this.onChange = this.onChange.bind(this)
-        // this.fileUpload = this.fileUpload.bind(this)
     }
 
     onFormSubmit(e) {

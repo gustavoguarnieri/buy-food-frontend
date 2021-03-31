@@ -20,7 +20,15 @@ function EstablishmentMyList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/mine`, axiosConfig)
+            let url
+
+            if (UserService.hasRole("admin")) {
+                url = `/api/v1/establishments`
+            } else {
+                url = `/api/v1/establishments/mine`
+            }
+
+            Api.get(url, axiosConfig)
                 .then((res) => {
                     setEstablishments(res.data)
                 })

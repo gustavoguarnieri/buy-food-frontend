@@ -61,6 +61,9 @@ function EstablishmentCategoryNew() {
                                                     type="text"
                                                     required
                                                 />
+                                                <Form.Text className="text-muted">
+                                                    Informe uma categoria (ex: restaurante)
+                                                </Form.Text>
                                             </Form.Group>
                                         </Col>
                                     </Row>

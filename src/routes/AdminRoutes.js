@@ -35,69 +35,69 @@ const routes = [
         layout: "/home",
         profiles: "admin"
     },
-    {
-        path: "/establishment/delivery-tax",
-        name: "Taxa de Entrega",
-        component: EstablishmentDeliveryList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/establishment/business-hours",
-        name: "Horário de Funcionamento",
-        component: EstablishmentBusinessHoursList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/user/address",
-        name: "Endereço",
-        component: UserAddressList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/establishment/product",
-        name: "Produto",
-        component: ProductList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/establishment/product/ingredient",
-        name: "Ingrediente",
-        component: IngredientList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/establishment/product/image",
-        name: "Product Imagem",
-        component: ImageList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/establishment/image",
-        name: "Estabelecimento Imagem",
-        component: EstablishmentImageList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/user/order/itens",
-        name: "Produtos",
-        component: OrderList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/user/order/purchasedOrder",
-        name: "Pedidos",
-        component: PurchasedList,
-        layout: "/home",
-        profiles: "admin"
-    },
+    // {
+    //     path: "/establishment/delivery-tax",
+    //     name: "Taxa de Entrega",
+    //     component: EstablishmentDeliveryList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/establishment/business-hours",
+    //     name: "Horário de Funcionamento",
+    //     component: EstablishmentBusinessHoursList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/user/address",
+    //     name: "Endereço",
+    //     component: UserAddressList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/establishment/product",
+    //     name: "Produto",
+    //     component: ProductList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/establishment/product/ingredient",
+    //     name: "Ingrediente",
+    //     component: IngredientList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/establishment/product/image",
+    //     name: "Product Imagem",
+    //     component: ImageList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/establishment/image",
+    //     name: "Estabelecimento Imagem",
+    //     component: EstablishmentImageList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/user/order/itens",
+    //     name: "Produtos",
+    //     component: OrderList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
+    // {
+    //     path: "/user/order/purchasedOrder",
+    //     name: "Pedidos",
+    //     component: PurchasedList,
+    //     layout: "/home",
+    //     profiles: "admin"
+    // },
     {
         path: "/establishment/order/purchasedOrder",
         name: "Pedidos - Est",

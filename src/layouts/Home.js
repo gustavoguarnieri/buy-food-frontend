@@ -47,6 +47,8 @@ import PurchasedList from "../views/Order/User/PurchasedList";
 import PurchasedListDetails from "../views/Order/User/PurchasedListDetails";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import PurchasedEstablishmentEdit from "../views/Order/Establishment/PurchasedEstablishmentEdit";
+import RenderOnAnonymous from "../components/RenderOnAnonymous";
+import Welcome from "../components/Welcome";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {

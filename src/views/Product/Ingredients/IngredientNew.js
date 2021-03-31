@@ -147,9 +147,12 @@ function IngredientNew() {
                                                     type="text"
                                                     required
                                                 />
+                                                <Form.Text className="text-muted">
+                                                    Informe o nome do ingrediente (ex: carne bovina)
+                                                </Form.Text>
                                             </Form.Group>
                                         </Col>
-                                        <Col md="2">
+                                        <Col md="3">
                                             <Form.Group>
                                                 <label>Porção</label>
                                                 <Form.Control
@@ -159,6 +162,9 @@ function IngredientNew() {
                                                     type="text"
                                                     required
                                                 />
+                                                <Form.Text className="text-muted">
+                                                    Informe a porção (ex: 180gr)
+                                                </Form.Text>
                                             </Form.Group>
                                         </Col>
                                     </Row>

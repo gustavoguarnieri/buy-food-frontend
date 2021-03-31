@@ -175,7 +175,7 @@ function PurchasedEstablishmentEdit() {
                                                     as="select"
                                                     className="mr-sm-0"
                                                     id="inlineFormCustomSelect"
-                                                    readonly
+                                                    readOnly
                                                 >
                                                     <option value="1">ATIVO</option>
                                                     <option value="0">INATIVO</option>

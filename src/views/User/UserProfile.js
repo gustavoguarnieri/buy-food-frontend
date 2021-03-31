@@ -150,13 +150,16 @@ export default () => {
                                         </Col>
                                         <Col md="5">
                                             <Form.Group>
-                                                <label>Senha</label>
+                                                <label>Trocar Senha</label>
                                                 <Form.Control
                                                     onChange={handlePassChange}
                                                     placeholder="***"
                                                     type="password"
                                                 />
                                             </Form.Group>
+                                            <Form.Text className="text-muted">
+                                                Preencha caso queira trocar sua senha
+                                            </Form.Text>
                                         </Col>
                                         <Col md="4">
                                             <Form.Group>

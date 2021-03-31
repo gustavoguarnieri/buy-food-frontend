@@ -190,6 +190,7 @@ function EstablishmentNew() {
                                                     onChange={handleCommercialPhoneChange}
                                                     placeholder="Telefone Comercial"
                                                     type="text"
+                                                    required
                                                 />
                                             </Form.Group>
                                         </Col>

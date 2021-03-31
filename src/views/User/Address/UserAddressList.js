@@ -23,7 +23,11 @@ function UserAddressList() {
                     setAddresses(res.data)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.data.statusCode === 404) {
+                            console.log("Usuário consta somente no autenticador");
+                        }
+                    }
                 })
         },
         []

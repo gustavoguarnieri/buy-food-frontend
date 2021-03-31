@@ -19,7 +19,15 @@ function EstablishmentDeliveryList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/delivery-tax`, axiosConfig)
+            let url
+
+            if (UserService.hasRole("admin")) {
+                url = `/api/v1/establishments/delivery-tax?status=1`
+            } else {
+                url = `/api/v1/establishments/delivery-tax/mine?status=1`
+            }
+
+            Api.get(url, axiosConfig)
                 .then((res) => {
                     setEstablishmentDeliveries(res.data)
                 })
@@ -32,7 +40,7 @@ function EstablishmentDeliveryList() {
 
     const handleStatusFilter = (statusCode) => {
 
-        let url = `/api/v1/establishments/delivery-tax`
+        let url = `/api/v1/establishments/delivery-tax/mine`
 
         if (statusCode !== "-1") {
             url = url + `?status=${statusCode}`
