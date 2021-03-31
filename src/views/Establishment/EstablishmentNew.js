@@ -16,9 +16,9 @@ function EstablishmentNew() {
     const [email, setEmail] = useState('')
     const [commercialPhone, setCommercialPhone] = useState('')
     const [mobilePhone, setMobilePhone] = useState('')
-    const [category, setCategory] = useState(1)
+    const [category, setCategory] = useState('-1')
     const [categories, setCategories] = useState('')
-    const [delivery, setDelivery] = useState(1)
+    const [delivery, setDelivery] = useState('-1')
     const [deliveries, setDeliveries] = useState('')
     const [file, setFile] = useState('')
 
@@ -73,6 +73,14 @@ function EstablishmentNew() {
 
     const handleNewEstablishment = async (e) => {
         e.preventDefault();
+
+        if (category === "-1") {
+            alert("Selecione uma categoria")
+            return
+        } else if (delivery === "-1") {
+            alert("Selecione uma taxa de entrega")
+            return
+        }
 
         let newEstablishmentData = {
             companyName: companyName,
@@ -212,7 +220,8 @@ function EstablishmentNew() {
                                                 <label>Categoria</label>
                                                 <EstablishmentCategory establishmentCategories={categories}
                                                                        category={category}
-                                                                       handleCategoryChange={handleCategoryChange}/>
+                                                                       handleCategoryChange={handleCategoryChange}
+                                                                       isSelectVisible={true}/>
                                             </Form.Group>
                                         </Col>
                                         <Col md="6">
@@ -220,7 +229,8 @@ function EstablishmentNew() {
                                                 <label>Taxa de Entrega</label>
                                                 <EstablishmentDeliveryTax establishmentDeliveries={deliveries}
                                                                           delivery={delivery}
-                                                                          handleDeliveryChange={handleDeliveryChange}/>
+                                                                          handleDeliveryChange={handleDeliveryChange}
+                                                                          isSelectVisible={true}/>
                                             </Form.Group>
                                         </Col>
                                     </Row>

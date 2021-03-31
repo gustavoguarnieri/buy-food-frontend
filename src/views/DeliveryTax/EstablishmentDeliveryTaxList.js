@@ -22,9 +22,9 @@ function EstablishmentDeliveryList() {
             let url
 
             if (UserService.hasRole("admin")) {
-                url = `/api/v1/establishments/delivery-tax?status=1`
+                url = `/api/v1/establishments/delivery-tax`
             } else {
-                url = `/api/v1/establishments/delivery-tax/mine?status=1`
+                url = `/api/v1/establishments/delivery-tax/mine`
             }
 
             Api.get(url, axiosConfig)

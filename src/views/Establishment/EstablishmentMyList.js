@@ -82,11 +82,15 @@ function EstablishmentMyList() {
                             <Row>
                                 <Col md="12">
                                     <Form.Group>
-                                        <Link to={`/home/establishment/new`}>
-                                            <Button className="m-2 btn-fill float-right" variant="info" size="sm">
-                                                Novo
-                                            </Button>
-                                        </Link>
+                                        {UserService.hasRole("admin") ? (
+                                            <></>
+                                        ) : (
+                                            <Link to={`/home/establishment/new`}>
+                                                <Button className="m-2 btn-fill float-right" variant="info" size="sm">
+                                                    Novo
+                                                </Button>
+                                            </Link>
+                                        )}
                                         <ReactToPrint
                                             trigger={() =>
                                                 <Button className="m-2 btn-fill float-right" variant="info" size="sm">

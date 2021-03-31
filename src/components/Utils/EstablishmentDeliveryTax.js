@@ -13,6 +13,13 @@ function EstablishmentDeliveryTax(props) {
                 id="inlineFormCustomSelect"
                 custom
             >
+                {props.isSelectVisible ?
+                    <option
+                        key="-1"
+                        value="-1">Selecione...
+                    </option> : <></>
+                }
+
                 {props.establishmentDeliveries && props.establishmentDeliveries.map((item) => (
                     <option
                         key={item.id}

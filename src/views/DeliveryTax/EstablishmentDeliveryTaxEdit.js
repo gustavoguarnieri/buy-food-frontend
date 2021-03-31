@@ -38,7 +38,7 @@ function EstablishmentDeliveryTaxEdit() {
         e.preventDefault()
 
         let data = {
-            taxAmount: taxAmount.replace(",", "."),
+            taxAmount: taxAmount.toString().replace(",", "."),
             status: status
         }
 
