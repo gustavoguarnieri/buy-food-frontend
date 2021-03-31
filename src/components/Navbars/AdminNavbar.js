@@ -2,9 +2,11 @@ import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
 import UserService from "../../services/UserService";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 function Header() {
+  const history = useHistory()
+
   const mobileSidebarToggle = (e) => {
     e.preventDefault();
     document.documentElement.classList.toggle("nav-open");
@@ -16,6 +18,10 @@ function Header() {
     };
     document.body.appendChild(node);
   };
+
+  const pushHome = () => {
+    history.push("/home")
+  }
   
   return (
     <Navbar bg="light" expand="lg">
@@ -50,8 +56,8 @@ function Header() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link
-                className="m-0"
-                onClick={() => UserService.doLogout()}>
+                  className="m-0"
+                  onClick={() => {pushHome(); UserService.doLogout()}}>
                 <span className="no-icon">Log out</span>
               </Nav.Link>
             </Nav.Item>
