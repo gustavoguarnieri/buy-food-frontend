@@ -130,7 +130,6 @@ function Cart() {
             orders.push(order)
             items = []
         })
-        console.log(orders)
 
         let url = `/api/v1/users/orders`
         orders.map(order => {

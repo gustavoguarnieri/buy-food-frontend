@@ -61,8 +61,6 @@ function PurchasedEstablishmentEdit() {
 
         let deliveryTax = orderParam.establishment?.deliveryTax ? orderParam.establishment.deliveryTax?.taxAmount : 0
 
-        console.log(orderParam.items)
-
         orderParam?.items ?
             orderParam?.items.map((item => {
                 total += Number(item.product.price) * Number(item.quantity)

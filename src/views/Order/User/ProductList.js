@@ -13,7 +13,6 @@ function ProductList() {
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     useEffect(() => {
-        console.log("Usuario esta logado? " + UserService.isLoggedIn())
         !UserService.isLoggedIn() ? UserService.doLogout() : <></>
         },
         []
@@ -41,7 +40,6 @@ function ProductList() {
         const itens = Array.from(orderItens.length > 0 ? orderItens : product)
         itens.push(product)
         setOrderItens(itens)
-        console.log(orderItens)
         alert(`Item ${product.name} adicionado com sucesso!`)
     }
 
