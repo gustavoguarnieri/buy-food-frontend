@@ -41,7 +41,13 @@ function EstablishmentMyList() {
 
     const handleStatusFilter = (statusCode) => {
 
-        let url = `/api/v1/establishments/mine`
+        let url
+
+        if (UserService.hasRole("admin")) {
+            url = `/api/v1/establishments`
+        } else {
+            url = `/api/v1/establishments/mine`
+        }
 
         if (statusCode !== "-1") {
             url = url + `?status=${statusCode}`
@@ -164,11 +170,15 @@ function EstablishmentMyList() {
                                                 )}
                                             </td>
                                             <td>
-                                                <Link to={`/home/establishment/${item.id}/edit`}>
-                                                    <Button className="btn-fill" variant="secondary" size="sm">
-                                                        Editar
-                                                    </Button>
-                                                </Link>
+                                                {UserService.hasRole("admin") ? (
+                                                    <></>
+                                                ) : (
+                                                    <Link to={`/home/establishment/${item.id}/edit`}>
+                                                        <Button className="btn-fill" variant="secondary" size="sm">
+                                                            Editar
+                                                        </Button>
+                                                    </Link>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}

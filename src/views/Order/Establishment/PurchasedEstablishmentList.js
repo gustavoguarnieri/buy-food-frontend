@@ -166,11 +166,15 @@ function PurchasedEstablishmentList() {
                                                 <td>{item.observation}</td>
                                                 <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                                 <td>
-                                                    <Link to={`/home/establishment/order/purchasedOrder/${item.id}/edit`}>
-                                                        <Button className="btn-fill" variant="secondary" size="sm">
-                                                            Editar
-                                                        </Button>
-                                                    </Link>
+                                                    {UserService.hasRole("admin") ? (
+                                                        <></>
+                                                    ) : (
+                                                        <Link to={`/home/establishment/order/purchasedOrder/${item.id}/edit`}>
+                                                            <Button className="btn-fill" variant="secondary" size="sm">
+                                                                Editar
+                                                            </Button>
+                                                        </Link>
+                                                    )}
                                                 </td>
                                             </tr>
                                         ))}
