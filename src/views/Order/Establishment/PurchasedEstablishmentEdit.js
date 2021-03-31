@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
@@ -13,6 +13,7 @@ function PurchasedEstablishmentEdit() {
     const componentRef = useRef();
     const {orderId} = useParams();
 
+    const history = useHistory()
     const [order, setOrder] = useState('');
     const [total, setTotal] = useState(0)
     const [paymentWay, setPaymentWay] = useState('-1')
@@ -101,15 +102,13 @@ function PurchasedEstablishmentEdit() {
         let url = `/api/v1/establishments/orders/${orderId}`
 
         Api.put(url, data, axiosConfig)
-            .then((res) => {
-            })
-            .then((res) => {
-                alert("Alterado com sucesso!")
-                //history.push("/home/establishment/image")
-            })
+            .then((res) => {})
             .catch((err) => {
                 console.log(err)
             })
+
+        alert("Alterado com sucesso!")
+        history.push("/home/establishment/order/purchasedOrder")
     }
 
     return (
@@ -168,12 +167,11 @@ function PurchasedEstablishmentEdit() {
                                             <Form.Group>
                                                 <label>Status</label>
                                                 <Form.Control
-                                                    value={order.status}
+                                                    value={status}
                                                     onChange={handleStatusChange}
                                                     as="select"
                                                     className="mr-sm-0"
                                                     id="inlineFormCustomSelect"
-                                                    readOnly
                                                 >
                                                     <option value="1">ATIVO</option>
                                                     <option value="0">INATIVO</option>
@@ -214,7 +212,6 @@ function PurchasedEstablishmentEdit() {
                                             className="btn-fill float-right m-2"
                                             type="button"
                                             onClick={handlePutOrder}
-                                            // onclick={handlePutOrder}
                                             variant="info"
                                         >
                                             Salvar Alteração
