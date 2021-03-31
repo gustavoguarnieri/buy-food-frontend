@@ -22,7 +22,7 @@ function PurchasedList() {
     }
 
     useEffect(() => {
-            let url = `/api/v1/users/orders`
+            let url = `/api/v1/users/orders/mine`
 
             Api.get(`${url}`, axiosConfig)
                 .then((res) => {
@@ -37,7 +37,7 @@ function PurchasedList() {
 
     const handleStatusFilter = (statusCode) => {
 
-        let url = `/api/v1/users/orders`
+        let url = `/api/v1/users/orders/mine`
 
         if (statusCode !== "-1") {
             url = url + `?status=${statusCode}`

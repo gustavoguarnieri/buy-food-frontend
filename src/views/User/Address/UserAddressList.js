@@ -18,7 +18,7 @@ function UserAddressList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/users/addresses`, axiosConfig)
+            Api.get(`/api/v1/users/addresses/mine`, axiosConfig)
                 .then((res) => {
                     setAddresses(res.data)
                 })
