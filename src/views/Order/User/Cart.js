@@ -134,9 +134,7 @@ function Cart() {
         let url = `/api/v1/users/orders`
         orders.map(order => {
             Api.post(`${url}`, order, axiosConfig)
-                .then((res) => {
-                    console.log(res.data)
-                })
+                .then((res) => {})
                 .catch((err) => {
                     console.log(err)
                 })
@@ -149,6 +147,8 @@ function Cart() {
         setTotal(0)
 
         history.push("/home/user/order/purchasedOrder")
+
+        window.location.reload();
     }
 
     return (
