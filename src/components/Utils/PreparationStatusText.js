@@ -19,6 +19,10 @@ function PreparationStatusText(props) {
                         return (
                             <td>ENTREGANDO</td>
                         )
+                    case 'DELIVERED':
+                        return (
+                            <td>ENTREGUE</td>
+                        )
                     default:
                         return (
                             <td>NI</td>
