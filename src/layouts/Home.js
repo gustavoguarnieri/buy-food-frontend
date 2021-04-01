@@ -49,6 +49,9 @@ import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEs
 import PurchasedEstablishmentEdit from "../views/Order/Establishment/PurchasedEstablishmentEdit";
 import RenderOnAnonymous from "../components/RenderOnAnonymous";
 import Welcome from "../components/Welcome";
+import AdminDashboard from "../views/Dashboard/Admin/AdminDashboardQttOrder";
+import EstablishmentDashboardQttOrder from "../views/Dashboard/Establishment/EstablishmentDashboardQttOrder";
+import AdminDashboardQttOrder from "../views/Dashboard/Admin/AdminDashboardQttOrder";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -86,8 +89,11 @@ function Home() {
           <AdminNavbar />
           <div className="content">
             <Switch>
-              <Route exact path="home/dashboard">
+              <Route exact path="/home/dashboard">
                 <Dashboard/>
+              </Route>
+              <Route exact path="/home/admin/dashboard/order">
+                <AdminDashboardQttOrder/>
               </Route>
               <Route exact path="/home/user">
                 <UserProfile/>
@@ -194,6 +200,9 @@ function Home() {
               <Route exact path="/home/establishment/order/purchasedOrder/:orderId/edit">
                 <PurchasedEstablishmentEdit/>
               </Route>
+              {/*<Route exact path="/home/establishment/dashboard">*/}
+              {/*  <EstablishmentDashboardQttOrder/>*/}
+              {/*</Route>*/}
               <Route path="/home/*">
                 <NotFound/>
               </Route>

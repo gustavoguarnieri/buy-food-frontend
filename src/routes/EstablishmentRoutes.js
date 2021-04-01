@@ -11,6 +11,8 @@ import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliver
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import EstablishmentMyList from "../views/Establishment/EstablishmentMyList";
 import ProductImageList from "../views/Product/Image/ProductImageList";
+import AdminDashboard from "../views/Dashboard/Admin/AdminDashboardQttOrder";
+import EstablishmentDashboardQttOrder from "../views/Dashboard/Establishment/EstablishmentDashboardQttOrder";
 
 const routes = [
     {
@@ -109,7 +111,13 @@ const routes = [
         name: "Dashboard",
         component: Dashboard,
         layout: "/home"
-    }
+    },
+    // {
+    //     path: "/establishment/dashboard",
+    //     name: "Establ Dashboard",
+    //     component: EstablishmentDashboardQttOrder,
+    //     layout: "/home"
+    // }
 ];
 
 export default routes;

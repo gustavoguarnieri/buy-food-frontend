@@ -12,6 +12,8 @@ import EstablishmentImageList from "../views/Establishment/Image/EstablishmentIm
 import OrderList from "../views/Order/User/ProductList";
 import PurchasedList from "../views/Order/User/PurchasedList";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
+import AdminDashboard from "../views/Dashboard/Admin/AdminDashboardQttOrder";
+import AdminDashboardQttOrder from "../views/Dashboard/Admin/AdminDashboardQttOrder";
 
 const routes = [
     {
@@ -109,6 +111,12 @@ const routes = [
         path: "/dashboard",
         name: "Dashboard",
         component: Dashboard,
+        layout: "/home"
+    },
+    {
+        path: "/admin/dashboard/order",
+        name: "Admin Dashboard",
+        component: AdminDashboardQttOrder,
         layout: "/home"
     }
 ];
