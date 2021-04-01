@@ -25,7 +25,6 @@
     "react-scripts": "4.0.1",
     "react-to-print": "^2.12.3",
     "redux": "^4.0.4",
-    "redux-axios-middleware": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
