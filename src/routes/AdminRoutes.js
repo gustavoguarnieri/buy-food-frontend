@@ -1,4 +1,3 @@
-import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/User/UserProfile.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
@@ -96,12 +95,6 @@ const routes = [
         component: PurchasedEstablishmentList,
         layout: "/home",
         profiles: "admin"
-    },
-    {
-        path: "/dashboard",
-        name: "Dashboard",
-        component: Dashboard,
-        layout: "/home"
     },
     {
         path: "/admin/dashboard/order",

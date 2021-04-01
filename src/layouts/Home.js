@@ -11,7 +11,6 @@ import adminRoutes from "../routes/AdminRoutes";
 import establishmentRoutes from "../routes/EstablishmentRoutes";
 
 import NotFound from "../components/NotFound";
-import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/User/UserProfile.js";
 import TableList from "views/TableList.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
@@ -85,9 +84,6 @@ function Home() {
           <AdminNavbar />
           <div className="content">
             <Switch>
-              <Route exact path="/home/dashboard">
-                <Dashboard/>
-              </Route>
               <Route exact path="/home/admin/dashboard/order">
                 <AdminDashboardOrder/>
               </Route>

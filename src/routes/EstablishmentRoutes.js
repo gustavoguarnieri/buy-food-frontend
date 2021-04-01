@@ -1,7 +1,6 @@
 import UserProfile from "views/User/UserProfile.js";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import ProductList from "../views/Order/User/ProductList";
-import Dashboard from "../views/Dashboard";
 import EstablishmentImageList from "../views/Establishment/Image/EstablishmentImageList";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
 import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
@@ -100,12 +99,6 @@ const routes = [
         component: PurchasedEstablishmentList,
         layout: "/home",
         profiles: "admin"
-    },
-    {
-        path: "/dashboard",
-        name: "Dashboard",
-        component: Dashboard,
-        layout: "/home"
     },
     // {
     //     path: "/establishment/dashboard",

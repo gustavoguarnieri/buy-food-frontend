@@ -1,5 +1,4 @@
 import UserProfile from "views/User/UserProfile.js";
-import Dashboard from "../views/Dashboard";
 import UserAddressList from "../views/User/Address/UserAddressList";
 import ProductList from "../views/Order/User/ProductList";
 import PurchasedList from "../views/Order/User/PurchasedList";
@@ -96,12 +95,6 @@ const routes = [
     //     layout: "/home",
     //     profiles: "admin"
     // },
-    {
-        path: "/dashboard",
-        name: "Dashboard",
-        component: Dashboard,
-        layout: "/home"
-    }
 ];
 
 export default routes;
