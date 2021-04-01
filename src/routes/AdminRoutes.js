@@ -4,6 +4,7 @@ import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import AdminDashboardQttOrder from "../views/Dashboard/Admin/AdminDashboardQttOrder";
+import AdminDashboardBillingOrder from "../views/Dashboard/Admin/AdminDashboardBillingOrder";
 
 const routes = [
     {
@@ -107,6 +108,12 @@ const routes = [
         path: "/admin/dashboard/order",
         name: "Admin Dashboard",
         component: AdminDashboardQttOrder,
+        layout: "/home"
+    },
+    {
+        path: "/admin/dashboard/billing",
+        name: "Admin Billing Dashboard",
+        component: AdminDashboardBillingOrder,
         layout: "/home"
     }
 ];
