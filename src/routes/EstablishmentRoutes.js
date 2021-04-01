@@ -1,18 +1,13 @@
 import UserProfile from "views/User/UserProfile.js";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
-import UserAddressList from "../views/User/Address/UserAddressList";
 import ProductList from "../views/Order/User/ProductList";
-import PurchasedList from "../views/Order/User/PurchasedList";
 import Dashboard from "../views/Dashboard";
 import EstablishmentImageList from "../views/Establishment/Image/EstablishmentImageList";
 import IngredientList from "../views/Product/Ingredients/IngredientList";
 import EstablishmentBusinessHoursList from "../views/BusinessHours/EstablishmentBusinessHoursList";
 import EstablishmentDeliveryList from "../views/DeliveryTax/EstablishmentDeliveryTaxList";
-import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import EstablishmentMyList from "../views/Establishment/EstablishmentMyList";
 import ProductImageList from "../views/Product/Image/ProductImageList";
-import AdminDashboard from "../views/Dashboard/Admin/AdminDashboardQttOrder";
-import EstablishmentDashboardQttOrder from "../views/Dashboard/Establishment/EstablishmentDashboardQttOrder";
 
 const routes = [
     {

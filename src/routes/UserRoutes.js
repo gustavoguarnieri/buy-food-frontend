@@ -1,7 +1,4 @@
 import UserProfile from "views/User/UserProfile.js";
-import EstablishmentMyList from "../views/Establishment/EstablishmentMyList";
-import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
-import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import Dashboard from "../views/Dashboard";
 import UserAddressList from "../views/User/Address/UserAddressList";
 import ProductList from "../views/Order/User/ProductList";

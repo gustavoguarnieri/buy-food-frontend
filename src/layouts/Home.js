@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, Route, Switch } from "react-router-dom";
+import {Route, Switch, useLocation} from "react-router-dom";
 
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
@@ -47,10 +47,6 @@ import PurchasedList from "../views/Order/User/PurchasedList";
 import PurchasedListDetails from "../views/Order/User/PurchasedListDetails";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import PurchasedEstablishmentEdit from "../views/Order/Establishment/PurchasedEstablishmentEdit";
-import RenderOnAnonymous from "../components/RenderOnAnonymous";
-import Welcome from "../components/Welcome";
-import AdminDashboard from "../views/Dashboard/Admin/AdminDashboardQttOrder";
-import EstablishmentDashboardQttOrder from "../views/Dashboard/Establishment/EstablishmentDashboardQttOrder";
 import AdminDashboardQttOrder from "../views/Dashboard/Admin/AdminDashboardQttOrder";
 
 function getRoutes() {
@@ -200,15 +196,12 @@ function Home() {
               <Route exact path="/home/establishment/order/purchasedOrder/:orderId/edit">
                 <PurchasedEstablishmentEdit/>
               </Route>
-              {/*<Route exact path="/home/establishment/dashboard">*/}
-              {/*  <EstablishmentDashboardQttOrder/>*/}
-              {/*</Route>*/}
               <Route path="/home/*">
                 <NotFound/>
               </Route>
             </Switch>
           </div>
-          <Footer />
+          <Footer/>
         </div>
       </div>      
     </>
