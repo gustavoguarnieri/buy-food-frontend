@@ -47,8 +47,7 @@ import PurchasedList from "../views/Order/User/PurchasedList";
 import PurchasedListDetails from "../views/Order/User/PurchasedListDetails";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import PurchasedEstablishmentEdit from "../views/Order/Establishment/PurchasedEstablishmentEdit";
-import AdminDashboardQttOrder from "../views/Dashboard/Admin/AdminDashboardQttOrder";
-import AdminDashboardBillingOrder from "../views/Dashboard/Admin/AdminDashboardBillingOrder";
+import AdminDashboardOrder from "../views/Dashboard/Admin/AdminDashboardOrder";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -90,11 +89,11 @@ function Home() {
                 <Dashboard/>
               </Route>
               <Route exact path="/home/admin/dashboard/order">
-                <AdminDashboardQttOrder/>
+                <AdminDashboardOrder/>
               </Route>
-              <Route exact path="/home/admin/dashboard/billing">
-                <AdminDashboardBillingOrder/>
-              </Route>
+              {/*<Route exact path="/home/admin/dashboard/billing">*/}
+              {/*  <AdminDashboardBillingOrder/>*/}
+              {/*</Route>*/}
               <Route exact path="/home/user">
                 <UserProfile/>
               </Route>

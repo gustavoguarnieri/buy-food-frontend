@@ -3,8 +3,7 @@ import UserProfile from "views/User/UserProfile.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
-import AdminDashboardQttOrder from "../views/Dashboard/Admin/AdminDashboardQttOrder";
-import AdminDashboardBillingOrder from "../views/Dashboard/Admin/AdminDashboardBillingOrder";
+import AdminDashboardOrder from "../views/Dashboard/Admin/AdminDashboardOrder";
 
 const routes = [
     {
@@ -107,15 +106,15 @@ const routes = [
     {
         path: "/admin/dashboard/order",
         name: "Admin Dashboard",
-        component: AdminDashboardQttOrder,
+        component: AdminDashboardOrder,
         layout: "/home"
     },
-    {
-        path: "/admin/dashboard/billing",
-        name: "Admin Billing Dashboard",
-        component: AdminDashboardBillingOrder,
-        layout: "/home"
-    }
+    // {
+    //     path: "/admin/dashboard/billing",
+    //     name: "Admin Billing Dashboard",
+    //     component: AdminDashboardBillingOrder,
+    //     layout: "/home"
+    // }
 ];
 
 export default routes;
