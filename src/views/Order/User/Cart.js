@@ -124,7 +124,7 @@ function Cart() {
                 establishmentId: uniqueEstablishment,
                 deliveryAddressId: address,
                 observation: "observação de teste",
-                paymentWay: "MONEY",
+                paymentWay: paymentWay,
                 items: items
             }
             orders.push(order)
