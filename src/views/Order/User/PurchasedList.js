@@ -6,7 +6,6 @@ import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
 import PaymentWayText from "../../../components/Utils/PaymentWayText";
 import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
-import PreparationStatusText from "../../../components/Utils/PreparationStatusText";
 
 function PurchasedList() {
 
@@ -113,7 +112,7 @@ function PurchasedList() {
                                                 <td>{item.establishment?.tradingName}</td>
                                                 <PaymentWayText paymentWay={item.paymentWay}/>
                                                 <PaymentStatusText paymentStatus={item.paymentStatus}/>
-                                                <PreparationStatusText preparationStatus={item.preparationStatus}/>
+                                                <td>{item.preparationStatus?.description}</td>
                                                 <td>{item.observation}</td>
                                                 <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                                 <td>

@@ -11,7 +11,7 @@ function PreparationStatus(props) {
                 as="select"
                 className="mr-sm-0"
                 id="inlineFormCustomSelect"
-                readOnly={props.isReadOnly}
+                custom
             >
                 {props.isSelectVisible ?
                     <option
@@ -19,31 +19,12 @@ function PreparationStatus(props) {
                         value="-1">Selecione...
                     </option> : <></>
                 }
-
-                <option
-                    key="PENDING"
-                    value="PENDING"
-                >
-                    PENDENTE
-                </option>
-                <option
-                    key="COOKING"
-                    value="COOKING"
-                >
-                    COZINHANDO
-                </option>
-                <option
-                    key="DELIVERY"
-                    value="DELIVERY"
-                >
-                    ENTREGANDO
-                </option>
-                <option
-                    key="DELIVERED"
-                    value="DELIVERED"
-                >
-                    ENTREGUE
-                </option>
+                {props.preparationStatusList && props.preparationStatusList.map((item) => (
+                    <option
+                        key={item.id}
+                        value={item.id}>{item.description}
+                    </option>
+                ))}
             </Form.Control>
         </>
     )

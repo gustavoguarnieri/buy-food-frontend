@@ -6,7 +6,6 @@ import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
 import PaymentWayText from "../../../components/Utils/PaymentWayText";
 import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
-import PreparationStatusText from "../../../components/Utils/PreparationStatusText";
 import Establishment from "../../../components/Utils/Establishment";
 
 function PurchasedEstablishmentList() {

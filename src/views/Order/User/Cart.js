@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useLocation, useHistory} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import UtilService from "../../../services/UtilService";
 import BusinessHours from "../../../components/Utils/BusinessHours";
@@ -11,7 +11,6 @@ import PaymentWay from "../../../components/Utils/PaymentWay";
 function Cart() {
 
     let location = useLocation();
-    const history = useHistory()
     const [addresses, setAddresses] = useState('');
     const [address, setAddress] = useState('-1')
     const [total, setTotal] = useState(0)
@@ -71,7 +70,7 @@ function Cart() {
             let cartProductsByEstablishment = cartProducts.filter(product => product.establishment.id === uniqueEstablishment)
 
             if (cartProductsByEstablishment[0].establishment.deliveryTax) {
-                total +=  Number(cartProductsByEstablishment[0].establishment?.deliveryTax?.taxAmount)
+                total += Number(cartProductsByEstablishment[0].establishment?.deliveryTax?.taxAmount)
             }
         })
 
@@ -98,7 +97,10 @@ function Cart() {
         cartProducts.map(item => {
 
             if (uniqueEstablishmentList.indexOf(item.establishment?.id) === -1) {
-                uniqueEstablishmentList.push(item.establishment?.id)
+                uniqueEstablishmentList.push({
+                    establishmentId: item.establishment?.id,
+                    establishmentTradingName: item.establishment?.tradingName
+                })
             }
 
         })
@@ -108,7 +110,7 @@ function Cart() {
 
         uniqueEstablishmentList.map(uniqueEstablishment => {
 
-            let cartProductsByEstablishment = cartProducts.filter(product => product.establishment.id === uniqueEstablishment)
+            let cartProductsByEstablishment = cartProducts.filter(product => product.establishment.id === uniqueEstablishment.establishmentId)
 
             cartProductsByEstablishment.map(productByEstablishment => {
 
@@ -121,9 +123,9 @@ function Cart() {
             })
 
             let order = {
-                establishmentId: uniqueEstablishment,
+                establishmentId: uniqueEstablishment.establishmentId,
+                establishmentTradingName: uniqueEstablishment.establishmentTradingName,
                 deliveryAddressId: address,
-                observation: "observação de teste",
                 paymentWay: paymentWay,
                 items: items
             }
@@ -131,29 +133,26 @@ function Cart() {
             items = []
         })
 
-        let url = `/api/v1/users/orders`
+        try {
+            orders.map(async order => {
+                try {
+                    await Api.post(`/api/v1/users/orders`, order, axiosConfig)
 
-        await saveOrder(url, orders)
+                    alert("Compra realizada com sucesso para o estabelecimento: " + order.establishmentTradingName)
 
-        alert("Compra realizada com sucesso!")
-        setCartProducts([])
-        setAddress('-1')
-        setPaymentWay('-1')
-        setTotal(0)
-
-        history.push("/home/user/order/purchasedOrder")
-
-        window.location.reload();
-    }
-
-    const saveOrder = (url, orders) => {
-        orders.map(order => {
-            Api.post(`${url}`, order, axiosConfig)
-                .then((res) => {})
-                .catch((err) => {
-                    console.log(err)
-                })
-        })
+                    setCartProducts([])
+                    setAddress('-1')
+                    setPaymentWay('-1')
+                    setTotal(0)
+                } catch (err) {
+                    alert("Ops, ocorreu um erro ao realizar a compra para o estabelecimento: " +
+                        order.establishmentTradingName + " Detalhes: " + err.response?.data?.description)
+                    return err
+                }
+            })
+        } catch (err) {
+            return
+        }
     }
 
     return (
@@ -196,80 +195,80 @@ function Cart() {
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped">
                                     <thead>
-                                        <tr>
-                                            <th className="border-0">Id</th>
-                                            <th className="border-0">Quantidade</th>
-                                            <th className="border-0">Valor</th>
-                                            <th className="border-0">Nome</th>
-                                            <th className="border-0">Descrição</th>
-                                            <th className="border-0">Ingredientes</th>
-                                            <th className="border-0">Estabelecimento</th>
-                                            <th className="border-0">Horário de funcionamento</th>
-                                            <th className="border-0">Taxa de Entrega</th>
-                                        </tr>
+                                    <tr>
+                                        <th className="border-0">Id</th>
+                                        <th className="border-0">Quantidade</th>
+                                        <th className="border-0">Valor</th>
+                                        <th className="border-0">Nome</th>
+                                        <th className="border-0">Descrição</th>
+                                        <th className="border-0">Ingredientes</th>
+                                        <th className="border-0">Estabelecimento</th>
+                                        <th className="border-0">Horário de funcionamento</th>
+                                        <th className="border-0">Taxa de Entrega</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {cartProducts && cartProducts.map((item, index) => (
-                                            <tr key={item.id}>
-                                                <td>{item.id}</td>
-                                                <td>
-                                                    <input style={{width: '3rem'}}
-                                                           type="number"
-                                                           value={item.quantity}
-                                                           key={index}
-                                                           onChange={e => handleQuantityFilterChange(e, index)}
-                                                    />
-                                                </td>
-                                                <td>{UtilService.formCurrency(item.price)}</td>
-                                                <td>{item.name}</td>
-                                                <td>
-                                                    {item.description}
-                                                </td>
-                                                <td>
-                                                    {item.ingredients.length > 0 ? (
-                                                        <Form.Control
-                                                            style={{width: '15rem'}}
-                                                            as="select"
-                                                            className="mr-sm-0"
-                                                            id="inlineFormCustomSelect"
-                                                            custom
-                                                        >
-                                                            {item.ingredients && item.ingredients.map((ing) => (
-                                                                <option
-                                                                    key={ing.id}
-                                                                    value={ing.id}>{ing.ingredient} ({ing.portion})
-                                                                </option>
-                                                            ))}
-                                                        </Form.Control>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </td>
+                                    {cartProducts && cartProducts.map((item, index) => (
+                                        <tr key={item.id}>
+                                            <td>{item.id}</td>
+                                            <td>
+                                                <input style={{width: '3rem'}}
+                                                       type="number"
+                                                       value={item.quantity}
+                                                       key={index}
+                                                       onChange={e => handleQuantityFilterChange(e, index)}
+                                                />
+                                            </td>
+                                            <td>{UtilService.formCurrency(item.price)}</td>
+                                            <td>{item.name}</td>
+                                            <td>
+                                                {item.description}
+                                            </td>
+                                            <td>
+                                                {item.ingredients.length > 0 ? (
+                                                    <Form.Control
+                                                        style={{width: '15rem'}}
+                                                        as="select"
+                                                        className="mr-sm-0"
+                                                        id="inlineFormCustomSelect"
+                                                        custom
+                                                    >
+                                                        {item.ingredients && item.ingredients.map((ing) => (
+                                                            <option
+                                                                key={ing.id}
+                                                                value={ing.id}>{ing.ingredient} ({ing.portion})
+                                                            </option>
+                                                        ))}
+                                                    </Form.Control>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                            </td>
 
-                                                <td>{item.establishment?.tradingName}</td>
-                                                <td>
-                                                    <BusinessHours businessHours={item.establishment?.businessHours}/>
-                                                </td>
-                                                <td>
-                                                    {item.establishment?.deliveryTax?.taxAmount ?
-                                                        UtilService.formCurrency(item.establishment?.deliveryTax?.taxAmount) : "Grátis"}
-                                                </td>
-                                                <td>
-                                                    {item.status === 1 ? (
-                                                        <Button className="btn-fill" variant="danger" size="sm"
-                                                                onClick={() => {
-                                                                    if (window.confirm(`Deseja realmente remover este item (${item.name}) ?`)) {
-                                                                        handleDeleteItem(item.id)
-                                                                    }
-                                                                }}>
-                                                            Remover
-                                                        </Button>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        ))}
+                                            <td>{item.establishment?.tradingName}</td>
+                                            <td>
+                                                <BusinessHours businessHours={item.establishment?.businessHours}/>
+                                            </td>
+                                            <td>
+                                                {item.establishment?.deliveryTax?.taxAmount ?
+                                                    UtilService.formCurrency(item.establishment?.deliveryTax?.taxAmount) : "Grátis"}
+                                            </td>
+                                            <td>
+                                                {item.status === 1 ? (
+                                                    <Button className="btn-fill" variant="danger" size="sm"
+                                                            onClick={() => {
+                                                                if (window.confirm(`Deseja realmente remover este item (${item.name}) ?`)) {
+                                                                    handleDeleteItem(item.id)
+                                                                }
+                                                            }}>
+                                                        Remover
+                                                    </Button>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
                                     </tbody>
                                 </Table>
                             </Card.Body>

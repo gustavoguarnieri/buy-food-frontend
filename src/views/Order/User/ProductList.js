@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
 import {Button, Card, CardDeck, Col, Container, Form, ListGroup, ListGroupItem, Row} from "react-bootstrap";
@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 function ProductList() {
 
     const [products, setProducts] = useState('');
-    const [orderItens, setOrderItens] = useState([]);
+    const [orderItems, setOrderItems] = useState([]);
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     useEffect(() => {
@@ -32,14 +32,14 @@ function ProductList() {
     )
 
     const handleAdd = product => () => {
-        if (orderItens.filter(item => item.id === product.id).length > 0) {
+        if (orderItems.filter(item => item.id === product.id).length > 0) {
             alert("Este produto já está adiiconado ao carrinho")
             return
         }
 
-        const itens = Array.from(orderItens.length > 0 ? orderItens : product)
+        let itens = Array.from(orderItems.length > 0 ? orderItems : product)
         itens.push(product)
-        setOrderItens(itens)
+        setOrderItems(itens)
         alert(`Item ${product.name} adicionado com sucesso!`)
     }
 
@@ -50,7 +50,7 @@ function ProductList() {
                     <Col md="12" className="m-1">
                         <Link to={{
                             pathname: `/home/user/order/cart`,
-                            state: { orderItens: orderItens }
+                            state: { orderItens: orderItems }
                         }}>
                             <Button className="m-2 btn-fill float-right" variant="info" size="sm">
                                 Carrinho de Compra

@@ -1,12 +1,11 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
-import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
+import {Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import UtilService from "../../../services/UtilService";
 import PaymentWayText from "../../../components/Utils/PaymentWayText";
 import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
-import PreparationStatusText from "../../../components/Utils/PreparationStatusText";
 
 function PurchasedListDetails() {
 
@@ -86,7 +85,7 @@ function PurchasedListDetails() {
                                         <Col md="3">
                                             <Form.Group>
                                                 <label>Status de Preparo</label>
-                                                <PreparationStatusText preparationStatus={order.preparationStatus}/>
+                                                <td>{order.preparationStatus?.description}</td>
                                             </Form.Group>
                                         </Col>
                                     </Row>

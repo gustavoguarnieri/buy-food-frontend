@@ -19,6 +19,7 @@ function PurchasedEstablishmentEdit() {
     const [paymentWay, setPaymentWay] = useState('-1')
     const [paymentStatus, setPaymentStatus] = useState('-1')
     const [preparationStatus, setPreparationStatus] = useState('-1')
+    const [preparationStatusList, setPreparationStatusList] = useState('')
     const [status, setStatus] = useState('')
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
@@ -47,8 +48,22 @@ function PurchasedEstablishmentEdit() {
                     handleTotal(res.data)
                     setPaymentWay(res.data.paymentWay)
                     setPaymentStatus(res.data.paymentStatus)
-                    setPreparationStatus(res.data.preparationStatus)
+                    setPreparationStatus(res.data.preparationStatus?.id)
                     setStatus(res.data.status)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
+    useEffect(() => {
+            let url = `/api/v1/establishments/preparation-status?status=1`
+
+            Api.get(`${url}`, axiosConfig)
+                .then((res) => {
+                    setPreparationStatusList(res.data)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -95,7 +110,9 @@ function PurchasedEstablishmentEdit() {
             observation: order?.observation,
             paymentStatus: paymentStatus,
             paymentWay: paymentWay,
-            preparationStatus: preparationStatus,
+            preparationStatus: {
+                id: preparationStatus
+            },
             status: status
         }
 
@@ -152,6 +169,7 @@ function PurchasedEstablishmentEdit() {
                                         <Col md="3">
                                             <label>Status de Preparo</label>
                                             <PreparationStatus preparationStatus={preparationStatus}
+                                                               preparationStatusList={preparationStatusList}
                                                                handlePreparationStatusChange={handlePreparationStatusChange}
                                                                isSelectVisible={false}/>
                                         </Col>

@@ -3,6 +3,7 @@ import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import AdminDashboardOrder from "../views/Dashboard/Admin/AdminDashboardOrder";
+import PreparationStatusList from "../views/PreparationStatus/PreparationStatusList";
 
 const routes = [
     {
@@ -23,6 +24,13 @@ const routes = [
         path: "/establishment/category",
         name: "Categoria de Est.",
         component: EstablishmentCategoryList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/preparation-status",
+        name: "Status de Preparo",
+        component: PreparationStatusList,
         layout: "/home",
         profiles: "admin"
     },

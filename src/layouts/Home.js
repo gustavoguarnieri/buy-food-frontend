@@ -47,6 +47,9 @@ import PurchasedListDetails from "../views/Order/User/PurchasedListDetails";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import PurchasedEstablishmentEdit from "../views/Order/Establishment/PurchasedEstablishmentEdit";
 import AdminDashboardOrder from "../views/Dashboard/Admin/AdminDashboardOrder";
+import PreparationStatusList from "../views/PreparationStatus/PreparationStatusList";
+import PreparationStatusNew from "../views/PreparationStatus/PreparationStatusNew";
+import PreparationStatusEdit from "../views/PreparationStatus/PreparationStatusEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -86,6 +89,15 @@ function Home() {
             <Switch>
               <Route exact path="/home/admin/dashboard/order">
                 <AdminDashboardOrder/>
+              </Route>
+              <Route exact path="/home/establishment/preparation-status">
+                <PreparationStatusList/>
+              </Route>
+              <Route exact path="/home/establishment/preparation-status/new">
+                <PreparationStatusNew/>
+              </Route>
+              <Route exact path="/home/establishment/preparation-status/:preparationStatusId/edit">
+                <PreparationStatusEdit/>
               </Route>
               {/*<Route exact path="/home/admin/dashboard/billing">*/}
               {/*  <AdminDashboardBillingOrder/>*/}
