@@ -155,7 +155,7 @@ function AdminDashboardOrder() {
                             loader={<div>Loading Chart</div>}
                             data={ordersByMonthDasboard}
                             options={{
-                                title: 'Pedidos',
+                                title: 'Pedidos (90 dias)',
                                 chartArea: {width: '40%'},
                                 hAxis: {
                                     title: 'Meses',
@@ -168,6 +168,7 @@ function AdminDashboardOrder() {
                             legendToggle
                         />
                     </div>
+                    &nbsp;
                     <div style={{display: 'flex', maxWidth: 900}}>
                         <Chart
                             width={390}
@@ -176,7 +177,7 @@ function AdminDashboardOrder() {
                             loader={<div>Loading Chart</div>}
                             data={billingByMonthDasboard}
                             options={{
-                                title: 'Faturamento total',
+                                title: 'Faturamento total (90 dias)',
                                 chartArea: {width: '40%'},
                                 hAxis: {
                                     title: 'Meses',
@@ -199,7 +200,7 @@ function AdminDashboardOrder() {
                             loader={<div>Loading Chart</div>}
                             data={preparationStatusDasboard}
                             options={{
-                                title: 'Status de preparo',
+                                title: 'Status de preparo (90 dias)',
                                 chartArea: {width: '40%'},
                                 hAxis: {
                                     title: 'Meses',
@@ -212,6 +213,7 @@ function AdminDashboardOrder() {
                             legendToggle
                         />
                     </div>
+                    &nbsp;
                     <div style={{display: 'flex', maxWidth: 900}}>
                         <Chart
                             width={390}
@@ -220,7 +222,7 @@ function AdminDashboardOrder() {
                             loader={<div>Loading Chart</div>}
                             data={paymentWay}
                             options={{
-                                title: 'Forma de pagamento',
+                                title: 'Forma de pagamento (90 dias)',
                                 chartArea: {width: '40%'},
                                 hAxis: {
                                     title: 'Meses',
@@ -243,7 +245,7 @@ function AdminDashboardOrder() {
                             loader={<div>Loading Chart</div>}
                             data={paymentDeclinedStatus}
                             options={{
-                                title: 'Forma de pagamento',
+                                title: 'Forma de pagamento (90 dias)',
                                 chartArea: {width: '40%'},
                                 hAxis: {
                                     title: 'Meses',
