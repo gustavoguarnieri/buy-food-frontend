@@ -7,11 +7,11 @@ import {Container, Row} from "react-bootstrap";
 function AdminDashboardOrder() {
 
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
-    const [ordersByMonthDasboard, setOrdersByMonthDasboard] = useState([]);
-    const [billingByMonthDasboard, setBillingByMonthDasboard] = useState([]);
-    const [preparationStatusDasboard, setPreparationStatus] = useState([]);
-    const [paymentWay, setPaymentWay] = useState([]);
-    const [paymentDeclinedStatus, setPaymentDeclinedStatus] = useState([]);
+    const [ordersByMonthDasboard, setOrdersByMonthDasboard] = useState([["Meses", "Qtd pedidos"],["", 0]]);
+    const [billingByMonthDasboard, setBillingByMonthDasboard] = useState([["Meses", "Faturamento"],["", 0]]);
+    const [preparationStatusDasboard, setPreparationStatus] = useState([["Meses", "Qtd"],["", 0]]);
+    const [paymentWay, setPaymentWay] = useState([["Meses", "Forma Pagamento"], ["", 0]]);
+    const [paymentDeclinedStatus, setPaymentDeclinedStatus] = useState([["Meses", "Pagamento Recusado"], ["", 0]]);
 
     useEffect(() => {
             Api.get(`/api/v1/dashboard/admin/orders-by-month`, axiosConfig)
