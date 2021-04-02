@@ -135,17 +135,6 @@ function PurchasedListDetails() {
                                         }
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col md="12">
-                                        <Button
-                                            className="btn-fill float-right m-3"
-                                            variant="info"
-                                            type="submit"
-                                        >
-                                            Salvar Alteração
-                                        </Button>
-                                    </Col>
-                                </Row>
                                 <div className="clearfix"/>
                             </Card.Body>
                         </Card>
