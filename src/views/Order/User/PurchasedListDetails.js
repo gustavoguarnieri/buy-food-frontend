@@ -114,7 +114,7 @@ function PurchasedListDetails() {
                                     </thead>
                                     <tbody>
                                         {order.items && order.items.map((item) => (
-                                            <tr>
+                                            <tr key={item.id}>
                                                 <td>{item.id}</td>
                                                 <td>{item.lineCode}</td>
                                                 <td>{item.product?.name}</td>

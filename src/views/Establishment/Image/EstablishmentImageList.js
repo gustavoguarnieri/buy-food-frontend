@@ -152,12 +152,12 @@ function EstablishmentImageList() {
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped" ref={componentRef}>
                                     <thead>
-                                    <tr>
-                                        <th className="border-0">Id</th>
-                                        <th className="border-0">Imagem</th>
-                                        <th className="border-0">Nome do Arquivo</th>
-                                        <th className="border-0">Status</th>
-                                    </tr>
+                                        <tr>
+                                            <th className="border-0">Id</th>
+                                            <th className="border-0">Imagem</th>
+                                            <th className="border-0">Nome do Arquivo</th>
+                                            <th className="border-0">Status</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                     {images && images.map((item) => (

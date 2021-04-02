@@ -108,7 +108,7 @@ function PurchasedList() {
                                     </thead>
                                     <tbody>
                                         {orders && orders.map((item) => (
-                                            <tr>
+                                            <tr key={item.id}>
                                                 <td>{item.id}</td>
                                                 <td>{item.establishment?.tradingName}</td>
                                                 <PaymentWayText paymentWay={item.paymentWay}/>
