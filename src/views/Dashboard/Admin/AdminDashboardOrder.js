@@ -75,6 +75,7 @@ function AdminDashboardOrder() {
 
     const handleOrdersByMonthDasboard = (orderParam) => {
         let lines = []
+        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
         let column = ["Meses", "Qtd pedidos"]
         lines.push(column)
 
@@ -84,11 +85,12 @@ function AdminDashboardOrder() {
             lines.push(line)
         }))
 
-        setOrdersByMonthDasboard(lines)
+        orderParam.length === 0 ? setOrdersByMonthDasboard(noDataFound) : setOrdersByMonthDasboard(lines)
     }
 
     const handlePreparationStatusDasboard = (orderParam) => {
         let lines = []
+        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
         let column = ["Meses", "Qtd"]
         lines.push(column)
 
@@ -98,11 +100,12 @@ function AdminDashboardOrder() {
             lines.push(line)
         }))
 
-        setPreparationStatus(lines)
+        orderParam.length === 0 ? setPreparationStatus(noDataFound) : setPreparationStatus(lines)
     }
 
     const handleBillingByMonthDasboard = (orderParam) => {
         let lines = []
+        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
         let column = ["Meses", "Faturamento"]
         lines.push(column)
 
@@ -112,11 +115,12 @@ function AdminDashboardOrder() {
             lines.push(line)
         }))
 
-        setBillingByMonthDasboard(lines)
+        orderParam.length === 0 ? setBillingByMonthDasboard(noDataFound) : setBillingByMonthDasboard(lines)
     }
 
     const handlePaymentWayDasboard = (orderParam) => {
         let lines = []
+        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
         let column = ["Meses", "Forma Pagamento"]
         lines.push(column)
 
@@ -126,11 +130,12 @@ function AdminDashboardOrder() {
             lines.push(line)
         }))
 
-        setPaymentWay(lines)
+        orderParam.length === 0 ? setPaymentWay(noDataFound) : setPaymentWay(lines)
     }
 
     const handlePaymentDeclinedStatus = (orderParam) => {
         let lines = []
+        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
         let column = ["Meses", "Pagamento Recusado"]
         lines.push(column)
 
@@ -140,7 +145,7 @@ function AdminDashboardOrder() {
             lines.push(line)
         }))
 
-        setPaymentDeclinedStatus(lines)
+        orderParam.length === 0 ? setPaymentDeclinedStatus(noDataFound) : setPaymentDeclinedStatus(lines)
     }
 
     return (
