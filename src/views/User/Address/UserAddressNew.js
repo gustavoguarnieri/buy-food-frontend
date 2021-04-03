@@ -82,7 +82,7 @@ function UserAddressNew() {
                                     <Link to="/home/user/address">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
-                                    Alterar Endereço de Entrega
+                                    Criar Endereço de Entrega
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
@@ -190,7 +190,7 @@ function UserAddressNew() {
                                         variant="info"
                                         type="submit"
                                     >
-                                        Salvar Alteração
+                                        Salvar
                                     </Button>
                                     <div className="clearfix"/>
                                 </Form>
