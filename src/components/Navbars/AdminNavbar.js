@@ -58,7 +58,7 @@ function Header() {
               <Nav.Link
                   className="m-0"
                   onClick={() => {pushHome(); UserService.doLogout()}}>
-                <span className="no-icon">Log out</span>
+                <span className="no-icon">SAIR</span>
               </Nav.Link>
             </Nav.Item>
           </Nav>
