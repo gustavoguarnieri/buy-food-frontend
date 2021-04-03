@@ -56,7 +56,6 @@ function Cart() {
 
         let uniqueEstablishmentList = []
         cartProducts && cartProducts.map(item => {
-
             if (uniqueEstablishmentList.indexOf(item.establishment?.id) === -1) {
                 uniqueEstablishmentList.push(item.establishment?.id)
             }
@@ -65,8 +64,7 @@ function Cart() {
             total += subTotal
         })
 
-        uniqueEstablishmentList.map(uniqueEstablishment => {
-
+        uniqueEstablishmentList && uniqueEstablishmentList.map(uniqueEstablishment => {
             let cartProductsByEstablishment = cartProducts.filter(product => product.establishment.id === uniqueEstablishment)
 
             if (cartProductsByEstablishment[0].establishment.deliveryTax) {
@@ -93,26 +91,23 @@ function Cart() {
             return
         }
 
-        let uniqueEstablishmentList = []
-        cartProducts.map(item => {
-
-            if (uniqueEstablishmentList.indexOf(item.establishment?.id) === -1) {
-                uniqueEstablishmentList.push({
-                    establishmentId: item.establishment?.id,
-                    establishmentTradingName: item.establishment?.tradingName
-                })
-            }
-
-        })
+        let uniqueEstablishmentList = Array.from(new Set(cartProducts.map(i => i.establishment.id)))
+            .map(id => {
+                return {
+                    establishmentId: id,
+                    establishmentTradingName: cartProducts.find(i => i.establishment.id === id).establishment.tradingName
+                }
+            })
 
         let orders = []
         let items = []
 
-        uniqueEstablishmentList.map(uniqueEstablishment => {
+        uniqueEstablishmentList && uniqueEstablishmentList.map(uniqueEstablishment => {
 
-            let cartProductsByEstablishment = cartProducts.filter(product => product.establishment.id === uniqueEstablishment.establishmentId)
+            let cartProductsByEstablishment =
+                cartProducts.filter(product => product.establishment.id === uniqueEstablishment.establishmentId)
 
-            cartProductsByEstablishment.map(productByEstablishment => {
+            cartProductsByEstablishment && cartProductsByEstablishment.map(productByEstablishment => {
 
                 let item = {
                     productId: productByEstablishment.id,
@@ -146,7 +141,7 @@ function Cart() {
                     setTotal(0)
                 } catch (err) {
                     alert("Ops, ocorreu um erro ao realizar a compra para o estabelecimento: " +
-                        order.establishmentTradingName + " Detalhes: " + err.response?.data?.description)
+                        order.establishmentTradingName + " Info: " + err.response?.data?.description)
                     return err
                 }
             })
