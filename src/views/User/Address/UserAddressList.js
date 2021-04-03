@@ -35,7 +35,7 @@ function UserAddressList() {
 
     const handleStatusFilter = (statusCode) => {
 
-        let url = `/api/v1/users/addresses`
+        let url = `/api/v1/users/addresses/mine`
 
         if (statusCode !== "-1") {
             url = url + `?status=${statusCode}`
