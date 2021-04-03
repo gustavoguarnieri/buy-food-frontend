@@ -66,7 +66,7 @@ function PurchasedList() {
                                         <ReactToPrint
                                             trigger={() =>
                                                 <Button className="m-2 btn-fill float-right" variant="info" size="sm">
-                                                    Print / Export
+                                                    Imprimir / Exportar
                                                 </Button>}
                                             content={() => componentRef.current}
                                         />
