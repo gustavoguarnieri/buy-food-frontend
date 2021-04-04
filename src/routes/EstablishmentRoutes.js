@@ -24,16 +24,16 @@ const routes = [
         profiles: "admin"
     },
     {
-        path: "/establishment/business-hours",
-        name: "Expediente",
-        component: EstablishmentBusinessHoursList,
+        path: "/establishment",
+        name: "Estabelecimento",
+        component: EstablishmentMyList,
         layout: "/home",
         profiles: "admin"
     },
     {
-        path: "/establishment",
-        name: "Estabelecimento",
-        component: EstablishmentMyList,
+        path: "/establishment/business-hours",
+        name: "Expediente",
+        component: EstablishmentBusinessHoursList,
         layout: "/home",
         profiles: "admin"
     },
