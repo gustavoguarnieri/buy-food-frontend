@@ -2,8 +2,57 @@
     @page { size: landscape; }
 }
 
+@font-face {
+    font-family: "Coiny-Regular";
+    src: local("Coiny-Regular"),
+    url("../fonts/text/Coiny-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Livvic-Light";
+    src: local("Livvic-Light"),
+    url("../fonts/text/Livvic-Light.ttf") format("truetype");
+    font-weight: normal;
+}
+
 .card-img-top {
     width: 100%;
     height: 15vh;
     object-fit: cover;
+}
+
+.buy-food-title {
+    font-family: "Coiny-Regular", serif;
+    color: #ff0000;
+}
+
+.buy-food-subtitle {
+    font-family: "Livvic-Light", serif;
+}
+
+.buy-food-title-img {
+    background-image: url("../img/friends-meal.jpg");
+    opacity: 0.8;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40vh;
+}
+
+@media (min-width: 576px) {
+    .buy-food-title-img {
+        padding: 4rem 2rem;
+    }
+}
+.buy-food-jumbotron {
+    padding: 2rem 1rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+}
+
+@media (min-width: 576px) {
+    .buy-food-jumbotron {
+        padding: 4rem 2rem;
+    }
 }
