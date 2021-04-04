@@ -249,10 +249,16 @@ function Cart() {
                                                         readOnly
                                                     >
                                                         {item.ingredients && item.ingredients.map((ing) => (
-                                                            <option
-                                                                key={ing.id}
-                                                                value={ing.id}>{ing.ingredient} ({ing.portion})
-                                                            </option>
+
+                                                            ing?.status === 1 ? (
+                                                                <option
+                                                                    key={ing.id}
+                                                                    value={ing.id}>{ing.ingredient} ({ing.portion})
+                                                                </option>
+                                                            ) : (
+                                                                <></>
+                                                            )
+
                                                         ))}
                                                     </Form.Control>
                                                 ) : (
