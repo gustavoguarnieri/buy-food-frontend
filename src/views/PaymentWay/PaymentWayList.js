@@ -68,7 +68,7 @@ function PaymentWayList() {
         <>
             <Container fluid>
                 <Row>
-                    <Col md="6">
+                    <Col md="8">
                         <Card className="strpied-tabled-with-hover">
                             <Card.Header>
                                 <Card.Title as="h4">Lista de Formas de Pagamento</Card.Title>
