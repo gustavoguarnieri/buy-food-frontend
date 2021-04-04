@@ -26,11 +26,15 @@ function IngredientList() {
     const handleEstablishmentChange = (event) => {
         setEstablishmentId(event.target.value)
         setProductId('-1')
+        setStatusFilter('-1')
+        setIngredients('')
         handleProducts(event.target.value)
     }
 
     const handleProductChange = (event) => {
         setProductId(event.target.value)
+        setStatusFilter('-1')
+        setIngredients('')
         handleIngredients(event.target.value)
     }
 
