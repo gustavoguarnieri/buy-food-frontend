@@ -64,7 +64,7 @@ function ProductList() {
                 </Row>
                 <CardDeck>
                     {products && products.map((item) => (
-                        <Col md="3" className="m-1">
+                        <Col key={item.id} md="3" className="m-1">
                             <Card style={{height: '22rem'}}>
                                 <Card.Img variant="top" style={{height: '10rem'}}
                                           src={item.images[0]?.fileUri || DefaultNoImg}/>
