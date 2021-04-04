@@ -12,7 +12,7 @@ function EstablishmentBusinessHoursNew() {
 
     const history = useHistory()
     const [establishments, setEstablishments] = useState('');
-    const [establishment, setEstablishment] = useState('');
+    const [establishment, setEstablishment] = useState('-1');
 
     const [startTimeFirstPeriodSunday, setStartTimeFirstPeriodSunday] = useState('');
     const [finalTimeFirstPeriodSunday, setFinalTimeFirstPeriodSunday] = useState('');
@@ -181,6 +181,11 @@ function EstablishmentBusinessHoursNew() {
     const handleNewEstablishmentBusinessHours = async (e) => {
         e.preventDefault();
 
+        if (establishment === '-1') {
+            alert("Selecione um estabelecimento para cadastro da imagem")
+            return
+        }
+
         let newEstablishmentBusinessHoursData = {
             startTimeFirstPeriodSunday: startTimeFirstPeriodSunday,
             finalTimeFirstPeriodSunday: finalTimeFirstPeriodSunday,
@@ -246,7 +251,8 @@ function EstablishmentBusinessHoursNew() {
                                                 <label>Estabelecimento</label>
                                                 <Establishment establishments={establishments}
                                                                establishment={establishment}
-                                                               handleEstablishmentChange={handleEstablishmentChange}/>
+                                                               handleEstablishmentChange={handleEstablishmentChange}
+                                                               isSelectVisible={true}/>
                                             </Form.Group>
                                         </Col>
                                     </Row>
