@@ -39,7 +39,11 @@ function ProductNew() {
                     res.data.length > 0 ? setEstablishment(res.data[0].id) : 0
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
                 })
         },
         []

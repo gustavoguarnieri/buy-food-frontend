@@ -32,6 +32,38 @@ export default () => {
         setRole(event.target.value)
     }
 
+    useEffect(() => {
+            if (UserService.hasRole("admin")) {
+                setRole("ADMIN")
+            } else if (UserService.hasRole("establishment")) {
+                setRole("ESTABLISHMENT")
+            } else {
+                setRole("USER")
+            }
+        },
+        []
+    )
+
+    useEffect(() => {
+            Api.get(`/api/v1/users/${UserService.getUserId()}`, axiosConfig)
+                .then((res) => {
+                    setFirstName(res.data.firstName)
+                    setEmail(res.data.email)
+                    setLastName(res.data.lastName)
+                    setNickName(res.data.nickName)
+                    setPhone(res.data.phone)
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
+                })
+        },
+        []
+    )
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -56,34 +88,6 @@ export default () => {
                 console.log(err)
             })
     }
-
-    useEffect(() => {
-            if (UserService.hasRole("admin")) {
-                setRole("ADMIN")
-            } else if (UserService.hasRole("establishment")) {
-                setRole("ESTABLISHMENT")
-            } else {
-                setRole("USER")
-            }
-        },
-        []
-    )
-
-    useEffect(() => {
-            Api.get(`/api/v1/users/${UserService.getUserId()}`, axiosConfig)
-                .then((res) => {
-                    setFirstName(res.data.firstName)
-                    setEmail(res.data.email)
-                    setLastName(res.data.lastName)
-                    setNickName(res.data.nickName)
-                    setPhone(res.data.phone)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        },
-        []
-    )
 
     return (
         <>

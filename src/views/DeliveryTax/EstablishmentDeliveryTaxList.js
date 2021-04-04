@@ -32,7 +32,11 @@ function EstablishmentDeliveryList() {
                     setEstablishmentDeliveries(res.data)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
                 })
         },
         []
@@ -108,9 +112,9 @@ function EstablishmentDeliveryList() {
                                             id="inlineFormCustomSelect"
                                             custom
                                         >
-                                            <option value="-1">TODOS</option>
-                                            <option value="1">ATIVO</option>
-                                            <option value="0">INATIVO</option>
+                                            <option key="-1" value="-1">TODOS</option>
+                                            <option key="1" value="1">ATIVO</option>
+                                            <option key="0" value="0">INATIVO</option>
                                         </Form.Control>
                                     </Form.Group>
                                 </Col>

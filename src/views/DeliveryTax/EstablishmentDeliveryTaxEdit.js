@@ -28,7 +28,11 @@ function EstablishmentDeliveryTaxEdit() {
                     setStatus(res.data.status)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
                 })
         },
         []

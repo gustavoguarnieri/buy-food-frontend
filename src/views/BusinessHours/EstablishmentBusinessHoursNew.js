@@ -168,7 +168,11 @@ function EstablishmentBusinessHoursNew() {
                     allEstablishment.length > 0 ? setEstablishment(allEstablishment[0].id) : 0
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
                 })
         },
         []
