@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
-import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
+import {Button, Card, Col, Container, Figure, Form, Row, Table} from "react-bootstrap";
 import UtilService from "../../../services/UtilService";
 import BusinessHours from "../../../components/Utils/BusinessHours";
 import Api from "../../../services/Api";
@@ -246,7 +246,7 @@ function Cart() {
                                                         as="select"
                                                         className="mr-sm-0"
                                                         id="inlineFormCustomSelect"
-                                                        custom
+                                                        readonly
                                                     >
                                                         {item.ingredients && item.ingredients.map((ing) => (
                                                             <option
@@ -259,8 +259,19 @@ function Cart() {
                                                     <></>
                                                 )}
                                             </td>
-
-                                            <td>{item.establishment?.tradingName}</td>
+                                            <>
+                                                {item.establishment?.images[0] ? (
+                                                    <td>
+                                                        <Figure.Image
+                                                            width={80}
+                                                            src={item.establishment?.images[0].fileUri}
+                                                            alt={item.establishment?.tradingName}
+                                                        />
+                                                    </td>
+                                                ) : (
+                                                    <td>{item.establishment?.tradingName}</td>
+                                                )}
+                                            </>
                                             <td>
                                                 <BusinessHours businessHours={item.establishment?.businessHours}/>
                                             </td>
