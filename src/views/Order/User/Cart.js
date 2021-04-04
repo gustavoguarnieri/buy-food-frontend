@@ -41,7 +41,7 @@ function Cart() {
     )
 
     useEffect(() => {
-            Api.get(`/api/v1/users/addresses/mine`, axiosConfig)
+            Api.get(`/api/v1/users/addresses/mine?status=1`, axiosConfig)
                 .then((res) => {
                     setAddresses(res.data)
                 })
@@ -246,7 +246,7 @@ function Cart() {
                                                         as="select"
                                                         className="mr-sm-0"
                                                         id="inlineFormCustomSelect"
-                                                        readonly
+                                                        readOnly
                                                     >
                                                         {item.ingredients && item.ingredients.map((ing) => (
                                                             <option
