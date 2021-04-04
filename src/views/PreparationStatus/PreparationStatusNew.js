@@ -42,7 +42,7 @@ function PreparationStatusNew() {
                         <Card>
                             <Card.Header>
                                 <p>
-                                    <Link to="/home/establishment/category">&laquo; voltar</Link>
+                                    <Link to="/home/establishment/preparation-status">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
                                     Criar Status de Preparo
