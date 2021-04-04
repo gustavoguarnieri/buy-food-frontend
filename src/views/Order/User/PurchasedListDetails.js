@@ -92,14 +92,6 @@ function PurchasedListDetails() {
                                             </Form.Group>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col md="6">
-                                            <Form.Group>
-                                                <label>Observação</label>
-                                                <td>{order.observation}</td>
-                                            </Form.Group>
-                                        </Col>
-                                    </Row>
                                 </Form>
                             </Card.Body>
                             <Card.Body className="table-full-width table-responsive px-0">
