@@ -87,7 +87,7 @@ function EstablishmentMyList() {
                     <Col md="12">
                         <Card className="strpied-tabled-with-hover">
                             <Card.Header>
-                                <Card.Title as="h4">Lista de estabelecimentos</Card.Title>
+                                <Card.Title as="h4">Lista de Estabelecimentos</Card.Title>
                             </Card.Header>
                             <Row>
                                 <Col md="12">

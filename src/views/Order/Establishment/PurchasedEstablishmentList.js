@@ -101,7 +101,7 @@ function PurchasedEstablishmentList() {
                     <Col md="9">
                         <Card className="strpied-tabled-with-hover">
                             <Card.Header>
-                                <Card.Title as="h4">Pedidos</Card.Title>
+                                <Card.Title as="h4">Lista de Pedidos</Card.Title>
                             </Card.Header>
                             <Row>
                                 <Col md="12">

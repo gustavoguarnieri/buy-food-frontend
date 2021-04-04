@@ -71,7 +71,7 @@ function EstablishmentCategoryList() {
                     <Col md="6">
                         <Card className="strpied-tabled-with-hover">
                             <Card.Header>
-                                <Card.Title as="h4">Lista de estabelecimentos</Card.Title>
+                                <Card.Title as="h4">Lista de Categoria de Estabelecimentos</Card.Title>
                             </Card.Header>
                             <Row>
                                 <Col md="12">
