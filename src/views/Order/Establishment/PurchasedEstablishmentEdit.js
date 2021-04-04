@@ -46,11 +46,11 @@ function PurchasedEstablishmentEdit() {
             Api.get(`${url}`, axiosConfig)
                 .then((res) => {
                     setOrder(res.data)
-                    handleTotal(res.data)
-                    setPaymentWay(res.data.paymentWay)
+                    setPaymentWay(res.data.paymentWay?.id)
                     setPaymentStatus(res.data.paymentStatus)
                     setPreparationStatus(res.data.preparationStatus?.id)
                     setStatus(res.data.status)
+                    handleTotal(res.data)
                 })
                 .catch((err) => {
                     if (err.response) {
@@ -128,7 +128,7 @@ function PurchasedEstablishmentEdit() {
             items: items,
             observation: order?.observation,
             paymentStatus: paymentStatus,
-            paymentWay: paymentWay,
+            paymentWayId: paymentWay,
             preparationStatus: {
                 id: preparationStatus
             },
