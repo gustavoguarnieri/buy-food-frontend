@@ -247,11 +247,6 @@ function EstablishmentNew() {
                                             </Form.Text>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col md="6">
-                                            <Link to="/home/establishment">Taxa de Entrega  &gt;&gt;</Link>
-                                        </Col>
-                                    </Row>
                                     <Button
                                         className="btn-fill float-right"
                                         variant="info"
