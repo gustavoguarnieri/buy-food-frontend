@@ -4,7 +4,6 @@ import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
-import PaymentWayText from "../../../components/Utils/PaymentWayText";
 import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
 import Establishment from "../../../components/Utils/Establishment";
 
@@ -25,8 +24,8 @@ function PurchasedEstablishmentList() {
 
     const handleEstablishmentChange = (event) => {
         setEstablishmentId(event.target.value)
-        
-        if (event.target.value === "-1"){
+
+        if (event.target.value === "-1") {
             return
         }
 
@@ -61,7 +60,11 @@ function PurchasedEstablishmentList() {
                     setEstablishments(res.data)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
                 })
         },
         []
@@ -69,7 +72,7 @@ function PurchasedEstablishmentList() {
 
     const handleStatusFilter = (statusCode) => {
 
-        if (establishmentId === "-1"){
+        if (establishmentId === "-1") {
             alert("Selecione um estabelecimento para filtrar os registros")
             return
         }
@@ -134,9 +137,9 @@ function PurchasedEstablishmentList() {
                                             id="inlineFormCustomSelect"
                                             custom
                                         >
-                                            <option value="-1">TODOS</option>
-                                            <option value="1">ATIVO</option>
-                                            <option value="0">INATIVO</option>
+                                            <option key="-1" value="-1">TODOS</option>
+                                            <option key="1" value="1">ATIVO</option>
+                                            <option key="0" value="0">INATIVO</option>
                                         </Form.Control>
                                     </Form.Group>
                                 </Col>
@@ -144,39 +147,39 @@ function PurchasedEstablishmentList() {
                             <Card.Body className="table-full-width table-responsive px-0">
                                 <Table className="table-hover table-striped" ref={componentRef}>
                                     <thead>
-                                        <tr>
-                                            <th className="border-0">Id</th>
-                                            <th className="border-0">Estabelecimento</th>
-                                            <th className="border-0">Forma de Pagamento</th>
-                                            <th className="border-0">Status de Pagamento</th>
-                                            <th className="border-0">Status de Preparo</th>
-                                            <th className="border-0">Observação</th>
-                                            <th className="border-0">Status</th>
-                                        </tr>
+                                    <tr>
+                                        <th className="border-0">Id</th>
+                                        <th className="border-0">Estabelecimento</th>
+                                        <th className="border-0">Forma de Pagamento</th>
+                                        <th className="border-0">Status de Pagamento</th>
+                                        <th className="border-0">Status de Preparo</th>
+                                        <th className="border-0">Observação</th>
+                                        <th className="border-0">Status</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {orders && orders.map((item) => (
-                                            <tr key={item.id}>
-                                                <td>{item.id}</td>
-                                                <td>{item.establishment?.tradingName}</td>
-                                                <PaymentWayText paymentWay={item.paymentWay}/>
-                                                <PaymentStatusText paymentStatus={item.paymentStatus}/>
-                                                <td>{item.preparationStatus?.description}</td>
-                                                <td>{item.observation}</td>
-                                                <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
-                                                <td>
-                                                    {UserService.hasRole("admin") ? (
-                                                        <></>
-                                                    ) : (
-                                                        <Link to={`/home/establishment/order/purchasedOrder/${item.id}/edit`}>
-                                                            <Button className="btn-fill" variant="secondary" size="sm">
-                                                                Editar
-                                                            </Button>
-                                                        </Link>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        ))}
+                                    {orders && orders.map((item) => (
+                                        <tr key={item.id}>
+                                            <td>{item.id}</td>
+                                            <td>{item.establishment?.tradingName}</td>
+                                            <td>{item.paymentWay?.description}</td>
+                                            <PaymentStatusText paymentStatus={item.paymentStatus}/>
+                                            <td>{item.preparationStatus?.description}</td>
+                                            <td>{item.observation}</td>
+                                            <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
+                                            <td>
+                                                {UserService.hasRole("admin") ? (
+                                                    <></>
+                                                ) : (
+                                                    <Link to={`/home/establishment/order/purchasedOrder/${item.id}/edit`}>
+                                                        <Button className="btn-fill" variant="secondary" size="sm">
+                                                            Editar
+                                                        </Button>
+                                                    </Link>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
                                     </tbody>
                                 </Table>
                             </Card.Body>

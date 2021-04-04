@@ -17,6 +17,7 @@ function PurchasedEstablishmentEdit() {
     const [order, setOrder] = useState('');
     const [total, setTotal] = useState(0)
     const [paymentWay, setPaymentWay] = useState('-1')
+    const [paymentWayList, setPaymentWayList] = useState('')
     const [paymentStatus, setPaymentStatus] = useState('-1')
     const [preparationStatus, setPreparationStatus] = useState('-1')
     const [preparationStatusList, setPreparationStatusList] = useState('')
@@ -52,7 +53,11 @@ function PurchasedEstablishmentEdit() {
                     setStatus(res.data.status)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
                 })
         },
         []
@@ -64,6 +69,20 @@ function PurchasedEstablishmentEdit() {
             Api.get(`${url}`, axiosConfig)
                 .then((res) => {
                     setPreparationStatusList(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        []
+    )
+
+    useEffect(() => {
+            let url = `/api/v1/establishments/payment-way?status=1`
+
+            Api.get(`${url}`, axiosConfig)
+                .then((res) => {
+                    setPaymentWayList(res.data)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -156,6 +175,7 @@ function PurchasedEstablishmentEdit() {
                                         <Col md="3">
                                             <label>Forma de Pagamento</label>
                                             <PaymentWay paymentWay={paymentWay}
+                                                        paymentWayList={paymentWayList}
                                                         handlePaymentWayChange={handlePaymentWayChange}
                                                         isSelectVisible={false}
                                             />

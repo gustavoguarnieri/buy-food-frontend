@@ -4,6 +4,7 @@ import EstablishmentCategoryList from "../views/EstablishmentCategory/Establishm
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
 import AdminDashboardOrder from "../views/Dashboard/Admin/AdminDashboardOrder";
 import PreparationStatusList from "../views/PreparationStatus/PreparationStatusList";
+import PaymentWayList from "../views/PaymentWay/PaymentWayList";
 
 const routes = [
     {
@@ -31,6 +32,13 @@ const routes = [
         path: "/establishment/preparation-status",
         name: "Status de Preparo",
         component: PreparationStatusList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/payment-way",
+        name: "Forma de Pagamento",
+        component: PaymentWayList,
         layout: "/home",
         profiles: "admin"
     },

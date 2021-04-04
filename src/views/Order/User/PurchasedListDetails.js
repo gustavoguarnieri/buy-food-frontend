@@ -4,7 +4,6 @@ import Api from "../../../services/Api";
 import UserService from "../../../services/UserService";
 import {Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import UtilService from "../../../services/UtilService";
-import PaymentWayText from "../../../components/Utils/PaymentWayText";
 import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
 
 function PurchasedListDetails() {
@@ -24,7 +23,11 @@ function PurchasedListDetails() {
                     handleTotal(res.data)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
                 })
         },
         []
@@ -73,7 +76,7 @@ function PurchasedListDetails() {
                                         <Col md="3">
                                             <Form.Group>
                                                 <label>Forma de pagamento</label>
-                                                <PaymentWayText paymentWay={order.paymentWay}/>
+                                                <td>{order.paymentWay?.description}</td>
                                             </Form.Group>
                                         </Col>
                                         <Col md="3">

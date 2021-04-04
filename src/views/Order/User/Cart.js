@@ -15,6 +15,7 @@ function Cart() {
     const [address, setAddress] = useState('-1')
     const [total, setTotal] = useState(0)
     const [paymentWay, setPaymentWay] = useState('-1')
+    const [paymentWayList, setPaymentWayList] = useState('')
     const [cartProducts, setCartProducts] = useState(location.state?.orderItens);
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
@@ -43,6 +44,24 @@ function Cart() {
             Api.get(`/api/v1/users/addresses/mine`, axiosConfig)
                 .then((res) => {
                     setAddresses(res.data)
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        if (err.response.status === 401) {
+                            UserService.doLogout()
+                        }
+                    }
+                })
+        },
+        []
+    )
+
+    useEffect(() => {
+            let url = `/api/v1/establishments/payment-way?status=1`
+
+            Api.get(`${url}`, axiosConfig)
+                .then((res) => {
+                    setPaymentWayList(res.data)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -121,7 +140,7 @@ function Cart() {
                 establishmentId: uniqueEstablishment.establishmentId,
                 establishmentTradingName: uniqueEstablishment.establishmentTradingName,
                 deliveryAddressId: address,
-                paymentWay: paymentWay,
+                paymentWayId: paymentWay,
                 items: items
             }
             orders.push(order)
@@ -181,6 +200,7 @@ function Cart() {
                                     <Form.Group className="m-2">
                                         <label>Forma de Pagamento</label>
                                         <PaymentWay paymentWay={paymentWay}
+                                                    paymentWayList={paymentWayList}
                                                     handlePaymentWayChange={handlePaymentWayChange}
                                                     isSelectVisible={true}
                                         />

@@ -1,17 +1,15 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
-import Api from "../../../services/Api";
-import UserService from "../../../services/UserService";
+import Api from "../../services/Api";
+import UserService from "../../services/UserService";
 import {Button, Card, Col, Container, Form, Row, Table} from "react-bootstrap";
 import ReactToPrint from "react-to-print";
-import PaymentStatusText from "../../../components/Utils/PaymentStatusText";
 
-function PurchasedList() {
+function PaymentWayList() {
 
     const componentRef = useRef();
+    const [paymentWayList, setPaymentWayList] = useState('');
     const [statusFilter, setStatusFilter] = useState('-1');
-
-    const [orders, setOrders] = useState('');
     const axiosConfig = {headers: {Authorization: `Bearer ${UserService.getToken()}`}};
 
     const handleStatusFilterChange = (event) => {
@@ -20,11 +18,9 @@ function PurchasedList() {
     }
 
     useEffect(() => {
-            let url = `/api/v1/users/orders/mine`
-
-            Api.get(`${url}`, axiosConfig)
+            Api.get(`/api/v1/establishments/payment-way`, axiosConfig)
                 .then((res) => {
-                    setOrders(res.data)
+                    setPaymentWayList(res.data)
                 })
                 .catch((err) => {
                     if (err.response) {
@@ -39,7 +35,7 @@ function PurchasedList() {
 
     const handleStatusFilter = (statusCode) => {
 
-        let url = `/api/v1/users/orders/mine`
+        let url = `/api/v1/establishments/payment-way`
 
         if (statusCode !== "-1") {
             url = url + `?status=${statusCode}`
@@ -47,25 +43,44 @@ function PurchasedList() {
 
         Api.get(`${url}`, axiosConfig)
             .then((res) => {
-                setOrders(res.data)
+                setPaymentWayList(res.data)
             })
             .catch((err) => {
                 console.log(err)
             })
     }
 
+    const handleDeletePaymentWay = (id) => {
+        Api.delete(`/api/v1/establishments/payment-way/${id}`, axiosConfig)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .then((res) => {
+                alert("Removido com sucesso!")
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        window.location.reload();
+    }
+
     return (
         <>
             <Container fluid>
                 <Row>
-                    <Col md="9">
+                    <Col md="6">
                         <Card className="strpied-tabled-with-hover">
                             <Card.Header>
-                                <Card.Title as="h4">Pedidos</Card.Title>
+                                <Card.Title as="h4">Lista de Formas de Pagamento</Card.Title>
                             </Card.Header>
                             <Row>
                                 <Col md="12">
                                     <Form.Group>
+                                        <Link to={`/home/establishment/payment-way/new`}>
+                                            <Button className="m-2 btn-fill float-right" variant="info" size="sm">
+                                                Novo
+                                            </Button>
+                                        </Link>
                                         <ReactToPrint
                                             trigger={() =>
                                                 <Button className="m-2 btn-fill float-right" variant="info" size="sm">
@@ -100,28 +115,34 @@ function PurchasedList() {
                                     <thead>
                                     <tr>
                                         <th className="border-0">Id</th>
-                                        <th className="border-0">Estabelecimento</th>
                                         <th className="border-0">Forma de Pagamento</th>
-                                        <th className="border-0">Status de Pagamento</th>
-                                        <th className="border-0">Status de Preparo</th>
-                                        <th className="border-0">Observação</th>
                                         <th className="border-0">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {orders && orders.map((item) => (
+                                    {paymentWayList && paymentWayList.map((item) => (
                                         <tr key={item.id}>
                                             <td>{item.id}</td>
-                                            <td>{item.establishment?.tradingName}</td>
-                                            <td>{item.paymentWay?.description}</td>
-                                            <PaymentStatusText paymentStatus={item.paymentStatus}/>
-                                            <td>{item.preparationStatus?.description}</td>
-                                            <td>{item.observation}</td>
+                                            <td>{item.description}</td>
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
-                                                <Link to={`/home/user/order/purchased-order/${item.id}/details`}>
+                                                {item.status === 1 ? (
+                                                    <Button className="btn-fill" variant="danger" size="sm"
+                                                            onClick={() => {
+                                                                if (window.confirm(`Deseja realmente remover este item (${item.description}) ?`)) {
+                                                                    handleDeletePaymentWay(item.id)
+                                                                }
+                                                            }}>
+                                                        Deletar
+                                                    </Button>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                            </td>
+                                            <td>
+                                                <Link to={`/home/establishment/payment-way/${item.id}/edit`}>
                                                     <Button className="btn-fill" variant="secondary" size="sm">
-                                                        + Detalhes
+                                                        Editar
                                                     </Button>
                                                 </Link>
                                             </td>
@@ -138,4 +159,4 @@ function PurchasedList() {
     )
 }
 
-export default PurchasedList;
+export default PaymentWayList;

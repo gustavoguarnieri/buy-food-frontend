@@ -11,28 +11,20 @@ function PaymentWay(props) {
                 as="select"
                 className="mr-sm-0"
                 id="inlineFormCustomSelect"
-                readOnly={props.isReadOnly}
+                custom
             >
                 {props.isSelectVisible ?
                     <option
                         key="-1"
-                        value="-1"
-                    >
-                        Selecione...
+                        value="-1">Selecione...
                     </option> : <></>
                 }
-                <option
-                    key="MONEY"
-                    value="MONEY"
-                >
-                    DINHEIRO
-                </option>
-                <option
-                    key="CREDIT_CARD"
-                    value="CREDIT_CARD"
-                >
-                    CARTÃO DE CRÉDITO
-                </option>
+                {props.paymentWayList && props.paymentWayList.map((item) => (
+                    <option
+                        key={item.id}
+                        value={item.id}>{item.description}
+                    </option>
+                ))}
             </Form.Control>
         </>
     )

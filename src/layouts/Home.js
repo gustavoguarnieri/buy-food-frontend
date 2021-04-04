@@ -50,6 +50,9 @@ import AdminDashboardOrder from "../views/Dashboard/Admin/AdminDashboardOrder";
 import PreparationStatusList from "../views/PreparationStatus/PreparationStatusList";
 import PreparationStatusNew from "../views/PreparationStatus/PreparationStatusNew";
 import PreparationStatusEdit from "../views/PreparationStatus/PreparationStatusEdit";
+import PaymentWayList from "../views/PaymentWay/PaymentWayList";
+import PaymentWayNew from "../views/PaymentWay/PaymentWayNew";
+import PaymentWayEdit from "../views/PaymentWay/PaymentWayEdit";
 
 function getRoutes() {
   if (UserService.hasRole("admin")) {
@@ -98,6 +101,15 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/preparation-status/:preparationStatusId/edit">
                 <PreparationStatusEdit/>
+              </Route>
+              <Route exact path="/home/establishment/payment-way">
+                <PaymentWayList/>
+              </Route>
+              <Route exact path="/home/establishment/payment-way/new">
+                <PaymentWayNew/>
+              </Route>
+              <Route exact path="/home/establishment/payment-way/:paymentWayId/edit">
+                <PaymentWayEdit/>
               </Route>
               {/*<Route exact path="/home/admin/dashboard/billing">*/}
               {/*  <AdminDashboardBillingOrder/>*/}
