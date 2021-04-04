@@ -1,5 +1,4 @@
 import React from "react";
-import {Form} from "react-bootstrap";
 
 function PaymentStatusText(props) {
 
@@ -9,15 +8,15 @@ function PaymentStatusText(props) {
                 switch (props.paymentStatus) {
                     case 'PENDING':
                         return (
-                            <td>PENDENTE</td>
+                            <td>Pendente</td>
                         )
                     case 'DECLINED':
                         return (
-                            <td>RECUSADO</td>
+                            <td>Recusado</td>
                         )
                     case 'APPROVED':
                         return (
-                            <td>APROVADO</td>
+                            <td>Aprovado</td>
                         )
                     default:
                         return (

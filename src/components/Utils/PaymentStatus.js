@@ -23,19 +23,19 @@ function PaymentStatus(props) {
                     key="APPROVED"
                     value="APPROVED"
                 >
-                    APROVADO
+                    Aprovado
                 </option>
                 <option
                     key="PENDING"
                     value="PENDING"
                 >
-                    PENDENTE
+                    Pendente
                 </option>
                 <option
                     key="DECLINED"
                     value="DECLINED"
                 >
-                    RECUSADO
+                    Recusado
                 </option>
             </Form.Control>
         </>
