@@ -153,7 +153,6 @@ function PurchasedEstablishmentList() {
                                         <th className="border-0">Forma de Pagamento</th>
                                         <th className="border-0">Status de Pagamento</th>
                                         <th className="border-0">Status de Preparo</th>
-                                        <th className="border-0">Observação</th>
                                         <th className="border-0">Status</th>
                                     </tr>
                                     </thead>
@@ -165,7 +164,6 @@ function PurchasedEstablishmentList() {
                                             <td>{item.paymentWay?.description}</td>
                                             <PaymentStatusText paymentStatus={item.paymentStatus}/>
                                             <td>{item.preparationStatus?.description}</td>
-                                            <td>{item.observation}</td>
                                             <td>{item.status === 1 ? "Ativo" : "Inativo"}</td>
                                             <td>
                                                 {UserService.hasRole("admin") ? (
