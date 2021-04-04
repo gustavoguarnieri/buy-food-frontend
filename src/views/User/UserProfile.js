@@ -82,7 +82,7 @@ export default () => {
             })
             .then((res) => {
                 alert("Alterado com sucesso!")
-                history.push("/home")
+                UserService.doLogout()
             })
             .catch((err) => {
                 console.log(err)
