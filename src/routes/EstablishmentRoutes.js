@@ -11,25 +11,11 @@ import ProductImageList from "../views/Product/Image/ProductImageList";
 const routes = [
     {
         path: "/user",
-        name: "Usuários",
+        name: "Usuário",
         icon: "nc-icon nc-circle-09",
         component: UserProfile,
         layout: "/home",
     },
-    {
-        path: "/establishment",
-        name: "Rel. Estabelecimento",
-        component: EstablishmentMyList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    // {
-    //     path: "/establishment/category",
-    //     name: "Categoria de Est.",
-    //     component: EstablishmentCategoryList,
-    //     layout: "/home",
-    //     profiles: "admin"
-    // },
     {
         path: "/establishment/delivery-tax",
         name: "Taxa de Entrega",
@@ -39,22 +25,36 @@ const routes = [
     },
     {
         path: "/establishment/business-hours",
-        name: "Horário de Funcionamento",
+        name: "Expediente",
         component: EstablishmentBusinessHoursList,
         layout: "/home",
         profiles: "admin"
     },
-    // {
-    //     path: "/user/address",
-    //     name: "Endereço",
-    //     component: UserAddressList,
-    //     layout: "/home",
-    //     profiles: "admin"
-    // },
+    {
+        path: "/establishment",
+        name: "Estabelecimento",
+        component: EstablishmentMyList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/image",
+        name: "Imagem de Estabelecimento",
+        component: EstablishmentImageList,
+        layout: "/home",
+        profiles: "admin"
+    },
     {
         path: "/establishment/product",
         name: "Produto",
         component: ProductList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/product/image",
+        name: "Imagem de Produto",
+        component: ProductImageList,
         layout: "/home",
         profiles: "admin"
     },
@@ -66,46 +66,12 @@ const routes = [
         profiles: "admin"
     },
     {
-        path: "/establishment/product/image",
-        name: "Product Imagem",
-        component: ProductImageList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
-        path: "/establishment/image",
-        name: "Estabelecimento Imagem",
-        component: EstablishmentImageList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    // {
-    //     path: "/user/order/itens",
-    //     name: "Produtos",
-    //     component: ProductList,
-    //     layout: "/home",
-    //     profiles: "admin"
-    // },
-    // {
-    //     path: "/user/order/purchasedOrder",
-    //     name: "Pedidos",
-    //     component: PurchasedList,
-    //     layout: "/home",
-    //     profiles: "admin"
-    // },
-    {
         path: "/establishment/order/purchasedOrder",
-        name: "Pedidos - Est",
+        name: "Pedidos",
         component: PurchasedEstablishmentList,
         layout: "/home",
         profiles: "admin"
-    },
-    // {
-    //     path: "/establishment/dashboard",
-    //     name: "Establ Dashboard",
-    //     component: EstablishmentDashboardQttOrder,
-    //     layout: "/home"
-    // }
+    }
 ];
 
 export default routes;

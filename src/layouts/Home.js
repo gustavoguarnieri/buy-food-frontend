@@ -12,7 +12,6 @@ import establishmentRoutes from "../routes/EstablishmentRoutes";
 
 import NotFound from "../components/NotFound";
 import UserProfile from "views/User/UserProfile.js";
-import TableList from "views/TableList.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentEdit from "views/Establishment/EstablishmentEdit.js"
 import EstablishmentNew from "views/Establishment/EstablishmentNew.js"
@@ -90,6 +89,7 @@ function Home() {
           <AdminNavbar />
           <div className="content">
             <Switch>
+              {/*Admin*/}
               <Route exact path="/home/admin/dashboard/order">
                 <AdminDashboardOrder/>
               </Route>
@@ -111,24 +111,6 @@ function Home() {
               <Route exact path="/home/establishment/payment-way/:paymentWayId/edit">
                 <PaymentWayEdit/>
               </Route>
-              {/*<Route exact path="/home/admin/dashboard/billing">*/}
-              {/*  <AdminDashboardBillingOrder/>*/}
-              {/*</Route>*/}
-              <Route exact path="/home/user">
-                <UserProfile/>
-              </Route>
-              <Route exact path="/home/table">
-                <TableList/>
-              </Route>
-              <Route exact path="/home/establishment">
-                <EstablishmentMyList/>
-              </Route>
-              <Route exact path="/home/establishment/new">
-                <EstablishmentNew/>
-              </Route>
-              <Route exact path="/home/establishment/:establishmentId/edit">
-                <EstablishmentEdit/>
-              </Route>
               <Route exact path="/home/establishment/category">
                 <EstablishmentCategoryList/>
               </Route>
@@ -137,6 +119,16 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/category/:establishmentCategoryId/edit">
                 <EstablishmentCategoryEdit/>
+              </Route>
+              {/*Estabelecimento*/}
+              <Route exact path="/home/establishment">
+                <EstablishmentMyList/>
+              </Route>
+              <Route exact path="/home/establishment/new">
+                <EstablishmentNew/>
+              </Route>
+              <Route exact path="/home/establishment/:establishmentId/edit">
+                <EstablishmentEdit/>
               </Route>
               <Route exact path="/home/establishment/delivery-tax">
                 <EstablishmentDeliveryList/>
@@ -155,24 +147,6 @@ function Home() {
               </Route>
               <Route exact path="/home/establishment/:establishmentId/business-hours/:establishmentBusinessHoursId/edit">
                 <EstablishmentBusinessHoursEdit/>
-              </Route>
-              <Route exact path="/home/user/address">
-                <UserAddressList/>
-              </Route>
-              <Route exact path="/home/user/address/new">
-                <UserAddressNew/>
-              </Route>
-              <Route exact path="/home/user/address/:addressId/edit">
-                <UserAddressEdit/>
-              </Route>
-              <Route exact path="/home/establishment/product">
-                <ProductList/>
-              </Route>
-              <Route exact path="/home/establishment/product/new">
-                <ProductNew/>
-              </Route>
-              <Route exact path="/home/establishment/:establishmentId/product/:productId/edit">
-                <ProductEdit/>
               </Route>
               <Route exact path="/home/establishment/product/ingredient">
                 <IngredientList/>
@@ -201,6 +175,34 @@ function Home() {
               <Route exact path="/home/establishment/:establishmentId/image/:imageId/edit">
                 <EstablishmentImageEdit/>
               </Route>
+              <Route exact path="/home/establishment/order/purchasedOrder">
+                <PurchasedEstablishmentList/>
+              </Route>
+              <Route exact path="/home/establishment/order/purchasedOrder/:orderId/edit">
+                <PurchasedEstablishmentEdit/>
+              </Route>
+              {/*Usuario*/}
+              <Route exact path="/home/user">
+                <UserProfile/>
+              </Route>
+              <Route exact path="/home/user/address">
+                <UserAddressList/>
+              </Route>
+              <Route exact path="/home/user/address/new">
+                <UserAddressNew/>
+              </Route>
+              <Route exact path="/home/user/address/:addressId/edit">
+                <UserAddressEdit/>
+              </Route>
+              <Route exact path="/home/establishment/product">
+                <ProductList/>
+              </Route>
+              <Route exact path="/home/establishment/product/new">
+                <ProductNew/>
+              </Route>
+              <Route exact path="/home/establishment/:establishmentId/product/:productId/edit">
+                <ProductEdit/>
+              </Route>
               <Route exact path="/home/user/order/itens">
                 <OrderList/>
               </Route>
@@ -212,12 +214,6 @@ function Home() {
               </Route>
               <Route exact path="/home/user/order/purchased-order/:orderId/details">
                 <PurchasedListDetails/>
-              </Route>
-              <Route exact path="/home/establishment/order/purchasedOrder">
-                <PurchasedEstablishmentList/>
-              </Route>
-              <Route exact path="/home/establishment/order/purchasedOrder/:orderId/edit">
-                <PurchasedEstablishmentEdit/>
               </Route>
               <Route path="/home/*">
                 <NotFound/>
