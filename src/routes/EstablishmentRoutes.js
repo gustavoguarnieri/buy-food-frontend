@@ -32,7 +32,7 @@ const routes = [
     },
     {
         path: "/establishment/business-hours",
-        name: "Expediente",
+        name: "Horário de Funcionamento",
         component: EstablishmentBusinessHoursList,
         layout: "/home",
         profiles: "admin"
