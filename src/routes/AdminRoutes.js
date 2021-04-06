@@ -1,4 +1,3 @@
-import UserProfile from "views/User/UserProfile.js";
 import EstablishmentMyList from "views/Establishment/EstablishmentMyList.js"
 import EstablishmentCategoryList from "../views/EstablishmentCategory/EstablishmentCategoryList";
 import PurchasedEstablishmentList from "../views/Order/Establishment/PurchasedEstablishmentList";
@@ -7,13 +6,6 @@ import PreparationStatusList from "../views/PreparationStatus/PreparationStatusL
 import PaymentWayList from "../views/PaymentWay/PaymentWayList";
 
 const routes = [
-    {
-        path: "/user",
-        name: "Usuário",
-        icon: "nc-icon nc-circle-09",
-        component: UserProfile,
-        layout: "/home",
-    },
     {
         path: "/establishment",
         name: "Estabelecimento",
