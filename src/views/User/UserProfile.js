@@ -96,7 +96,7 @@ export default () => {
                     <Col md="6">
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h4">Edit Profile</Card.Title>
+                                <Card.Title as="h4">Alterar Perfil</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <Form onSubmit={handleSubmit}>
