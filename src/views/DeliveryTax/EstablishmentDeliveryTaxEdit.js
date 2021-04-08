@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams, useHistory} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Api from "../../services/Api";
 import UserService from "../../services/UserService";
@@ -65,10 +65,10 @@ function EstablishmentDeliveryTaxEdit() {
                         <Card>
                             <Card.Header>
                                 <p>
-                                    <Link to="/home/establishment/category">&laquo; voltar</Link>
+                                    <Link to="/home/establishment/delivery-tax">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
-                                    Alterar Categoria de Estabelecimento
+                                    Alterar Taxa de Entrega
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>

@@ -44,7 +44,7 @@ function EstablishmentDeliveryNew() {
                                     <Link to="/home/establishment/delivery-tax">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
-                                    Criar Taxas de Entrega
+                                    Criar Taxa de Entrega
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
