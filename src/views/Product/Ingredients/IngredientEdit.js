@@ -188,7 +188,7 @@ function EstablishmentCategoryEdit() {
                                         variant="info"
                                         type="submit"
                                     >
-                                        Salvar
+                                        Salvar Alteração
                                     </Button>
                                     <div className="clearfix"/>
                                 </Form>
