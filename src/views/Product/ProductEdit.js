@@ -94,7 +94,7 @@ function ProductEdit() {
                                     <Link to="/home/establishment/product">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
-                                    Criar Produto
+                                    Alterar Produto
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
@@ -178,7 +178,7 @@ function ProductEdit() {
                                         variant="info"
                                         type="submit"
                                     >
-                                        Salvar
+                                        Salvar Alteração
                                     </Button>
                                     <div className="clearfix"/>
                                 </Form>
