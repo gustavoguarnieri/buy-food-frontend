@@ -24,13 +24,6 @@ const routes = [
         profiles: "admin"
     },
     {
-        path: "/establishment/business-hours",
-        name: "Horário de Funcionamento",
-        component: EstablishmentBusinessHoursList,
-        layout: "/home",
-        profiles: "admin"
-    },
-    {
         path: "/establishment",
         name: "Estabelecimento",
         component: EstablishmentMyList,
@@ -41,6 +34,13 @@ const routes = [
         path: "/establishment/image",
         name: "Imagem de Estabelecimento",
         component: EstablishmentImageList,
+        layout: "/home",
+        profiles: "admin"
+    },
+    {
+        path: "/establishment/business-hours",
+        name: "Horário de Funcionamento",
+        component: EstablishmentBusinessHoursList,
         layout: "/home",
         profiles: "admin"
     },
