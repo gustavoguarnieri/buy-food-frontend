@@ -79,7 +79,7 @@ function AdminDashboardOrder() {
 
     const handleOrdersByMonthDasboard = (orderParam) => {
         let lines = []
-        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
+        let noDataFound = [["Meses", "Qtd pedidos"],["",0]]
         let column = ["Meses", "Qtd pedidos"]
         lines.push(column)
 
@@ -94,7 +94,7 @@ function AdminDashboardOrder() {
 
     const handlePreparationStatusDasboard = (orderParam) => {
         let lines = []
-        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
+        let noDataFound = [["Meses", "Qtd"],["",0]]
         let column = ["Meses", "Qtd"]
         lines.push(column)
 
@@ -109,7 +109,7 @@ function AdminDashboardOrder() {
 
     const handleBillingByMonthDasboard = (orderParam) => {
         let lines = []
-        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
+        let noDataFound = [["Meses", "Faturamento"],["",0]]
         let column = ["Meses", "Faturamento"]
         lines.push(column)
 
@@ -124,7 +124,7 @@ function AdminDashboardOrder() {
 
     const handlePaymentWayDasboard = (orderParam) => {
         let lines = []
-        let noDataFound = [["Meses", "Pagamento Recusado"],["",0]]
+        let noDataFound = [["Meses", "Forma Pagamento"],["",0]]
         let column = ["Meses", "Forma Pagamento"]
         lines.push(column)
 
@@ -254,14 +254,14 @@ function AdminDashboardOrder() {
                             loader={<div>Loading Chart</div>}
                             data={paymentDeclinedStatus}
                             options={{
-                                title: 'Forma de pagamento (90 dias)',
+                                title: 'Pagamento recusado (90 dias)',
                                 chartArea: {width: '40%'},
                                 hAxis: {
-                                    title: 'Meses',
+                                    title: 'Pagamento recusado',
                                     minValue: 0,
                                 },
                                 vAxis: {
-                                    title: 'Forma de pagamento',
+                                    title: 'Meses',
                                 },
                             }}
                             legendToggle
