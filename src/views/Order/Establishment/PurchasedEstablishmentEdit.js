@@ -158,7 +158,7 @@ function PurchasedEstablishmentEdit() {
                                     <Link to="/home/establishment/order/purchasedOrder">&laquo; voltar</Link>
                                 </p>
                                 <Card.Title as="h4">
-                                    Detalhes do Pedido
+                                    Alterar Pedido
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
@@ -246,6 +246,17 @@ function PurchasedEstablishmentEdit() {
                                 </Table>
                                 <Row>
                                     <Col md="12" className="text-right">
+                                        <p className="m-4 text-right">Total: {UtilService.formCurrency(total)}</p>
+                                        {order.establishment?.deliveryTax ?
+                                            <p className="m-4 text-right">
+                                                (Frete
+                                                incluso:{UtilService.formCurrency(order.establishment?.deliveryTax.taxAmount)})
+                                            </p> : <></>
+                                        }
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md="12" className="text-right">
                                         <Button
                                             className="btn-fill float-right m-2"
                                             type="button"
@@ -254,17 +265,6 @@ function PurchasedEstablishmentEdit() {
                                         >
                                             Salvar Alteração
                                         </Button>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md="12" className="text-right">
-                                        <p className="m-4 text-right">Total: {UtilService.formCurrency(total)}</p>
-                                        {order.establishment?.deliveryTax ?
-                                            <p className="m-4 text-right">
-                                                (Frete
-                                                incluso:{UtilService.formCurrency(order.establishment?.deliveryTax.taxAmount)})
-                                            </p> : <></>
-                                        }
                                     </Col>
                                 </Row>
                             </Card.Body>
