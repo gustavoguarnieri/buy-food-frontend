@@ -164,7 +164,7 @@ function EstablishmentBusinessHoursNew() {
             Api.get(`/api/v1/establishments/mine?status=1`, axiosConfig)
                 .then((res) => {
                     let allEstablishment =
-                        res.data.filter(item => item.businessHours === undefined || item?.businessHours?.status === 0)
+                        res.data.filter(item => item.businessHours === undefined)
                     setEstablishments(allEstablishment)
                     allEstablishment.length > 0 ? setEstablishment(allEstablishment[0].id) : 0
                 })
