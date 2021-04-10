@@ -64,8 +64,8 @@ function EstablishmentDeliveryList() {
             })
     }
 
-    const handleDeleteEstablishment = (id) => {
-        Api.delete(`/api/v1/establishments/delivery-tax/${id}`, axiosConfig)
+    const handleDeleteEstablishment = async (id) => {
+        await Api.delete(`/api/v1/establishments/delivery-tax/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -76,7 +76,7 @@ function EstablishmentDeliveryList() {
                 console.log(err)
             })
 
-        handleEstablishment()
+        await handleEstablishment()
     }
 
     return (
