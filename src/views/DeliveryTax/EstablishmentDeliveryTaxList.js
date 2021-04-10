@@ -19,28 +19,33 @@ function EstablishmentDeliveryList() {
     }
 
     useEffect(() => {
-            let url
-
-            if (UserService.hasRole("admin")) {
-                url = `/api/v1/establishments/delivery-tax`
-            } else {
-                url = `/api/v1/establishments/delivery-tax/mine`
-            }
-
-            Api.get(url, axiosConfig)
-                .then((res) => {
-                    setEstablishmentDeliveries(res.data)
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        if (err.response.status === 401) {
-                            UserService.doLogout()
-                        }
-                    }
-                })
+            handleEstablishment()
         },
         []
     )
+
+    const handleEstablishment = () => {
+
+        let url
+
+        if (UserService.hasRole("admin")) {
+            url = `/api/v1/establishments/delivery-tax`
+        } else {
+            url = `/api/v1/establishments/delivery-tax/mine`
+        }
+
+        Api.get(url, axiosConfig)
+            .then((res) => {
+                setEstablishmentDeliveries(res.data)
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        UserService.doLogout()
+                    }
+                }
+            })
+    }
 
     const handleStatusFilter = (statusCode) => {
 
@@ -70,7 +75,8 @@ function EstablishmentDeliveryList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        handleEstablishment()
     }
 
     return (
