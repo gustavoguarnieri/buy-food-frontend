@@ -18,20 +18,25 @@ function EstablishmentCategoryList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/categories`, axiosConfig)
-                .then((res) => {
-                    setEstablishmentCategories(res.data)
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        if (err.response.status === 401) {
-                            UserService.doLogout()
-                        }
-                    }
-                })
+            handleEstablishmentCategory()
         },
         []
     )
+
+    const handleEstablishmentCategory = () => {
+
+        Api.get(`/api/v1/establishments/categories`, axiosConfig)
+            .then((res) => {
+                setEstablishmentCategories(res.data)
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        UserService.doLogout()
+                    }
+                }
+            })
+    }
 
     const handleStatusFilter = (statusCode) => {
 
@@ -50,8 +55,8 @@ function EstablishmentCategoryList() {
             })
     }
 
-    const handleDeleteEstablishment = (id) => {
-        Api.delete(`/api/v1/establishments/categories/${id}`, axiosConfig)
+    const handleDeleteEstablishment = async (id) => {
+        await Api.delete(`/api/v1/establishments/categories/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -61,7 +66,8 @@ function EstablishmentCategoryList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handleEstablishmentCategory()
     }
 
     return (

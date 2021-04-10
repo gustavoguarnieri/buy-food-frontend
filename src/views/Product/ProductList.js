@@ -23,8 +23,11 @@ function ProductList() {
 
     const handleEstablishmentChange = (event) => {
         setEstablishmentId(event.target.value)
+        handleEstablishment(event.target.value)
+    }
 
-        Api.get(`/api/v1/establishments/${event.target.value}/products`, axiosConfig)
+    const handleEstablishment = (establishmentId) => {
+        Api.get(`/api/v1/establishments/${establishmentId}/products`, axiosConfig)
             .then((res) => {
                 setProducts(res.data)
             })
@@ -80,8 +83,8 @@ function ProductList() {
             })
     }
 
-    const handleDeleteProducts = (id) => {
-        Api.delete(`/api/v1/establishments/${establishmentId}/products/${id}`, axiosConfig)
+    const handleDeleteProducts = async (id) => {
+        await Api.delete(`/api/v1/establishments/${establishmentId}/products/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -91,7 +94,8 @@ function ProductList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handleEstablishment(establishmentId)
     }
 
     return (

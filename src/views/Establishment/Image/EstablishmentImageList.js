@@ -27,30 +27,34 @@ function EstablishmentImageList() {
     }
 
     useEffect(async () => {
-            let establishmentsResp
-            try {
-                establishmentsResp = await Api.get(`/api/v1/establishments/mine?status=1`, axiosConfig)
-                setEstablishments(establishmentsResp.data)
-                establishmentsResp.data.length > 0 ? setEstablishmentId(establishmentsResp.data[0].id) : setEstablishmentId(0)
-            } catch (err) {
-                alert("Ops, ocorreu um erro verifique os dados e tente novamente")
-                return err
-            }
-
-            try {
-                let establishmentIdResp = establishmentsResp.data.length > 0 ? establishmentsResp.data[0].id : 0
-
-                if (establishmentIdResp > 0) {
-                    let response = await Api.get(`/api/v1/establishments/${establishmentIdResp}/images`, axiosConfig)
-                    setImages(response.data)
-                }
-            } catch (err) {
-                alert("Ops, ocorreu um erro verifique os dados e tente novamente")
-                return err
-            }
+            await handleEstablishmentImage()
         },
         []
     )
+
+    const handleEstablishmentImage = async () => {
+        let establishmentsResp
+        try {
+            establishmentsResp = await Api.get(`/api/v1/establishments/mine?status=1`, axiosConfig)
+            setEstablishments(establishmentsResp.data)
+            establishmentsResp.data.length > 0 ? setEstablishmentId(establishmentsResp.data[0].id) : setEstablishmentId(0)
+        } catch (err) {
+            alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+            return err
+        }
+
+        try {
+            let establishmentIdResp = establishmentsResp.data.length > 0 ? establishmentsResp.data[0].id : 0
+
+            if (establishmentIdResp > 0) {
+                let response = await Api.get(`/api/v1/establishments/${establishmentIdResp}/images`, axiosConfig)
+                setImages(response.data)
+            }
+        } catch (err) {
+            alert("Ops, ocorreu um erro verifique os dados e tente novamente")
+            return err
+        }
+    }
 
     const handleImages = (statusCode) => {
         let url = `/api/v1/establishments/${statusCode}/images`
@@ -80,8 +84,8 @@ function EstablishmentImageList() {
             })
     }
 
-    const handleDeleteImages = (id) => {
-        Api.delete(`/api/v1/establishments/${establishmentId}/images/${id}`, axiosConfig)
+    const handleDeleteImages = async (id) => {
+        await Api.delete(`/api/v1/establishments/${establishmentId}/images/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -91,7 +95,8 @@ function EstablishmentImageList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handleEstablishmentImage()
     }
 
     return (

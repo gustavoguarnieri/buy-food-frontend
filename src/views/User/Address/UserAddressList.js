@@ -18,22 +18,27 @@ function UserAddressList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/users/addresses/mine`, axiosConfig)
-                .then((res) => {
-                    setAddresses(res.data)
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        if (err.response.data.statusCode === 404) {
-                            console.log("Usuário consta somente no autenticador");
-                        } else if (err.response.status === 401) {
-                                UserService.doLogout()
-                        }
-                    }
-                })
+            handleAddress()
         },
         []
     )
+
+    const handleAddress = () => {
+
+         Api.get(`/api/v1/users/addresses/mine`, axiosConfig)
+            .then((res) => {
+                setAddresses(res.data)
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.data.statusCode === 404) {
+                        console.log("Usuário consta somente no autenticador");
+                    } else if (err.response.status === 401) {
+                        UserService.doLogout()
+                    }
+                }
+            })
+    }
 
     const handleStatusFilter = (statusCode) => {
 
@@ -52,8 +57,8 @@ function UserAddressList() {
             })
     }
 
-    const handleDeleteUserAddress = (id) => {
-        Api.delete(`/api/v1/users/address/${id}`, axiosConfig)
+    const handleDeleteUserAddress = async (id) => {
+        await Api.delete(`/api/v1/users/address/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -63,7 +68,7 @@ function UserAddressList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+        await handleAddress()
     }
 
     return (

@@ -18,20 +18,25 @@ function PreparationStatusList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/preparation-status`, axiosConfig)
-                .then((res) => {
-                    setPreparationStatusList(res.data)
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        if (err.response.status === 401) {
-                            UserService.doLogout()
-                        }
-                    }
-                })
+            handlePreparationStatus()
         },
         []
     )
+
+    const handlePreparationStatus = () => {
+
+        Api.get(`/api/v1/establishments/preparation-status`, axiosConfig)
+            .then((res) => {
+                setPreparationStatusList(res.data)
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        UserService.doLogout()
+                    }
+                }
+            })
+    }
 
     const handleStatusFilter = (statusCode) => {
 
@@ -50,8 +55,8 @@ function PreparationStatusList() {
             })
     }
 
-    const handleDeletePreparationStatus = (id) => {
-        Api.delete(`/api/v1/establishments/preparation-status/${id}`, axiosConfig)
+    const handleDeletePreparationStatus = async (id) => {
+        await Api.delete(`/api/v1/establishments/preparation-status/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -61,7 +66,8 @@ function PreparationStatusList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handlePreparationStatus()
     }
 
     return (

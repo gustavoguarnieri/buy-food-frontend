@@ -20,28 +20,33 @@ function EstablishmentMyList() {
     }
 
     useEffect(() => {
-            let url
-
-            if (UserService.hasRole("admin")) {
-                url = `/api/v1/establishments`
-            } else {
-                url = `/api/v1/establishments/mine`
-            }
-
-            Api.get(url, axiosConfig)
-                .then((res) => {
-                    setEstablishments(res.data)
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        if (err.response.status === 401) {
-                            UserService.doLogout()
-                        }
-                    }
-                })
+            handleEstablishment()
         },
         []
     )
+
+    const handleEstablishment = () => {
+
+        let url
+
+        if (UserService.hasRole("admin")) {
+            url = `/api/v1/establishments`
+        } else {
+            url = `/api/v1/establishments/mine`
+        }
+
+        Api.get(url, axiosConfig)
+            .then((res) => {
+                setEstablishments(res.data)
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        UserService.doLogout()
+                    }
+                }
+            })
+    }
 
     const handleStatusFilter = (statusCode) => {
 
@@ -66,8 +71,8 @@ function EstablishmentMyList() {
             })
     }
 
-    const handleDeleteEstablishment = (id) => {
-        Api.delete(`/api/v1/establishments/${id}`, axiosConfig)
+    const handleDeleteEstablishment = async (id) => {
+        await Api.delete(`/api/v1/establishments/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -77,7 +82,8 @@ function EstablishmentMyList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handleEstablishment()
     }
 
     return (

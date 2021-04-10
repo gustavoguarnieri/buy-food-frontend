@@ -109,8 +109,8 @@ function IngredientList() {
             })
     }
 
-    const handleDeleteIngredients = (id) => {
-        Api.delete(`/api/v1/establishments/${establishmentId}/products/${productId}/ingredients/${id}`, axiosConfig)
+    const handleDeleteIngredients = async (id) => {
+        await Api.delete(`/api/v1/establishments/${establishmentId}/products/${productId}/ingredients/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -120,7 +120,8 @@ function IngredientList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handleIngredients(productId)
     }
 
     return (

@@ -18,20 +18,25 @@ function EstablishmentBusinessHoursList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/business-hours/mine`, axiosConfig)
-                .then((res) => {
-                    setEstablishmentBusinessHours(res.data)
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        if (err.response.status === 401) {
-                            UserService.doLogout()
-                        }
-                    }
-                })
+            handleBusinessHours()
         },
         []
     )
+
+    const handleBusinessHours = () => {
+
+        Api.get(`/api/v1/establishments/business-hours/mine`, axiosConfig)
+            .then((res) => {
+                setEstablishmentBusinessHours(res.data)
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        UserService.doLogout()
+                    }
+                }
+            })
+    }
 
     const handleStatusFilter = (statusCode) => {
 
@@ -50,8 +55,8 @@ function EstablishmentBusinessHoursList() {
             })
     }
 
-    const handleDeleteEstablishmentBusinessHours = (establishmentId, businessHoursId) => {
-        Api.delete(`/api/v1/establishments/${establishmentId}/business-hours/${businessHoursId}`, axiosConfig)
+    const handleDeleteEstablishmentBusinessHours = async (establishmentId, businessHoursId) => {
+        await Api.delete(`/api/v1/establishments/${establishmentId}/business-hours/${businessHoursId}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -61,7 +66,8 @@ function EstablishmentBusinessHoursList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handleBusinessHours()
     }
 
     return (

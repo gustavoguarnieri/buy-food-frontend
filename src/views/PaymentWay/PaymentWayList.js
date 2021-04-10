@@ -18,20 +18,25 @@ function PaymentWayList() {
     }
 
     useEffect(() => {
-            Api.get(`/api/v1/establishments/payment-way`, axiosConfig)
-                .then((res) => {
-                    setPaymentWayList(res.data)
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        if (err.response.status === 401) {
-                            UserService.doLogout()
-                        }
-                    }
-                })
+            handlePaymentWay()
         },
         []
     )
+
+    const handlePaymentWay = () => {
+
+        Api.get(`/api/v1/establishments/payment-way`, axiosConfig)
+            .then((res) => {
+                setPaymentWayList(res.data)
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        UserService.doLogout()
+                    }
+                }
+            })
+    }
 
     const handleStatusFilter = (statusCode) => {
 
@@ -50,8 +55,8 @@ function PaymentWayList() {
             })
     }
 
-    const handleDeletePaymentWay = (id) => {
-        Api.delete(`/api/v1/establishments/payment-way/${id}`, axiosConfig)
+    const handleDeletePaymentWay = async (id) => {
+        await Api.delete(`/api/v1/establishments/payment-way/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -61,7 +66,8 @@ function PaymentWayList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handlePaymentWay()
     }
 
     return (

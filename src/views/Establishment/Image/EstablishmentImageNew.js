@@ -37,6 +37,11 @@ function EstablishmentImageNew() {
     const handleNewEstablishmentImage = async (e) => {
         e.preventDefault();
 
+        if (establishmentId === '-1') {
+            alert("Selecione um estabelecimento para cadastro da imagem")
+            return
+        }
+
         if (file !== '') {
             try {
                 const formData = new FormData()
@@ -83,6 +88,7 @@ function EstablishmentImageNew() {
                                                 <Establishment establishments={establishments}
                                                                establishment={establishmentId}
                                                                handleEstablishmentChange={handleEstablishmentChange}
+                                                               isSelectVisible={true}
                                                 />
                                             </Form.Group>
                                         </Col>

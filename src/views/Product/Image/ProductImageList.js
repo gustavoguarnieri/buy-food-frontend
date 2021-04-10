@@ -106,8 +106,8 @@ function ProductImageList() {
             })
     }
 
-    const handleDeleteImages = (id) => {
-        Api.delete(`/api/v1/establishments/${establishmentId}/products/${productId}/images/${id}`, axiosConfig)
+    const handleDeleteImages = async (id) => {
+        await Api.delete(`/api/v1/establishments/${establishmentId}/products/${productId}/images/${id}`, axiosConfig)
             .then((res) => {
                 console.log(res.data)
             })
@@ -117,7 +117,8 @@ function ProductImageList() {
             .catch((err) => {
                 console.log(err)
             })
-        window.location.reload();
+
+        await handleImages(productId)
     }
 
     return (
