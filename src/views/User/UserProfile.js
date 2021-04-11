@@ -178,12 +178,19 @@ export default () => {
                                                 >
                                                     {role === "ADMIN" ? (
                                                         <option value="ADMIN">ADMIN</option>
-                                                    ) : (
+                                                    ) : <></>}
+
+                                                    {role === "USER" ? (
                                                         <>
                                                             <option value="USER">USUARIO</option>
                                                             <option value="ESTABLISHMENT">ESTABELECIMENTO</option>
                                                         </>
-                                                    )}
+                                                    ) : <></>}
+
+                                                    {role === "ESTABLISHMENT" ? (
+                                                        <option value="ESTABLISHMENT">ESTABELECIMENTO</option>
+                                                    ) : <></>}
+
                                                 </Form.Control>
                                             </Form.Group>
                                         </Col>
